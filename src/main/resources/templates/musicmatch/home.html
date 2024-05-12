@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+    <main class="col-lg-9">
+
+        <div class="table-responsive mt-5 mb-4 mx-3">
+            <table class="table">
+                <thead>
+                <tr class="text-left">
+                    <th>Titulo</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each=" cancion : ${canciones}">
+                    <td th:text="${cancion.titulo}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>
