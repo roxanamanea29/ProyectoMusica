@@ -1,6 +1,7 @@
 package com.example.ProyectoMusica.controller;
 
 import com.example.ProyectoMusica.service.ServicioCancion;
+import com.example.ProyectoMusica.service.ServicioListaReproduccion;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +19,14 @@ import java.util.logging.Logger;
 @RequestMapping("/musicmatch/home")
 public class HomeController {
     ServicioCancion servicioCancion = new ServicioCancion();
+    ServicioListaReproduccion servicioListaReproduccion = new ServicioListaReproduccion();
 
     @GetMapping("/")
     public String crud(Model model) {
         String valorfinal = "./musicmatch/home";
         try {
             model.addAttribute("canciones", servicioCancion.listarAllCanciones());
+            model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";

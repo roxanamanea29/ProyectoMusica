@@ -23,6 +23,12 @@
                 </tbody>
             </table>
         </div>
+        <div th:each="listaReproduccion : ${listasDeReproduccion}">
+            <p th:text="${listaReproduccion.nombre}"></p>
+            <ul th:each=" piesa : ${listaReproduccion.canciones}">
+                <li th:text="${piesa.titulo}"></li>
+            </ul>
+        </div>
     </main>
 </div>
 </body>
