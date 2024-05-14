@@ -25,7 +25,7 @@ public class ServicioCancionListaReproduccion {
 
         Statement consulta = con.conectar().createStatement();
         // Consulta a la tabla intermedia para obtener TODAS las canciones asociadas a la lista de reproducción con el `id` de arriba
-        ResultSet result_n_m = consulta.executeQuery("SELECT * FROM `cancion_lista_de_reproduccion` WHERE `lista_de_reproducion_id` = " + listaReproduccionId);
+        ResultSet result_n_m = consulta.executeQuery("SELECT * FROM `Cancion_ListaReproduccion` WHERE `lista_reproduccion_id` = " + listaReproduccionId);
 
         while (result_n_m.next()) {
             Cancion cancion = servicioCancion.obtenerCancion(result_n_m.getInt("cancion_id"));

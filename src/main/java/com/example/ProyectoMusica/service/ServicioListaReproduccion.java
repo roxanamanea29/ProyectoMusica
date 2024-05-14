@@ -4,7 +4,6 @@ import com.example.ProyectoMusica.database.Conexion;
 import com.example.ProyectoMusica.entity.Cancion;
 import com.example.ProyectoMusica.entity.ListaReproducion;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,7 +23,7 @@ public class ServicioListaReproduccion {
         Statement consulta = con.conectar().createStatement();
 
         // Obtengo todas las listas de reproduccion
-        ResultSet result = consulta.executeQuery("SELECT * FROM Lista_de_Reproduccion");
+        ResultSet result = consulta.executeQuery("SELECT * FROM ListaReproduccion");
 
         while (result.next()) {
             int id = result.getInt("id");

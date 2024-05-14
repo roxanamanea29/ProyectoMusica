@@ -1,0 +1,80 @@
+DROP DATABASE IF EXISTS Music_Match;
+
+CREATE DATABASE IF NOT EXISTS Music_Match;
+
+USE Music_Match;
+
+CREATE TABLE IF NOT EXISTS Usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS ListaReproduccion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    usuario_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
+);
+
+CREATE TABLE IF NOT EXISTS Genero (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Artista (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Cancion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    artista_id INT,
+    genero_id INT,
+    FOREIGN KEY (artista_id) REFERENCES Artista(id),
+    FOREIGN KEY (genero_id) REFERENCES Genero(id)
+);
+
+CREATE TABLE IF NOT EXISTS Cancion_ListaReproduccion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cancion_id INT,
+    lista_reproduccion_id INT,
+    FOREIGN KEY (cancion_id) REFERENCES Cancion(id),
+    FOREIGN KEY (lista_reproduccion_id) REFERENCES ListaReproduccion(id)
+);
+
+INSERT INTO Genero (nombre) VALUES
+('Pop'),
+('Rock'),
+('Electrónica'),
+('Hip Hop');
+
+INSERT INTO Artista (nombre) VALUES
+('Shakira'),
+('The Beatles'),
+('Calvin Harris'),
+('Eminem');
+
+INSERT INTO Usuario (nombre, email, contrasena) VALUES
+('Juan', 'juan@example.com', 'password123'),
+('María', 'maria@example.com', 'maria456'),
+('Pedro', 'pedro@example.com', 'pedro789');
+
+INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
+('Whenever, Wherever', 1, 1),
+('Hey Jude', 2, 2),
+('Summer', 3, 3),
+('Lose Yourself', 4, 4);
+
+INSERT INTO ListaReproduccion (nombre, usuario_id) VALUES
+('Favoritas de Juan', 1),
+('Viaje en carretera', 2),
+('Entrenamiento', 3);
+
+INSERT INTO Cancion_ListaReproduccion (cancion_id, lista_reproduccion_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 3);
