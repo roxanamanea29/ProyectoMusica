@@ -17,7 +17,6 @@ import java.util.List;
 public class ServicioCancion {
     Conexion con = new Conexion();
 
-
     public Cancion obtenerCancion(int id) throws SQLException {//
         Cancion cancion = null;
         Statement consulta = con.conectar().createStatement();

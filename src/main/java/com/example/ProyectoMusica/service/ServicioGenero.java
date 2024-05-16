@@ -19,7 +19,7 @@ public class ServicioGenero {
 
         Statement consulta = con.conectar().createStatement();
 
-        ResultSet result = consulta.executeQuery("SELECT * FROM Genero");
+        ResultSet result = consulta.executeQuery("SELECT * FROM genero");
 
         while (result.next()) {
             Genero genero = new Genero(
