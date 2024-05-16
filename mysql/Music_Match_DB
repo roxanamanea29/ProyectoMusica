@@ -1,0 +1,46 @@
+DROP DATABASE IF EXISTS Music_Match;
+
+CREATE DATABASE IF NOT EXISTS Music_Match;
+
+USE Music_Match;
+
+CREATE TABLE IF NOT EXISTS Usuario (
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombreUsuario VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS ListaReproduccion (
+    idListaReproduccion INT AUTO_INCREMENT PRIMARY KEY,
+    nombreListaReproduccion VARCHAR(255) NOT NULL,
+    usuario_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(idUsuario)
+);
+
+CREATE TABLE IF NOT EXISTS Genero (
+    idGenero INT AUTO_INCREMENT PRIMARY KEY,
+    nombreGenero VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Artista (
+    idArtista INT AUTO_INCREMENT PRIMARY KEY,
+    nombreArtista VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Cancion (
+    idCancion INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    artista_id INT,
+    genero_id INT,
+    FOREIGN KEY (artista_id) REFERENCES Artista(idArtista),
+    FOREIGN KEY (genero_id) REFERENCES Genero(idGenero)
+);
+
+CREATE TABLE IF NOT EXISTS Cancion_ListaReproduccion (
+    idCancionListaReproduccion INT AUTO_INCREMENT PRIMARY KEY,
+    cancion_id INT,
+    lista_reproduccion_id INT,
+    FOREIGN KEY (cancion_id) REFERENCES Cancion(idCancion),
+    FOREIGN KEY (lista_reproduccion_id) REFERENCES ListaReproduccion(idListaReproduccion)
+);

@@ -27,7 +27,6 @@ public class ServicioCancion {
                     result.getInt("id"),
                     result.getString("titulo")
 
-
             );
         }
         result.close();
@@ -44,7 +43,7 @@ public class ServicioCancion {
                     result.getInt("id"),
                     result.getString("titulo")
                    // result.getString("artista"),
-                   // result.getString("genero")
+                   //result.getString("genero")
 
             );
             listaCanciones.add(cancion);

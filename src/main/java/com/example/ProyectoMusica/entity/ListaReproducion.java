@@ -3,22 +3,22 @@ package com.example.ProyectoMusica.entity;
 import java.util.List;
 
 public class ListaReproducion {
-    private int id;
+    private int id_lista;
     private String nombre;
     private List<Cancion> canciones;
 
     public ListaReproducion(int id, String nombre, List<Cancion> canciones) {
-        this.id = id;
+        this.id_lista = id;
         this.nombre = nombre;
         this.canciones = canciones;
     }
 
     public int getId() {
-        return id;
+        return id_lista;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_lista = id;
     }
 
     public String getNombre() {

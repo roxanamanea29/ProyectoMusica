@@ -1,0 +1,35 @@
+INSERT INTO Genero (nombreGenero) VALUES
+('Pop'),
+('Rock'),
+('Electrónica'),
+('Hip Hop');
+
+INSERT INTO Artista (nombreArtista) VALUES
+('Shakira'),
+('The Beatles'),
+('Calvin Harris'),
+('Eminem');
+
+INSERT INTO Usuario (nombreUsuario, email, contrasena) VALUES
+('Juan', 'juan@example.com', 'password123'),
+('María', 'maria@example.com', 'maria456'),
+('Pedro', 'pedro@example.com', 'pedro789');
+
+
+INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
+('Whenever, Wherever', 1, 1),
+('Hey Jude', 2, 2),
+('Summer', 3, 3),
+('Lose Yourself', 4, 4);
+
+
+INSERT INTO ListaReproduccion (nombreListaReproduccion, usuario_id) VALUES
+('Favoritas de Juan', 1),
+('Viaje en carretera', 2),
+('Entrenamiento', 3);
+
+INSERT INTO Cancion_ListaReproduccion (cancion_id, lista_reproduccion_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 3);

@@ -16,14 +16,14 @@ import java.util.logging.Logger;
  */
 
 @Controller
-@RequestMapping("/musicmatch/home")
+@RequestMapping("/musicmatch/prueba")
 public class HomeController {
     ServicioCancion servicioCancion = new ServicioCancion();
     ServicioListaReproduccion servicioListaReproduccion = new ServicioListaReproduccion();
 
     @GetMapping("/")
     public String crud(Model model) {
-        String valorfinal = "./musicmatch/home";
+        String valorfinal = "./musicmatch/prueba";
         try {
             model.addAttribute("canciones", servicioCancion.listarAllCanciones());
             model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
