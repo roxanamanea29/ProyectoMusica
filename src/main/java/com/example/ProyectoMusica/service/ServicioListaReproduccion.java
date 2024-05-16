@@ -26,12 +26,12 @@ public class ServicioListaReproduccion {
         ResultSet result = consulta.executeQuery("SELECT * FROM ListaReproduccion");
 
         while (result.next()) {
-            int id = result.getInt("id");
+            int id = result.getInt("idListaReproduccion");
             // Vamos a la tabla intermedia para obtener TODAS las canciones que PERTENECEN a esta lista de reproduccion
             List<Cancion> canciones = servicioCancionListaReproduccion.obtenerCancionesDeListaDeReproduccion(id);
             ListaReproducion listaReproduccion = new ListaReproducion(
                     id,
-                    result.getString("nombre"),
+                    result.getString("nombreListaReproduccion"),
                     canciones
             );
             listaListaReproduccion.add(listaReproduccion);

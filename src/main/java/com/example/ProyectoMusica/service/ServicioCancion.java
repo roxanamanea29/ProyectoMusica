@@ -21,10 +21,10 @@ public class ServicioCancion {
     public Cancion obtenerCancion(int id) throws SQLException {//
         Cancion cancion = null;
         Statement consulta = con.conectar().createStatement();
-        ResultSet result = consulta.executeQuery("SELECT * FROM Cancion where `id` = " + id);
+        ResultSet result = consulta.executeQuery("SELECT * FROM Cancion where `idCancion` = " + id);
         while (result.next()) {
             cancion = new Cancion(
-                    result.getInt("id"),
+                    result.getInt("idCancion"),
                     result.getString("titulo")
 
             );
@@ -40,7 +40,7 @@ public class ServicioCancion {
         ResultSet result = consulta.executeQuery("SELECT * FROM Cancion");
         while (result.next()) {
             Cancion cancion = new Cancion(
-                    result.getInt("id"),
+                    result.getInt("idCancion"),
                     result.getString("titulo")
                    // result.getString("artista"),
                    //result.getString("genero")
