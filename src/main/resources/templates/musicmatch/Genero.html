@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
 
+<body>
+<div class="row">
+    <main class="col-lg-9">
+
+        <div class="table-responsive mt-5 mb-4 mx-3">
+            <table class="table">
+                <thead>
+                <tr class="text-left">
+                    <th>Titulo</th>
+                </tr>
+                </thead>
+
+                <!--  <tbody>
+                  <tr th:each=" cancion : ${canciones}">
+                      <td th:text="${cancion.titulo}"></td>
+                  </tr>
+                  </tbody>-->
+            </table>
+        </div> <!-- generos es lo que viene de el generoController que sale de ServicioGenero-->
+                <!-- genero es el nombre que he puesto yo-->
+                <!-- .nombreGenero es el nombre del result nombreGenero que llama a la base?? -->
+        <div th:each="genero : ${generos}">
+            <p th:text="${genero.getNombreGenero()}">Generos</p>
+        </div>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>
