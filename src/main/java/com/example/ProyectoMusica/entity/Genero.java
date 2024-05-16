@@ -24,4 +24,5 @@ public class Genero {
     public void setNombreGenero(String nombreGenero) {
         this.nombreGenero = nombreGenero;
     }
+
 }
