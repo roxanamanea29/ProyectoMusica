@@ -66,7 +66,7 @@ public class Usuario {
     public void setLista(String lista) {
         this.lista = lista;
     }
-
+//asdfsdfsdf
     @Override
     public String toString() {
 
