@@ -1,5 +1,6 @@
 package com.example.ProyectoMusica.controller;
 
+import com.example.ProyectoMusica.entity.Genero;
 import com.example.ProyectoMusica.service.ServicioGenero;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,8 @@ public class GeneroController {
         String valorfinal = "./musicmatch/Genero";
         try {
             model.addAttribute("generos", genero.listarTodosGeneros());
+            model.addAttribute("unicoGenero", genero.getUnicoGenero(1));
+
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";

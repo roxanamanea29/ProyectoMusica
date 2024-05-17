@@ -28,9 +28,12 @@
             </table>
         </div> <!-- generos es lo que viene de el generoController que sale de ServicioGenero-->
                 <!-- genero es el nombre que he puesto yo-->
-                <!-- .nombreGenero es el nombre del result nombreGenero que llama a la base?? -->
+                <!-- .nombreGenero es el nombre de la variable en Genero -->
         <div th:each="genero : ${generos}">
-            <p th:text="${genero.nombreGenero}">Generos</p>
+            <p th:text="${genero.getNombreGenero()}">Generos</p>
+        </div>
+        <div th:each="genero : ${unicoGenero}">
+            <p th:text="${genero.getNombreGenero()}">Generos</p>
         </div>
     </main>
 </div>
