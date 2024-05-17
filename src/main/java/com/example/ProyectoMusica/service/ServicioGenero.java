@@ -12,6 +12,21 @@ import java.util.List;
 
 public class ServicioGenero {
     Conexion con = new Conexion();
+    public Genero getUnicoGenero(int id) throws SQLException {//
+        Genero genero = null;
+        Statement consulta = con.conectar().createStatement();
+        ResultSet result = consulta.executeQuery("SELECT * FROM genero where `idGenero` = " + id);
+        while (result.next()) {
+            genero = new Genero(
+                    result.getInt("idGenero"),
+                    result.getString("nombreGenero")
+
+            );
+        }
+        result.close();
+        consulta.close();
+        return genero;
+    }
 
     public List<Genero> listarTodosGeneros() throws SQLException {
 
