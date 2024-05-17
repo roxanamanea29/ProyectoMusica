@@ -27,6 +27,9 @@ public class Usuario {
         this.lista=lista;
     }
 
+    public Usuario(int idUsuario, String nombreUsuario) {
+    }
+
     public int getIdUsuario() {
         return idUsuario;
     }
