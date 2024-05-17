@@ -1,49 +1,28 @@
 package com.example.ProyectoMusica.service;
 
-import com.example.ProyectoMusica.database.Conexion;
 import com.example.ProyectoMusica.entity.Usuario;
+import org.springframework.stereotype.Service;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ServicioUsuario {
-    Conexion con = new Conexion();
-    public Usuario getUnicoUsuario(int id) throws SQLException {//
-        Usuario usuario = null;
-        Statement consulta = con.conectar().createStatement();
-        ResultSet result = consulta.executeQuery("SELECT * FROM usuario where `idUsuario` = " + id);
-        while (result.next()) {
-            usuario = new Usuario(
-                    result.getInt("idUsuario"),
-                    result.getString("nombreUsuario")
+    private List<Usuario> usuarios;
 
-            );
-        }
-        result.close();
-        consulta.close();
-        return usuario;
+    public ServicioUsuario() {
+        this.usuarios = new ArrayList<>();
+        // Aquí podrías inicializar algunos usuarios de ejemplo
     }
 
-    public List<Usuario> listarTodosUsuarios() throws SQLException {
-
-        List<Usuario> listaUsuario = new ArrayList<>();
-
-        Statement consulta = con.conectar().createStatement();
-
-        ResultSet result = consulta.executeQuery("SELECT * FROM usuario");
-
-        while (result.next()) {
-            Usuario usuario = new Usuario(
-                    result.getInt("idUsuario"),
-                    result.getString("nombreUsuario")
-            );
-            listaUsuario.add(usuario);
-        }
-        result.close();
-        consulta.close();
-        return listaUsuario;
+    public List<Usuario> listarTodosUsuarios() {
+        return usuarios;
     }
+
+    public Usuario getUnicoUsuario(int id) {
+        // Aquí podrías implementar la lógica para obtener un usuario por su ID
+        return null;
+    }
+
+    // Otros métodos para manipular usuarios como guardar, actualizar, eliminar, etc.
 }
