@@ -1,35 +1,77 @@
+-- Insertar más géneros musicales
 INSERT INTO Genero (nombreGenero) VALUES
-('Pop'),
-('Rock'),
-('Electrónica'),
-('Hip Hop');
+('R&B'),
+('Reggae'),
+('Jazz'),
+('Clásica'),
+('Pop Rock'),
+('Indie'),
+('Metal'),
+('Rap'),
+('Country'),
+('Soul');
 
+-- Insertar más artistas
 INSERT INTO Artista (nombreArtista) VALUES
-('Shakira'),
-('The Beatles'),
-('Calvin Harris'),
-('Eminem');
+('Beyoncé'),
+('Bob Marley'),
+('Miles Davis'),
+('Led Zeppelin'),
+('Arctic Monkeys'),
+('Metallica'),
+('Kendrick Lamar'),
+('Johnny Cash'),
+('Aretha Franklin'),
+('Queen');
 
+-- Insertar más usuarios
 INSERT INTO Usuario (nombreUsuario, email, contrasena) VALUES
-('Juan', 'juan@example.com', 'password123'),
-('María', 'maria@example.com', 'maria456'),
-('Pedro', 'pedro@example.com', 'pedro789');
+('Luis', 'luis@example.com', 'luis123'),
+('Ana', 'ana@example.com', 'ana456'),
+('Sofía', 'sofia@example.com', 'sofia789'),
+('David', 'david@example.com', 'david123'),
+('Laura', 'laura@example.com', 'laura456'),
+('Carlos', 'carlos@example.com', 'carlos789'),
+('María', 'maria2@example.com', 'maria123'),
+('Juan', 'juan2@example.com', 'juan456'),
+('Elena', 'elena@example.com', 'elena789'),
+('Pablo', 'pablo@example.com', 'pablo123');
 
-
+-- Insertar más canciones
 INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
-('Whenever, Wherever', 1, 1),
-('Hey Jude', 2, 2),
-('Summer', 3, 3),
-('Lose Yourself', 4, 4);
+('Halo', 1, 9),
+('One Love', 2, 10),
+('So What', 3, 7),
+('Stairway to Heaven', 4, 6),
+('Do I Wanna Know?', 5, 6),
+('Enter Sandman', 6, 7),
+('HUMBLE.', 7, 8),
+('Hurt', 8, 9),
+('Respect', 9, 10),
+('Bohemian Rhapsody', 10, 5);
 
-
+-- Insertar más listas de reproducción
 INSERT INTO ListaReproduccion (nombreListaReproduccion, usuario_id) VALUES
-('Favoritas de Juan', 1),
-('Viaje en carretera', 2),
-('Entrenamiento', 3);
+('Gimnasio', 1),
+('Relax', 2),
+('Estudio', 3),
+('Viaje en coche', 4),
+('Fiesta', 5),
+('Trabajo', 6),
+('Entrenamiento', 7),
+('Desconectar', 8),
+('Favoritas de María', 9),
+('Cena romántica', 10);
 
+-- Insertar más relaciones entre canciones y listas de reproducción
 INSERT INTO Cancion_ListaReproduccion (cancion_id, lista_reproduccion_id) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 3);
+(11, 4),
+(12, 5),
+(13, 6),
+(14, 7),
+(15, 8),
+(16, 9),
+(17, 10),
+(18, 1),
+(19, 2),
+(20, 3);
