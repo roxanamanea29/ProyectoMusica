@@ -4,12 +4,12 @@ import java.util.List;
 
 public class ListaReproducion {
     private int id_lista;
-    private String nombre;
+    private String nombreLista;
     private List<Cancion> canciones;
 
-    public ListaReproducion(int id, String nombre, List<Cancion> canciones) {
+    public ListaReproducion(int id, String nombreLista, List<Cancion> canciones) {
         this.id_lista = id;
-        this.nombre = nombre;
+        this.nombreLista = nombreLista;
         this.canciones = canciones;
     }
 
@@ -22,11 +22,11 @@ public class ListaReproducion {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombreLista;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombreLista = nombre;
     }
 
     public List<Cancion> getCanciones() {
