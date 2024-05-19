@@ -16,13 +16,13 @@ import java.util.logging.Logger;
  */
 
 @Controller
-@RequestMapping("/musicmatch/home")
+@RequestMapping("/musicmatch/index")
 public class HomeController {
     ServicioCancion servicioCancion = new ServicioCancion();
     ServicioListaReproduccion servicioListaReproduccion = new ServicioListaReproduccion();
 
     @GetMapping("/")
-    public String crud(Model model) {
+   /* public String crud(Model model) {
         String valorfinal = "./musicmatch/home";
         try {
             model.addAttribute("canciones", servicioCancion.listarAllCanciones());
@@ -32,7 +32,19 @@ public class HomeController {
             valorfinal = "error";
         }
         return valorfinal;
-    }
+    }*/
+
+        public String crud(Model model) {
+            String valorfinal = "./musicmatch/index";
+            try {
+                model.addAttribute("canciones", servicioCancion.listarAllCanciones());
+                model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
+            } catch (Exception ex) {
+                Logger.getLogger(com.example.ProyectoMusica.controller.HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                valorfinal = "error";
+            }
+            return valorfinal;
+        }
 
 }
 

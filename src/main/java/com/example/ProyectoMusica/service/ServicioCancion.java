@@ -2,6 +2,7 @@ package com.example.ProyectoMusica.service;
 
 import com.example.ProyectoMusica.database.Conexion;
 import com.example.ProyectoMusica.entity.Cancion;
+import com.example.ProyectoMusica.entity.Genero;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,17 +16,23 @@ import java.util.List;
  */
 // https://es.stackoverflow.com/questions/58252/operation-not-allowed-after-resultset-closed
 public class ServicioCancion {
-    Conexion con = new Conexion();
+   Conexion con = new Conexion();
 
-    public Cancion obtenerCancion(int id) throws SQLException {//
+    public Cancion obtenerCancion(int id) throws SQLException {
         Cancion cancion = null;
         Statement consulta = con.conectar().createStatement();
-        ResultSet result = consulta.executeQuery("SELECT * FROM Cancion where `idCancion` = " + id);
-        while (result.next()) {
+        ResultSet result = consulta.executeQuery(
+                "SELECT c.idCancion, c.titulo, g.idGenero, g.nombreGenero " +
+                        "FROM Cancion c " +
+                        "JOIN Genero g ON c.genero_id = g.idGenero " +
+                        "WHERE c.idCancion = " + id
+        );
+        if (result.next()) {
             cancion = new Cancion(
+                    result.getString("titulo"),
                     result.getInt("idCancion"),
-                    result.getString("titulo")
-
+                    result.getString("nombreGenero"),
+                    result.getInt("idGenero")
             );
         }
         result.close();
@@ -33,17 +40,21 @@ public class ServicioCancion {
         return cancion;
     }
 
-    public List<Cancion> listarAllCanciones() throws SQLException {//
+
+    public List<Cancion> listarAllCanciones() throws SQLException {
         List<Cancion> listaCanciones = new ArrayList<>();
         Statement consulta = con.conectar().createStatement();
-        ResultSet result = consulta.executeQuery("SELECT * FROM Cancion");
+        ResultSet result = consulta.executeQuery(
+                "SELECT c.idCancion, c.titulo, g.idGenero, g.nombreGenero " +
+                        "FROM Cancion c " +
+                        "JOIN Genero g ON c.genero_id = g.idGenero"
+        );
         while (result.next()) {
             Cancion cancion = new Cancion(
+                    result.getString("titulo"),
                     result.getInt("idCancion"),
-                    result.getString("titulo")
-                   // result.getString("artista"),
-                   //result.getString("genero")
-
+                    result.getString("nombreGenero"),
+                    result.getInt("idGenero")
             );
             listaCanciones.add(cancion);
         }
@@ -51,4 +62,5 @@ public class ServicioCancion {
         consulta.close();
         return listaCanciones;
     }
+
 }

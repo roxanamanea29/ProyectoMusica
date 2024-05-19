@@ -20,17 +20,20 @@
                 </tr>
                 </thead>
 
-              <!--  <tbody>
+               <tbody>
                 <tr th:each=" cancion : ${canciones}">
                     <td th:text="${cancion.titulo}"></td>
                 </tr>
-                </tbody>-->
+                </tbody>
             </table>
         </div>
         <div th:each="listaReproduccion : ${listasDeReproduccion}">
             <p th:text="${listaReproduccion.nombre}"></p>
             <ul th:each=" piesa : ${listaReproduccion.canciones}">
                 <li th:text="${piesa.titulo}"></li>
+            </ul>
+           <ul th:each=" piesa : ${listaReproduccion.canciones}">
+                <li th:text="${piesa.nombreGenero}"></li>
             </ul>
         </div>
     </main>
