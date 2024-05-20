@@ -5,26 +5,26 @@ package com.example.ProyectoMusica.entity;
  * @date 07/05/2024
  */
 public class Cancion {
- private int id;
- private String titulo;
+    private int idCancion;
+    private String titulo;
+    private int generoId; // ID del género
+    private String nombreGenero;
+    // private int artistaId; // ID del artista
+    // private String nombreArtista;
 
-
-
-    public Cancion(int id, String titulo) {
-        this.id = id;
+    public Cancion(String nombreGenero, int idCancion, String titulo, int generoId) {
+        this.nombreGenero = nombreGenero;
+        this.idCancion = idCancion;
         this.titulo = titulo;
+        this.generoId = generoId;
     }
 
-    public Cancion(String titulo) {
-        this.titulo = titulo;
+    public int getIdCancion() {
+        return idCancion;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCancion(int idCancion) {
+        this.idCancion = idCancion;
     }
 
     public String getTitulo() {
@@ -33,5 +33,21 @@ public class Cancion {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public int getGeneroId() {
+        return generoId;
+    }
+
+    public void setGeneroId(int generoId) {
+        this.generoId = generoId;
+    }
+
+    public String getNombreGenero() {
+        return nombreGenero;
+    }
+
+    public void setNombreGenero(String nombreGenero) {
+        this.nombreGenero = nombreGenero;
     }
 }
