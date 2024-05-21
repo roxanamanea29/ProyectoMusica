@@ -20,18 +20,27 @@
                 </tr>
                 </thead>
 
-                <!--  <tbody>
-                  <tr th:each=" cancion : ${canciones}">
-                      <td th:text="${cancion.titulo}"></td>
-                  </tr>
-                  </tbody>-->
             </table>
         </div> <!-- generos es lo que viene de el generoController que sale de ServicioGenero-->
                 <!-- genero es el nombre que he puesto yo-->
                 <!-- .nombreGenero es el nombre de la variable en Genero -->
-        <div th:each="genero : ${generos}">
-            <p th:text="${genero.getNombreGenero()}">Generos</p>
+
+        <div class="container py-4">
+            <div class="row row-cols-4 g-4">
+                <div th:each="genero, iterStat : ${generos}">
+                    <div class="col">
+                        <div class="card bg-dark text-white">
+                            <img class="card-img-top" th:src="@{'https://cdn.pixabay.com/photo/' + ${iterStat.index} + '/path-to-image.jpg'}" alt="">
+                            <div class="card-body">
+                                <h6 class="font-family-sans-serif" th:text="${genero.getNombreGenero()}">Genero</h6>
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="${genero.getNombreGenero()}">Genero</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div th:each="genero : ${unicoGenero}">
             <p th:text="${genero.getNombreGenero()}">Generos</p>
         </div>
