@@ -22,9 +22,10 @@ public class ServicioCancion {
         Cancion cancion = null;
         Statement consulta = con.conectar().createStatement();
         ResultSet result = consulta.executeQuery(
-                "SELECT c.idCancion, c.titulo, g.idGenero, g.nombreGenero " +
-                        "FROM Cancion c " +
-                        "JOIN Genero g ON c.genero_id = g.idGenero " +
+                "SELECT c.idCancion, c.titulo, g.idGenero, g.nombreGenero, a.idArtista, a.nombreArtista " +
+                        "FROM cancion c " +
+                        "JOIN genero g ON c.genero_id = g.idGenero " +
+                        "JOIN artista a ON c.artista_id = a.idArtista " +
                         "WHERE c.idCancion = " + id
         );
         if (result.next()) {
@@ -32,7 +33,9 @@ public class ServicioCancion {
                     result.getString("titulo"),
                     result.getInt("idCancion"),
                     result.getString("nombreGenero"),
-                    result.getInt("idGenero")
+                    result.getInt("idGenero"),
+                    result.getInt("idArtista"),
+                    result.getString("nombreArtista")
             );
         }
         result.close();
@@ -45,16 +48,19 @@ public class ServicioCancion {
         List<Cancion> listaCanciones = new ArrayList<>();
         Statement consulta = con.conectar().createStatement();
         ResultSet result = consulta.executeQuery(
-                "SELECT c.idCancion, c.titulo, g.idGenero, g.nombreGenero " +
-                        "FROM Cancion c " +
-                        "JOIN Genero g ON c.genero_id = g.idGenero"
+                "SELECT c.idCancion, c.titulo, g.idGenero, g.nombreGenero, a.idArtista, a.nombreArtista " +
+                        "FROM cancion c " +
+                        "JOIN genero g ON c.genero_id = g.idGenero" +
+                        "JOIN artista a ON c.artista_id = a.idArtista"
         );
         while (result.next()) {
             Cancion cancion = new Cancion(
                     result.getString("titulo"),
                     result.getInt("idCancion"),
                     result.getString("nombreGenero"),
-                    result.getInt("idGenero")
+                    result.getInt("idGenero"),
+                    result.getInt("idArtista"),
+                    result.getString("nombreArtista")
             );
             listaCanciones.add(cancion);
         }
