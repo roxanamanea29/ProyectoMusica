@@ -50,7 +50,7 @@ public class ServicioCancion {
         ResultSet result = consulta.executeQuery(
                 "SELECT c.idCancion, c.titulo, g.idGenero, g.nombreGenero, a.idArtista, a.nombreArtista " +
                         "FROM cancion c " +
-                        "JOIN genero g ON c.genero_id = g.idGenero" +
+                        "JOIN genero g ON c.genero_id = g.idGenero " +
                         "JOIN artista a ON c.artista_id = a.idArtista"
         );
         while (result.next()) {

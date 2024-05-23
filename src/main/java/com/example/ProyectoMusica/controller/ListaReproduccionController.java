@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @Controller
 @RequestMapping("/musicmatch/lista")
 
-public class ListaReproduccionController {
+public class    ListaReproduccionController {
     ServicioListaReproduccion servicioLista = new ServicioListaReproduccion();
 
     //ServicioCancionListaReproduccion servicio = new ServicioCancionListaReproduccion();

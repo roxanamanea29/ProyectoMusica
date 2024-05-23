@@ -10,17 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Roxana
+ * @author Renzo
  * @date 07/05/2024
  */
 // https://es.stackoverflow.com/questions/58252/operation-not-allowed-after-resultset-closed
 public class ServicioArtista {
-    Conexion con = new Conexion();
+    static Conexion con = new Conexion();
 
-    public Artista getArtista(int idArt) throws SQLException {
+    public Artista getArtista(int idArtista) throws SQLException {
         Artista artista = null;
         Statement consulta = con.conectar().createStatement();
-        ResultSet result = consulta.executeQuery("SELECT * FROM artista where idArtista = " + idArt);
+        ResultSet result = consulta.executeQuery("SELECT * FROM artista where idArtista = " + idArtista);
         while (result.next()) {
             artista = new Artista(
                     result.getInt("idArtista"),
@@ -32,7 +32,7 @@ public class ServicioArtista {
         consulta.close();
         return artista;
     }
-    public List<Artista> listarArtista() throws SQLException {
+    public static List<Artista> listarArtista() throws SQLException {
 
         List<Artista> listaArtista = new ArrayList<>();
 

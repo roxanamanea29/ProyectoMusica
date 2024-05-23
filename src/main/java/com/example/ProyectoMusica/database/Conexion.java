@@ -9,9 +9,9 @@ import java.sql.SQLException;
  * @date 07/05/2024
  */
 public class Conexion {
-    String url = "jdbc:mysql://localhost:3307/Music_Match";
+    String url = "jdbc:mysql://localhost:3306/Music_Match";
     String user = "root";
-    String pass = "";
+    String pass = "makai2511/";
     Connection con;
 
     public Connection conectar() throws SQLException {
