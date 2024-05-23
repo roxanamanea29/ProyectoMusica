@@ -2,7 +2,7 @@ package com.example.ProyectoMusica.service;
 
 import com.example.ProyectoMusica.database.Conexion;
 import com.example.ProyectoMusica.entity.Cancion;
-import com.example.ProyectoMusica.entity.ListaReproducion;
+import com.example.ProyectoMusica.entity.ListaReproduccion;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Roxana & Adrian
+ * @author Adrian
  * @date 07/05/2024
  */
 public class ServicioListaReproduccion {
     Conexion con = new Conexion();
     ServicioCancionListaReproduccion servicioCancionListaReproduccion = new ServicioCancionListaReproduccion();
 
-    public List<ListaReproducion> listarAllListaReproduccion() throws SQLException {//
-        List<ListaReproducion> listaListaReproduccion = new ArrayList<>();
+    public List<ListaReproduccion> listarAllListaReproduccion() throws SQLException {//
+        List<ListaReproduccion> listaListaReproduccion = new ArrayList<>();
         Statement consulta = con.conectar().createStatement();
 
 
@@ -28,7 +28,7 @@ public class ServicioListaReproduccion {
         while (result.next()) {
             int id = result.getInt("idListaReproduccion");
             List<Cancion> canciones = servicioCancionListaReproduccion.obtenerCancionesDeListaDeReproduccion(id);
-            ListaReproducion listaReproduccion = new ListaReproducion(
+            ListaReproduccion listaReproduccion = new ListaReproduccion(
                     id,
                     result.getString("nombreListaReproduccion"),
                     canciones
@@ -39,7 +39,7 @@ public class ServicioListaReproduccion {
         consulta.close();
         return listaListaReproduccion;
     }
-    public void modificar(ListaReproducion p) throws SQLException {
+    public void modificar(ListaReproduccion p) throws SQLException {
         Statement consulta = con.conectar().createStatement();
         String cadena = "UPDATE lista SET "
                 + "id = '" + p.getId() + "', "
