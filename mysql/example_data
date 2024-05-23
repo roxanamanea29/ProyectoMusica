@@ -15,7 +15,7 @@ INSERT INTO Genero (nombreGenero) VALUES
 INSERT INTO Artista (nombreArtista) VALUES
 ('Beyoncé'),
 ('Bob Marley'),
-('Miles Davis'),
+('Kanye West (YE)'),
 ('Led Zeppelin'),
 ('Arctic Monkeys'),
 ('Metallica'),
@@ -25,23 +25,23 @@ INSERT INTO Artista (nombreArtista) VALUES
 ('Queen');
 
 -- Insertar más usuarios
-INSERT INTO Usuario (nombreUsuario, email, contrasena) VALUES
-('Luis', 'luis@example.com', 'luis123'),
-('Ana', 'ana@example.com', 'ana456'),
-('Sofía', 'sofia@example.com', 'sofia789'),
-('David', 'david@example.com', 'david123'),
-('Laura', 'laura@example.com', 'laura456'),
-('Carlos', 'carlos@example.com', 'carlos789'),
-('María', 'maria2@example.com', 'maria123'),
-('Juan', 'juan2@example.com', 'juan456'),
-('Elena', 'elena@example.com', 'elena789'),
-('Pablo', 'pablo@example.com', 'pablo123');
+INSERT INTO Usuario (nombreUsuario, correoElectronico, Clave) VALUES
+('Luis', 'luis@example.com', aes_encrypt('luis123','AES')),
+('Ana', 'ana@example.com', aes_encrypt('ana456','AES')),
+('Sofía', 'sofia@example.com', aes_encrypt('sofia789','AES')),
+('David', 'david@example.com', aes_encrypt('david123','AES')),
+('Laura', 'laura@example.com', aes_encrypt('laura456','AES')),
+('Carlos', 'carlos@example.com', aes_encrypt('carlos789','AES')),
+('María', 'maria2@example.com', aes_encrypt('maria123','AES')),
+('Juan', 'juan2@example.com', aes_encrypt('juan456','AES')),
+('Elena', 'elena@example.com', aes_encrypt('elena789','AES')),
+('Pablo', 'pablo@example.com', aes_encrypt('pablo123','AES'));
 
 -- Insertar más canciones
 INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
 ('Halo', 1, 9),
 ('One Love', 2, 10),
-('So What', 3, 7),
+('Bound2', 3, 8),
 ('Stairway to Heaven', 4, 6),
 ('Do I Wanna Know?', 5, 6),
 ('Enter Sandman', 6, 7),

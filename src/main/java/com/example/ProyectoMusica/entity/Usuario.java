@@ -9,21 +9,21 @@ public class Usuario {
     private int idUsuario;
     public String nombreUsuario;
     private String correoElectronico;
-    private String contrasena;
+    private String clave;
     public String lista;
 
-    public Usuario(String nombreUsuario, String correoElectronico, String contrasena, String lista) {
+    public Usuario(String nombreUsuario, String correoElectronico, String clave, String lista) {
         this.nombreUsuario  =nombreUsuario;
         this.correoElectronico=correoElectronico;
-        this.contrasena = contrasena;
+        this.clave = clave;
         this.lista=lista;
     }
 
-    public Usuario(int idUsuario, String nombreUsuario, String correoElectronico, String contrasena, String lista) {
+    public Usuario(int idUsuario, String nombreUsuario, String correoElectronico, String clave, String lista) {
         this.idUsuario=idUsuario;
         this.nombreUsuario=nombreUsuario;
         this.correoElectronico=correoElectronico;
-        this.contrasena=contrasena;
+        this.clave=clave;
         this.lista=lista;
     }
 
@@ -54,12 +54,12 @@ public class Usuario {
         this.correoElectronico = correoElectronico;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getClave() {
+        return clave;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public String getLista() {
@@ -69,7 +69,6 @@ public class Usuario {
     public void setLista(String lista) {
         this.lista = lista;
     }
-//asdfsdfsdf
     @Override
     public String toString() {
 
@@ -77,7 +76,7 @@ public class Usuario {
                 idUsuario,
                 nombreUsuario,
                 correoElectronico,
-                contrasena,
+                clave,
                 lista);
     }
 }
