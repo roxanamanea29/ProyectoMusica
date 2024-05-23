@@ -9,14 +9,16 @@ public class Cancion {
     private String titulo;
     private int generoId; // ID del género
     private String nombreGenero;
-    // private int artistaId; // ID del artista
-    // private String nombreArtista;
+    private int idArtista; // ID del artista bb
+    private String nombreArtista;
 
-    public Cancion(String nombreGenero, int idCancion, String titulo, int generoId) {
+    public Cancion(String nombreGenero, int idCancion, String titulo, int generoId, int idArtista, String nombreArtista) {
         this.nombreGenero = nombreGenero;
         this.idCancion = idCancion;
         this.titulo = titulo;
         this.generoId = generoId;
+        this.idArtista = idArtista;
+        this.nombreArtista = nombreArtista;
     }
 
     public int getIdCancion() {
@@ -49,5 +51,21 @@ public class Cancion {
 
     public void setNombreGenero(String nombreGenero) {
         this.nombreGenero = nombreGenero;
+    }
+
+    public int getIdArtista() {
+        return idArtista;
+    }
+
+    public void setIdArtista(int idArtista) {
+        this.idArtista = idArtista;
+    }
+
+    public String getNombreArtista() {
+        return nombreArtista;
+    }
+
+    public void setNombreArtista(String nombreArtista) {
+        this.nombreArtista = nombreArtista;
     }
 }

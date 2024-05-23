@@ -16,13 +16,8 @@
             <img src="/img/logo.png" alt="logo" style="height: 130px;">
             <aside class="bg-dark text-white mt-5 mb-5 p-4">
                 <div class="pb-2">
-                    <button type="button" class="shadow btn mx-3" style="background-color: rgba(250, 250, 250);"
-                            data-bs-toggle="modal" data-bs-target="#mi-modal">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-                <div >
-                    <h5>Aqui viene el menu de manejo las listas</h5>
+                    <a href="http://localhost:8080/musicmatch/lista"><button type="" class="btn btn-light col-1">+</button></a>
+                    <h5>Pulsa para modificar o eliminar listas</h5>
                 </div>
             </aside>
         </div>
@@ -56,7 +51,7 @@
                                 <div class="modal-header">
                                     <h5 class="modal-title" th:text="${listaReproduccion.nombre}"></h5>
                                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span aria-hidden="true">&times</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
@@ -79,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <!--Lista de las canciones de la base de datos solo tiene titulo y genero-->
+            <!--Lista de las canciones de la base de datos solo tiene titulo y genero se tiene que meter el ARTISTA-->
             <main class="col-lg-9">
                 <div class="table-responsive mt-5 mb-4 mx-3">
                     <table class="table table-dark table-striped table-hover">
