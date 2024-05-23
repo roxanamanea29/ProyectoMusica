@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 
 @Controller
-@RequestMapping("/musicmatch/index")
+@RequestMapping("/musicmatch/tableroP")
 public class HomeController {
     ServicioCancion servicioCancion = new ServicioCancion();
     ServicioListaReproduccion servicioListaReproduccion = new ServicioListaReproduccion();
@@ -35,7 +35,7 @@ public class HomeController {
     }*/
 
         public String crud(Model model) {
-            String valorfinal = "./musicmatch/index";
+            String valorfinal = "tableroU";
             try {
                 model.addAttribute("canciones", servicioCancion.listarAllCanciones());
                 model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
