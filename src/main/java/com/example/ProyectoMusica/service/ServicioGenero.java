@@ -12,6 +12,7 @@ import java.util.List;
 
 public class ServicioGenero {
     Conexion con = new Conexion();
+
     public Genero getUnicoGenero(int id) throws SQLException {//
         Genero genero = null;
         Statement consulta = con.conectar().createStatement();
@@ -38,8 +39,8 @@ public class ServicioGenero {
 
         while (result.next()) {
             Genero genero = new Genero(
-                result.getInt("idGenero"),
-                result.getString("nombreGenero")
+                    result.getInt("idGenero"),
+                    result.getString("nombreGenero")
             );
             listaGenero.add(genero);
         }
