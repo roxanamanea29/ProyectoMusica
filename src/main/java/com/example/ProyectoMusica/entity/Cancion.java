@@ -9,7 +9,7 @@ public class Cancion {
     private String titulo;
     private int generoId; // ID del género
     private String nombreGenero;
-    private int idArtista; // ID del artista
+    private int idArtista; // ID del artista bb
     private String nombreArtista;
 
     public Cancion(String nombreGenero, int idCancion, String titulo, int generoId, int idArtista, String nombreArtista) {
