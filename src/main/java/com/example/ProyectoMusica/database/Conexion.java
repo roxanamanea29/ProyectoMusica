@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * @date 07/05/2024
  */
 public class Conexion {
-    String url = "jdbc:mysql://localhost:3307/Music_Match";
+    String url = "jdbc:mysql://localhost:3307/music_match";
     String user = "root";
     String pass = "";
     Connection con;
