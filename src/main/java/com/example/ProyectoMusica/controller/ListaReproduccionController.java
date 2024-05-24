@@ -17,18 +17,20 @@ import java.util.logging.Logger;
  */
 // ❗️ruta url http://localhost:8080/lista/
 @Controller
-@RequestMapping("/lista")
+@RequestMapping("/musicmatch")
 
 
 public class ListaReproduccionController {
     ServicioListaReproduccion servicioLista = new ServicioListaReproduccion();
     private ListaReproduccion listaReproduccion;
 
-    //ServicioCancionListaReproduccion servicio = new ServicioCancionListaReproduccion();
+    ServicioCancionListaReproduccion servicio = new ServicioCancionListaReproduccion();
 
-    @GetMapping("")
-   public String crud(Model model) {
-        String valorfinal = "./musicmatch/listar";
+
+    @GetMapping("/lista")
+    public String crud(Model model) {
+        String valorfinal = "./musicmatch/lista";
+
         try {
             //model.addAttribute("canciones", servicioCancionListaReproduccion.listarAllCanciones());
            // model.addAttribute("listasDeReproduccion", servicioLista.listarAllListaReproduccion(listaReproduccion));
