@@ -2,15 +2,26 @@ package com.example.ProyectoMusica.entity;
 
 import java.util.List;
 
-public class ListaReproducion {
+public class ListaReproduccion {
     private int id_lista;
     private String nombreLista;
-    private List<Cancion> canciones;
+    public List<Cancion> canciones;
 
-    public ListaReproducion(int id, String nombreLista, List<Cancion> canciones) {
+    public ListaReproduccion(int id, String nombreLista, List<Cancion> canciones) {
         this.id_lista = id;
         this.nombreLista = nombreLista;
         this.canciones = canciones;
+    }
+
+    public ListaReproduccion(String nombreLista, List<Cancion> canciones) {
+        this.nombreLista = nombreLista;
+        this.canciones = canciones;
+    }
+
+    public ListaReproduccion() {
+    }
+
+    public ListaReproduccion(int idListaReproduccion, String nombreListaReproduccion) {
     }
 
     public int getId() {
