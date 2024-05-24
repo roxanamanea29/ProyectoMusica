@@ -21,6 +21,9 @@ public class Cancion {
         this.nombreArtista = nombreArtista;
     }
 
+    public Cancion(int idCancion, String titulo, Genero genero, Artista artista) {
+    }
+
     public int getIdCancion() {
         return idCancion;
     }

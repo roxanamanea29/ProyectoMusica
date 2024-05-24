@@ -11,13 +11,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Roxana
- * @date 07/05/2024
- */
-// https://es.stackoverflow.com/questions/58252/operation-not-allowed-after-resultset-closed
 public class ServicioCancion {
-   Conexion con = new Conexion();
+    Conexion con = new Conexion();
 
     public Cancion obtenerCancion(int id) throws SQLException {
         Cancion cancion = null;
@@ -45,7 +40,6 @@ public class ServicioCancion {
         return cancion;
     }
 
-
     public List<Cancion> listarAllCanciones() throws SQLException {
         List<Cancion> listaCanciones = new ArrayList<>();
         Statement consulta = con.conectar().createStatement();
@@ -71,6 +65,4 @@ public class ServicioCancion {
         consulta.close();
         return listaCanciones;
     }
-
-
 }
