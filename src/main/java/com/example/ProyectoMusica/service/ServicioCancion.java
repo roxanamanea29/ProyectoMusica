@@ -1,7 +1,6 @@
 package com.example.ProyectoMusica.service;
 
 import com.example.ProyectoMusica.database.Conexion;
-import com.example.ProyectoMusica.entity.Artista;
 import com.example.ProyectoMusica.entity.Cancion;
 import com.example.ProyectoMusica.entity.Genero;
 
@@ -24,20 +23,19 @@ public class ServicioCancion {
         Statement consulta = con.conectar().createStatement();
         ResultSet result = consulta.executeQuery(
                 "SELECT c.idCancion, c.titulo, g.idGenero, g.nombreGenero, a.idArtista, a.nombreArtista " +
-                        "FROM Cancion c " +
-                        "JOIN Genero g ON c.genero_id = g.idGenero " +
-                        "JOIN Artista a ON c.artista_id = a.idArtista " +
+                        "FROM cancion c " +
+                        "JOIN genero g ON c.genero_id = g.idGenero " +
+                        "JOIN artista a ON c.artista_id = a.idArtista " +
                         "WHERE c.idCancion = " + id
         );
         if (result.next()) {
-            Genero genero = new Genero(result.getInt("idGenero"), result.getString("nombreGenero"));
-            Artista artista = new Artista(result.getInt("idArtista"), result.getString("nombreArtista"));
-
             cancion = new Cancion(
-                    result.getInt("idCancion"),
                     result.getString("titulo"),
-                    genero,
-                    artista
+                    result.getInt("idCancion"),
+                    result.getString("nombreGenero"),
+                    result.getInt("idGenero"),
+                    result.getInt("idArtista"),
+                    result.getString("nombreArtista")
             );
         }
         result.close();
@@ -51,19 +49,18 @@ public class ServicioCancion {
         Statement consulta = con.conectar().createStatement();
         ResultSet result = consulta.executeQuery(
                 "SELECT c.idCancion, c.titulo, g.idGenero, g.nombreGenero, a.idArtista, a.nombreArtista " +
-                        "FROM Cancion c " +
-                        "JOIN Genero g ON c.genero_id = g.idGenero " +
-                        "JOIN Artista a ON c.artista_id = a.idArtista"
+                        "FROM cancion c " +
+                        "JOIN genero g ON c.genero_id = g.idGenero" +
+                        "JOIN artista a ON c.artista_id = a.idArtista"
         );
         while (result.next()) {
-            Genero genero = new Genero(result.getInt("idGenero"), result.getString("nombreGenero"));
-            Artista artista = new Artista(result.getInt("idArtista"), result.getString("nombreArtista"));
-
             Cancion cancion = new Cancion(
-                    result.getInt("idCancion"),
                     result.getString("titulo"),
-                    genero,
-                    artista
+                    result.getInt("idCancion"),
+                    result.getString("nombreGenero"),
+                    result.getInt("idGenero"),
+                    result.getInt("idArtista"),
+                    result.getString("nombreArtista")
             );
             listaCanciones.add(cancion);
         }
@@ -71,6 +68,5 @@ public class ServicioCancion {
         consulta.close();
         return listaCanciones;
     }
-
 
 }

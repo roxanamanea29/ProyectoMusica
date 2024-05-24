@@ -14,7 +14,7 @@ public class Artista {
     }
 
     public void setIdArtista(int idArt) {
-        this.idArtista = idArt;
+        this.idArtista = idArtista;
     }
 
     public String getNombreArtista() {
@@ -22,7 +22,7 @@ public class Artista {
     }
 
     public void setNombreArtista(String Artnombre) {
-        this.nombreArtista = Artnombre;
+        this.nombreArtista = nombreArtista;
     }
 
 }
