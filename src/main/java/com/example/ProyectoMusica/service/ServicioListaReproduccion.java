@@ -16,10 +16,9 @@ import java.util.List;
  */
 public class ServicioListaReproduccion {
     Conexion con = new Conexion();
-    ServicioCancionListaReproduccion servicioCancionListaReproduccion = new ServicioCancionListaReproduccion();
+    ListaReproduccion servicioListaReproduccion = new ListaReproduccion();
 
-    public List<ListaReproduccion> listarAllListaReproduccion() throws SQLException {//
-        List<ListaReproduccion> listaListaReproduccion = new ArrayList<>();
+
         Statement consulta = con.conectar().createStatement();
 
 
@@ -38,7 +37,11 @@ public class ServicioListaReproduccion {
         result.close();
         consulta.close();
         return listaListaReproduccion;
+
     }
+
+    }
+
     public void modificar(ListaReproduccion p) throws SQLException {
         Statement consulta = con.conectar().createStatement();
         String cadena = "UPDATE lista SET "
@@ -55,4 +58,23 @@ public class ServicioListaReproduccion {
         consulta.close();
     }
 
+    public List<ListaReproduccion> listarAllListaReproduccion(ListaReproduccion listaReproducion) throws SQLException{
+        List<ListaReproduccion> listaReproduccions = new ArrayList<>();
+        Statement consulta = con.conectar().createStatement();
+        ResultSet result = consulta.executeQuery("SELECT idListaReproduccion, nombreListaReproduccion FROM ListaReproduccion");
+        while (result.next()) {
+            ListaReproduccion ListaReproduccion = new ListaReproduccion(
+                    result.getInt("idListaReproduccion"),
+                    result.getString("nombreListaReproduccion")
+            );
+            listaReproduccions.add(listaReproducion);
+        }
+        result.close();
+        consulta.close();
+        return listaReproduccions;
+    }
+
+    public List<ListaReproduccion> listarAllListaReproduccion() {
+        return listarAllListaReproduccion();
+    }
 }

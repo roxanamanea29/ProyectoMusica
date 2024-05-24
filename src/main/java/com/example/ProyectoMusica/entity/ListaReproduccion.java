@@ -5,6 +5,7 @@ import java.util.List;
 public class ListaReproduccion {
     private int id_lista;
     private String nombreLista;
+
     private List<Cancion> canciones;
 
     public ListaReproduccion(int id, String nombreLista, List<Cancion> canciones) {
