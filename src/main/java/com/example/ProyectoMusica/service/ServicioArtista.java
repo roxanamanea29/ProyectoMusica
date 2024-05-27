@@ -2,10 +2,9 @@ package com.example.ProyectoMusica.service;
 
 import com.example.ProyectoMusica.database.Conexion;
 import com.example.ProyectoMusica.entity.Artista;
+import org.springframework.stereotype.Service;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,42 +12,44 @@ import java.util.List;
  * @author Renzo
  * @date 07/05/2024
  */
-// https://es.stackoverflow.com/questions/58252/operation-not-allowed-after-resultset-closed
+
+@Service
 public class ServicioArtista {
     static Conexion con = new Conexion();
 
     public Artista getArtista(int idArtista) throws SQLException {
         Artista artista = null;
-        Statement consulta = con.conectar().createStatement();
-        ResultSet result = consulta.executeQuery("SELECT * FROM artista where idArtista = " + idArtista);
-        while (result.next()) {
-            artista = new Artista(
-                    result.getInt("idArtista"),
-                    result.getString("nombreArtista")
-
-            );
+        String query = "SELECT * FROM artista WHERE idArtista = ?";
+        try (Connection connection = con.conectar();
+             PreparedStatement consulta = connection.prepareStatement(query)) {
+            consulta.setInt(1, idArtista);
+            try (ResultSet result = consulta.executeQuery()) {
+                if (result.next()) {
+                    artista = new Artista(
+                            result.getInt("idArtista"),
+                            result.getString("nombreArtista")
+                    );
+                }
+            }
         }
-        result.close();
-        consulta.close();
         return artista;
     }
     public static List<Artista> listarArtista() throws SQLException {
 
         List<Artista> listaArtista = new ArrayList<>();
 
-        Statement consulta = con.conectar().createStatement();
-
-        ResultSet result = consulta.executeQuery("SELECT * FROM artista");
-
-        while (result.next()) {
-            Artista artista = new Artista(
-                    result.getInt("idArtista"),
-                    result.getString("nombreArtista")
-            );
-            listaArtista.add(artista);
+        String query = "SELECT * FROM artista";
+        try (Connection connection = con.conectar();
+             Statement consulta = connection.createStatement();
+             ResultSet result = consulta.executeQuery(query)) {
+            while (result.next()) {
+                Artista artista = new Artista(
+                        result.getInt("idArtista"),
+                        result.getString("nombreArtista")
+                );
+                listaArtista.add(artista);
+            }
         }
-        result.close();
-        consulta.close();
         return listaArtista;
     }
 }

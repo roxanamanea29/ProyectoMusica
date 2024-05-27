@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class Conexion {
     String url = "jdbc:mysql://localhost:3306/Music_Match";
     String user = "root";
-    String pass = "makai2511/";
+    String pass = "";
     Connection con;
 
     public Connection conectar() throws SQLException {
