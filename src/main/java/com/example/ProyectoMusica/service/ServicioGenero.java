@@ -29,6 +29,7 @@ public class ServicioGenero {
         return genero;
     }
 
+
     public List<Genero> listarTodosGeneros() throws SQLException {
 
         List<Genero> listaGenero = new ArrayList<>();
@@ -47,5 +48,14 @@ public class ServicioGenero {
         result.close();
         consulta.close();
         return listaGenero;
+    }
+    public void altaGenero(Genero g)throws SQLException{
+        Statement consulta = con.conectar().createStatement();
+
+        String cadena = "INSERT into genero (nombreGenero) Values ('" + g.getNombreGenero()+"');";
+
+        consulta.execute(cadena);
+        consulta.close();
+
     }
 }

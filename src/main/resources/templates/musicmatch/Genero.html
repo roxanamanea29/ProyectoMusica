@@ -41,6 +41,18 @@
             </div>
         </div>
 
+
+        <form action="#" th:action="@{/musicmatch/alta}" th:object="${altaGenero}" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" th:field="*{nombreGenero}" required >
+            </div>
+            <div class ="py-3">
+                <button type="submit" class="btn btn-primary col-12">Enviar</button>
+            </div>
+        </form>
+
+
         <div th:each="genero : ${unicoGenero}">
             <p th:text="${genero.getNombreGenero()}">Generos</p>
         </div>
