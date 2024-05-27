@@ -1,4 +1,4 @@
--- Insertar más géneros musicales
+-- Insertar géneros musicales
 INSERT INTO Genero (nombreGenero) VALUES
 ('R&B'),
 ('Reggae'),
@@ -11,7 +11,7 @@ INSERT INTO Genero (nombreGenero) VALUES
 ('Country'),
 ('Soul');
 
--- Insertar más artistas
+-- Insertar artistas
 INSERT INTO Artista (nombreArtista) VALUES
 ('Beyoncé'),
 ('Bob Marley'),
@@ -24,7 +24,7 @@ INSERT INTO Artista (nombreArtista) VALUES
 ('Aretha Franklin'),
 ('Queen');
 
--- Insertar más usuarios
+-- Insertar usuarios
 INSERT INTO Usuario (nombreUsuario, email, contrasena) VALUES
 ('Luis', 'luis@example.com', 'luis123'),
 ('Ana', 'ana@example.com', 'ana456'),
@@ -37,7 +37,7 @@ INSERT INTO Usuario (nombreUsuario, email, contrasena) VALUES
 ('Elena', 'elena@example.com', 'elena789'),
 ('Pablo', 'pablo@example.com', 'pablo123');
 
--- Insertar más canciones
+-- Insertar canciones
 INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
 ('Halo', 1, 9),
 ('One Love', 2, 10),
@@ -50,7 +50,7 @@ INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
 ('Respect', 9, 10),
 ('Bohemian Rhapsody', 10, 5);
 
--- Insertar más listas de reproducción
+-- Insertar listas de reproducción
 INSERT INTO ListaReproduccion (nombreListaReproduccion, usuario_id) VALUES
 ('Gimnasio', 1),
 ('Relax', 2),
@@ -63,7 +63,7 @@ INSERT INTO ListaReproduccion (nombreListaReproduccion, usuario_id) VALUES
 ('Favoritas de María', 9),
 ('Cena romántica', 10);
 
--- Insertar más relaciones entre canciones y listas de reproducción
+-- Insertar relaciones entre canciones y listas de reproducción
 INSERT INTO Cancion_ListaReproduccion (cancion_id, lista_reproduccion_id) VALUES
 (11, 4),
 (12, 5),
