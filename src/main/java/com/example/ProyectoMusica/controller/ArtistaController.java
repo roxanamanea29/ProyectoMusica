@@ -27,7 +27,7 @@ public class ArtistaController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "artista";
+        return "musicmatch/Artista";
     }
 
     @GetMapping("/artista/{id}")
@@ -38,6 +38,6 @@ public class ArtistaController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "detalleArtista";
+        return "musicmatch/DetalleArtista";
     }
 }
