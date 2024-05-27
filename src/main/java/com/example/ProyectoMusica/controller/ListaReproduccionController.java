@@ -1,31 +1,49 @@
 package com.example.ProyectoMusica.controller;
 
 import com.example.ProyectoMusica.entity.ListaReproduccion;
+import com.example.ProyectoMusica.service.ServicioCancionListaReproduccion;
 import com.example.ProyectoMusica.service.ServicioListaReproduccion;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-@RestController
+/**
+ * @author Adrian
+ * @date 17/05/2024
+ */
+// ❗️ruta url http://localhost:8080/lista/
+@Controller
 @RequestMapping("/musicmatch")
-public class ListaReproduccionController {
-    private final ServicioListaReproduccion servicioListaReproduccion;
 
-    @Autowired
-    public ListaReproduccionController(ServicioListaReproduccion servicioListaReproduccion) {
-        this.servicioListaReproduccion = servicioListaReproduccion;
-    }
+
+public class ListaReproduccionController {
+    ServicioListaReproduccion servicioLista = new ServicioListaReproduccion();
+    private ListaReproduccion listaReproduccion;
+
+    ServicioCancionListaReproduccion servicio = new ServicioCancionListaReproduccion();
+
 
     @GetMapping("/lista")
-    public List<ListaReproduccion> listarTodasListasReproduccion() {
-        return servicioListaReproduccion.listarTodasListasReproduccion();
-    }
+    public String crud(Model model) {
+        String valorfinal = "./musicmatch/lista";
 
-    @GetMapping("/lista/{id}")
-    public ListaReproduccion obtenerListaReproduccionPorId(@PathVariable int id) {
-        return servicioListaReproduccion.obtenerListaReproduccion(id);
-    }
+        try {
+            //model.addAttribute("canciones", servicioCancionListaReproduccion.listarAllCanciones());
+           // model.addAttribute("listasDeReproduccion", servicioLista.listarAllListaReproduccion(listaReproduccion));
+            List<ListaReproduccion> listaDeReproducciones = (List<ListaReproduccion>) servicioLista.listarAllListaReproduccion();
 
-    // Otros métodos para manipular listas de reproducción como guardar, actualizar, eliminar, etc.
+
+
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            valorfinal = "error";
+        }
+        return valorfinal;
+    }
 }
+

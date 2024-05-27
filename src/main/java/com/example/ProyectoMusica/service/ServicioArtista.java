@@ -19,7 +19,7 @@ public class ServicioArtista {
 
     public Artista getArtista(int idArtista) throws SQLException {
         Artista artista = null;
-        String query = "SELECT * FROM artista WHERE idArtista = ?";
+        String query = "SELECT * FROM artista WHERE idArtista = " + idArtista;
         try (Connection connection = con.conectar();
              PreparedStatement consulta = connection.prepareStatement(query)) {
             consulta.setInt(1, idArtista);
@@ -34,7 +34,7 @@ public class ServicioArtista {
         }
         return artista;
     }
-    public static List<Artista> listarArtista() throws SQLException {
+    public List<Artista> listarArtista() throws SQLException {
 
         List<Artista> listaArtista = new ArrayList<>();
 
@@ -51,5 +51,13 @@ public class ServicioArtista {
             }
         }
         return listaArtista;
+    }
+    public void modificarArtista(Artista a) throws SQLException {
+        Statement consulta = con.conectar().createStatement();
+
+        consulta.executeUpdate("UPDATE artista SET "
+                + "nombreArtista = '" + a.getNombreArtista() + "', "
+                + "WHERE idArtista = " + a.getIdArtista());
+        consulta.close();
     }
 }
