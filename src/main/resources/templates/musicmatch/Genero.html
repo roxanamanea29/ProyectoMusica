@@ -34,24 +34,35 @@
                             <div class="card-body">
                                 <h6 class="font-family-sans-serif" th:text="${genero.getNombreGenero()}">Genero</h6>
                                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="${genero.getNombreGenero()}">Genero</button>
+
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
         <form action="#" th:action="@{/musicmatch/alta}" th:object="${altaGenero}" method="post">
             <div class="form-group">
-                <label for="nombre">Nombre</label>
+                <label for="nombre">AltaNombre</label>
                 <input type="text" class="form-control" id="nombre" th:field="*{nombreGenero}" required >
             </div>
             <div class ="py-3">
                 <button type="submit" class="btn btn-primary col-12">Enviar</button>
             </div>
         </form>
-
+<!--
+        <form action="#" th:action="@{/musicmatch/modificar}" th:object="${modificarGenero}" method="post">
+            <div class="form-group">
+                <label for="nombre">ModificarNombre</label>
+                <input type="text" class="form-control" id="nombre" th:field="*{nombreGenero}" required >
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary col-12">Enviar</button>
+            </div>
+        </form>
+-->
 
         <div th:each="genero : ${unicoGenero}">
             <p th:text="${genero.getNombreGenero()}">Generos</p>
