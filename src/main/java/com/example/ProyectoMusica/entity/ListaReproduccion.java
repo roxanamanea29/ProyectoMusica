@@ -3,30 +3,30 @@ package com.example.ProyectoMusica.entity;
 import java.util.List;
 
 public class ListaReproduccion {
-    private int id_lista;
-    private String nombreLista;
+    private int idListaReproduccion;
+    private String nombreListaReproduccion;
     private List<Cancion> canciones;
 
-    public ListaReproduccion(int id, String nombreLista, List<Cancion> canciones) {
-        this.id_lista = id;
-        this.nombreLista = nombreLista;
+    public ListaReproduccion(int idListaReproduccion, String nombreListaReproduccion, List<Cancion> canciones) {
+        this.idListaReproduccion = idListaReproduccion;
+        this.nombreListaReproduccion = nombreListaReproduccion;
         this.canciones = canciones;
     }
 
-    public int getId() {
-        return id_lista;
+    public int getIdListaReproduccion() {
+        return idListaReproduccion;
     }
 
-    public void setId(int id) {
-        this.id_lista = id;
+    public void setIdListaReproduccion(int idListaReproduccion) {
+        this.idListaReproduccion = idListaReproduccion;
     }
 
-    public String getNombre() {
-        return nombreLista;
+    public String getNombreListaReproduccion() {
+        return nombreListaReproduccion;
     }
 
-    public void setNombre(String nombre) {
-        this.nombreLista = nombre;
+    public void setNombreListaReproduccion(String nombreListaReproduccion) {
+        this.nombreListaReproduccion = nombreListaReproduccion;
     }
 
     public List<Cancion> getCanciones() {
@@ -37,3 +37,4 @@ public class ListaReproduccion {
         this.canciones = canciones;
     }
 }
+

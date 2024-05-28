@@ -1,24 +1,31 @@
 package com.example.ProyectoMusica.entity;
 
+
+
 /**
  * @author Roxana
  * @date 07/05/2024
  */
 public class Cancion {
+
     private int idCancion;
     private String titulo;
-    private int generoId; // ID del género
-    private String nombreGenero;
-    private int idArtista; // ID del artista bb
+    private int idArtista;
     private String nombreArtista;
+    private int idGenero;
+    private String nombreGenero;
 
-    public Cancion(String nombreGenero, int idCancion, String titulo, int generoId, int idArtista, String nombreArtista) {
-        this.nombreGenero = nombreGenero;
+
+    public Cancion() {
         this.idCancion = idCancion;
         this.titulo = titulo;
-        this.generoId = generoId;
         this.idArtista = idArtista;
         this.nombreArtista = nombreArtista;
+        this.idGenero = idGenero;
+        this.nombreGenero = nombreGenero;
+    }
+
+    public Cancion(int idCancion, String titulo, Genero genero, Artista artista) {
     }
 
     public int getIdCancion() {
@@ -37,22 +44,6 @@ public class Cancion {
         this.titulo = titulo;
     }
 
-    public int getGeneroId() {
-        return generoId;
-    }
-
-    public void setGeneroId(int generoId) {
-        this.generoId = generoId;
-    }
-
-    public String getNombreGenero() {
-        return nombreGenero;
-    }
-
-    public void setNombreGenero(String nombreGenero) {
-        this.nombreGenero = nombreGenero;
-    }
-
     public int getIdArtista() {
         return idArtista;
     }
@@ -67,5 +58,21 @@ public class Cancion {
 
     public void setNombreArtista(String nombreArtista) {
         this.nombreArtista = nombreArtista;
+    }
+
+    public int getIdGenero() {
+        return idGenero;
+    }
+
+    public void setIdGenero(int idGenero) {
+        this.idGenero = idGenero;
+    }
+
+    public String getNombreGenero() {
+        return nombreGenero;
+    }
+
+    public void setNombreGenero(String nombreGenero) {
+        this.nombreGenero = nombreGenero;
     }
 }

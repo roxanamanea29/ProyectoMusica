@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!--suppress ALL -->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +15,7 @@
             <img src="/img/logo.png" alt="logo" style="height: 130px;">
             <aside class="bg-dark text-white mt-5 mb-5 p-4">
                 <div class="pb-2">
-                    <a href="http://localhost:8080/musicmatch/lista"><button type="" class="btn btn-light col-1">+</button></a>
+                    <a href="/musicmatch/lista"><button type="" class="btn btn-light col-1">+</button></a>
                     <h5>Pulsa para modificar o eliminar listas</h5>
                 </div>
             </aside>
@@ -25,6 +24,26 @@
             <h3 class="text-center mt-5 text-white">Tu música favorita</h3>
             <h4 class="text-center py-5 text-white">¡Explora y disfruta de tus géneros musicales preferidos! Elige entre
                 una variedad de estilos para crear tu lista de reproducción perfecta. </h4>
+            <!--Listas del usuario
+            <div class="container">
+                <div class="row">
+                    Iterar sobre listas de reproducción
+                    <div th:each="listaReproduccion, iter : ${listasDeReproduccion}" class="col-md-4">
+                        <div class="card mb-4 bg-dark text-white" th:id="'card-' + ${iter.index}">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${listaReproduccion.nombre}"></h5>
+                                <button type="button" class="btn btn-secondary" th:data-bs-toggle="'modal'"
+                                        th:data-bs-target="'#modal-' + ${iter.index}">
+                                    Ver detalles
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            Lista de las canciones de la base de datos solo tiene titulo y genero se tiene que meter el ARTISTA-->
+
             <!--Listas del usuario-->
             <div class="container">
                 <div class="row">
@@ -41,61 +60,27 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Modales no funciona el enlace con la base de datos-->
-                <div th:each="listaReproduccion, iter : ${listasDeReproduccion}">
-                    <div class="modal fade" th:id="'modal-' + ${iter.index}" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" th:text="${listaReproduccion.nombre}"></h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h6>Géneros</h6>
-                                    <ul>
-                                        <li th:each="cancion : ${listaReproduccion.canciones}"
-                                            th:text="${cancion.nombreGenero}"></li>
-                                    </ul>
-                                    <h6>Canciones</h6>
-                                    <ul>
-                                        <li th:each="cancion : ${listaReproduccion.canciones}"
-                                            th:text="${cancion.titulo}"></li>
-                                    </ul>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Lista de las canciones de la base de datos solo tiene titulo y genero se tiene que meter el ARTISTA-->
-            <main class="col-lg-9">
-                <div class="table-responsive mt-5 mb-4 mx-3">
-                    <table class="table table-dark table-striped table-hover">
+                <div class="container py-4">
+                    <h2>Lista de Canciones</h2>
+                    <table class="table table-striped table-dark">
                         <thead>
-                        <tr class="text-left">
+                        <tr>
                             <th>Título</th>
+                            <th>Artista</th>
                             <th>Género</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="cancion : ${canciones}">
-                            <td th:text="${cancion.nombreGenero}"></td>
                             <td th:text="${cancion.titulo}"></td>
+                            <td th:text="${cancion.nombreArtista}"></td>
+                            <td th:text="${cancion.nombreGenero}"></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-            </main>
 
-
-            <!-- Tarjetas de géneros musicales  sin enlcae al contenido de la base de datos-->
+            <!--Tarjetas de géneros musicales  sin enlcae al contenido de la base de datos-->
             <div class="container py-4">
                 <div class="row row-cols-4 g-4">
                     <div class="col">
@@ -199,5 +184,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+</div></body>
 </html>

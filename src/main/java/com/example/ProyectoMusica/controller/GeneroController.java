@@ -4,23 +4,24 @@ import com.example.ProyectoMusica.entity.Genero;
 import com.example.ProyectoMusica.service.ServicioGenero;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/musicmatch/casa")
+@RequestMapping("/musicmatch")
 public class GeneroController {
-    ServicioGenero genero = new ServicioGenero();
+    ServicioGenero serGenero = new ServicioGenero();
 
     @GetMapping("/")
     public String vista(Model model) {
         String valorfinal = "./musicmatch/Genero";
         try {
-            model.addAttribute("generos", genero.listarTodosGeneros());
-            model.addAttribute("unicoGenero", genero.getUnicoGenero(1));
+            model.addAttribute("generos", serGenero.listarTodosGeneros());
+            model.addAttribute("unicoGenero", serGenero.getUnicoGenero(1));
+            model.addAttribute("altaGenero", new Genero());
 
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
@@ -28,4 +29,51 @@ public class GeneroController {
         }
         return valorfinal;
     }
+    @GetMapping("/alta")
+    public String greetingForm(Model model) {
+        model.addAttribute("altaGenero", new Genero());
+        return "./musicmatch/Genero";
+    }
+    @PostMapping("/alta")
+    public String greetingSubmit(@ModelAttribute Genero genero, Model model) throws SQLException {
+        String valorfinal="redirect:/musicmatch/";
+        try {
+            serGenero.altaGenero(genero);
+            model.addAttribute("altaGeneros", serGenero.listarTodosGeneros());
+        } catch (SQLException ex) {
+            valorfinal="error";
+        }
+        return valorfinal;
+    }
+    @GetMapping("/eliminar")
+    public String SubmitB (@RequestParam("codGenero") int id, Model model){
+        String valorfinal="redirect:/musicmatch/";
+        try {
+            serGenero.eliminar(id);
+            model.addAttribute("generos", serGenero.listarTodosGeneros());
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+    @GetMapping("/modificar")
+    public String modificar(@RequestParam ("codcliente") int id,Model model){
+        String valorfinal="/musicmatch/";
+        try {
+            model.addAttribute("modificarGeneros", serGenero.getUnicoGenero(id));
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+/*    @PostMapping("/modificar")
+    public String modificarBBDD (@ModelAttribute Cliente cliente, Model model){
+        String valorfinal="redirect:/cliente/";
+        try {
+            ge.modificar(cliente);
+            model.addAttribute("clientes",ge.listar());
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerCliente.class.getName()).log(Level.SEVERE, null, ex);
+            valorfinal="error";
+        }
+        return valorfinal;
+    } */
 }

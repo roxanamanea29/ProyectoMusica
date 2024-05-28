@@ -1,9 +1,13 @@
+-- Eliminar la base de datos si existe
 DROP DATABASE IF EXISTS Music_Match;
 
+-- Crear la base de datos si no existe
 CREATE DATABASE IF NOT EXISTS Music_Match;
 
+-- Usar la base de datos creada
 USE Music_Match;
 
+-- Crear tabla Usuario
 CREATE TABLE IF NOT EXISTS Usuario (
 
     idUsuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -13,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Usuario (
     lista VARCHAR(255) NOT NULL
 ) ENGINE='InnoDB'DEFAULT CHARSET =LATIN1;
 
+-- Crear tabla ListaReproduccion
 CREATE TABLE IF NOT EXISTS ListaReproduccion (
     idListaReproduccion INT AUTO_INCREMENT PRIMARY KEY,
     nombreListaReproduccion VARCHAR(255) NOT NULL,
@@ -20,16 +25,19 @@ CREATE TABLE IF NOT EXISTS ListaReproduccion (
     FOREIGN KEY (usuario_id) REFERENCES Usuario(idUsuario)
 );
 
+-- Crear tabla Genero
 CREATE TABLE IF NOT EXISTS Genero (
     idGenero INT AUTO_INCREMENT PRIMARY KEY,
     nombreGenero VARCHAR(100) NOT NULL
 );
 
+-- Crear tabla Artista
 CREATE TABLE IF NOT EXISTS Artista (
     idArtista INT AUTO_INCREMENT PRIMARY KEY,
     nombreArtista VARCHAR(255) NOT NULL
 );
 
+-- Crear tabla Cancion
 CREATE TABLE IF NOT EXISTS Cancion (
     idCancion INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
@@ -39,6 +47,7 @@ CREATE TABLE IF NOT EXISTS Cancion (
     FOREIGN KEY (genero_id) REFERENCES Genero(idGenero)
 );
 
+-- Crear tabla Cancion_ListaReproduccion
 CREATE TABLE IF NOT EXISTS Cancion_ListaReproduccion (
     idCancionListaReproduccion INT AUTO_INCREMENT PRIMARY KEY,
     cancion_id INT,

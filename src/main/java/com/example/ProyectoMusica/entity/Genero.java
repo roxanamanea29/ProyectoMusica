@@ -9,6 +9,10 @@ public class Genero {
         this.nombreGenero = nombreGenero;
     }
 
+    public Genero() {
+
+    }
+
     public int getIdGenero() {
         return idGenero;
     }
