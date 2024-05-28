@@ -62,12 +62,5 @@ public class ServicioGenero {
         consulta.executeUpdate("DELETE FROM genero WHERE idGenero = " + id);
         consulta.close();
     }
-    public void modificar(Genero g) throws SQLException {
-        Statement consulta = con.conectar().createStatement();
-        String cadena = "UPDATE cliente SET "
-                + "nombreGenero = '" + g.getNombreGenero() + "', "
-                + "WHERE idGenero = " + g.getIdGenero();
-        consulta.executeUpdate(cadena);
-        consulta.close();
-    }
+
 }
