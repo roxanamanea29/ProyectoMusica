@@ -13,16 +13,16 @@ public class Artista {
         return idArtista;
     }
 
-    public void setIdArtista(int idArt) {
-        this.idArtista = idArt;
+    public void setIdArtista(int idArtista) {
+        this.idArtista = idArtista;
     }
 
     public String getNombreArtista() {
         return nombreArtista;
     }
 
-    public void setNombreArtista(String Artnombre) {
-        this.nombreArtista = Artnombre;
+    public void setNombreArtista(String nombreArtista) {
+        this.nombreArtista = nombreArtista;
     }
 
 }

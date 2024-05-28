@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Artista</title>
+</head>
+<body>
+<h1>Modificar Artista</h1>
+
+<!-- Formulario para modificar el artista -->
+<form action="/musicmatch/artista/modificar" method="post">
+    <!-- Campo oculto para enviar el ID del artista -->
+    <input type="hidden" name="idArtista" th:value="${artista.idArtista}" />
+
+    <!-- Campo para editar el nombre del artista -->
+    <label for="nombreArtista">Nombre del Artista:</label><br>
+    <input type="text" id="nombreArtista" name="nombreArtista" th:value="${artista.nombreArtista}" /><br><br>
+
+    <!-- Botón para enviar el formulario -->
+    <button type="submit">Guardar Cambios</button>
+</form>
+</body>
+</html>

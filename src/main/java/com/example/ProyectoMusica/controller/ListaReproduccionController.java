@@ -3,11 +3,14 @@ package com.example.ProyectoMusica.controller;
 import com.example.ProyectoMusica.entity.ListaReproduccion;
 import com.example.ProyectoMusica.service.ServicioListaReproduccion;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/musicmatch")
 public class ListaReproduccionController {
     private final ServicioListaReproduccion servicioListaReproduccion;
@@ -18,8 +21,9 @@ public class ListaReproduccionController {
     }
 
     @GetMapping("/lista")
-    public List<ListaReproduccion> listarTodasListasReproduccion() {
-        return servicioListaReproduccion.listarTodasListasReproduccion();
+    public String listarTodasListasReproduccion(Model model) {
+        model.addAttribute("acciones", servicioListaReproduccion.listarTodasListasReproduccion());
+        return "./musicmatch/lista";
     }
 
     @GetMapping("/lista/{id}")

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Inicio</title>
@@ -5,42 +6,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body class="container">
+<body class="container" style="background-color: rgba(0, 0, 0);">
 <div class="mx-auto text-center">
-    <h1>Listar</h1>
+    <br>
+    <br>
 </div>
 <div class="d-flex justify-content-center align-items-center">
-    <div  class="container">
-        <table th:if="${listas != null and !listas.empty}" class="table table-striped">
+    <div class="container">
+        <table class="table table-dark table-striped table-hover">
             <thead>
             <tr class="text-left">
-                <th colspan = "1" >Accion</th>
-                <th>id</th>
-                <th>Nombre Lista</th>
+                <th>Acción</th>
+                <th>ID</th>
+                <th>Lista</th>
                 <th>Canción</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="lista : ${listas}">
-                <td class="align-middle">
-                    <a class="text-decoration-none mx-1" th:href="@{./lista/eliminar?codlista={id}(id=${lista.id})}">
-                        <img src="/img/e.jpeg" alt="Eliminar">
-                    </a>
-                    <a class="text-decoration-none mx-1" th:href="@{./lista/modificar?codlista={id}(id=${lista.id})}">
-                        <img src="/img/m.jpeg" alt="Modificar">
-                    </a>
-                </td>
-
-                <td th:text="${lista.id}"></td>
-                <td th:text="${lista.nombre}"></td>
-                <td th:text="${lista.cancion}"></td>
+            <tr th:if="${#lists.isEmpty(acciones)}">
+                <td colspan="4" class="text-center">No hay registros</td>
+            </tr>
+            <tr th:each="accion : ${acciones}">
+                <td th:text="${accion.accion}"></td>
+                <td th:text="${accion.id}"></td>
+                <td th:text="${accion.nombreLista}"></td>
+                <td th:text="${accion.nombreCancion}"></td>
             </tr>
             </tbody>
         </table>
     </div>
-</div>
-<div th:if="${#lists.isEmpty(listas)}">
-    <h1 class="text-center">No hay registros</h1>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
