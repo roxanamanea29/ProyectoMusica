@@ -26,6 +26,9 @@ public class ServicioUsuario {
                         result.getString("correoElectronico"),
                         result.getString("clave"),
                         result.getString("lista")
+
+
+
                 );
             }
         } catch (SQLException e) {
