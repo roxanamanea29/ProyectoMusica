@@ -55,17 +55,19 @@
 
         <tbody>
         <tr th:each="genero : ${generos}">
-            <td class="align-middle">
+            <td >
                 <a class="text-decoration-none mx-1" th:href="@{./eliminar?codGenero={id}(id=${genero.idGenero})}">
-                    <img th:src="@{/static/img/delete-bin-line.png}" alt="Eliminar">
+                    <img src="/img/e.jpeg" alt="Eliminar">
+                </a>
+                <a class="text-decoration-none mx-1" th:href="@{./modificar?codGenero={id}(id=${genero.idGenero})}">
+                    <img src="/img/m.jpeg" alt="Modificar">
                 </a>
             </td>
 
-            <td th:text="${genero.idGenero}"></td>
+<!--            <td th:text="${genero.idGenero}"></td> -->
             <td th:text="${genero.nombreGenero}"></td>
         </tr>
         </tbody>
-
 
  <!--       <div class="mx-auto text-center">
             <h1>Modificar Turno</h1>
