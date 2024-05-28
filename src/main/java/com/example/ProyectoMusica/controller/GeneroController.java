@@ -46,36 +46,34 @@ public class GeneroController {
         return valorfinal;
     }
     @GetMapping("/eliminar")
-    public String SubmitB (@RequestParam("idGenero") int id, Model model){
+    public String SubmitB (@RequestParam("codGenero") int id, Model model){
         String valorfinal="redirect:/musicmatch/";
         try {
             serGenero.eliminar(id);
-            model.addAttribute("clientes", serGenero.listarTodosGeneros());
+            model.addAttribute("generos", serGenero.listarTodosGeneros());
         } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+    @GetMapping("/modificar")
+    public String modificar(@RequestParam ("codcliente") int id,Model model){
+        String valorfinal="/musicmatch/";
+        try {
+            model.addAttribute("modificarGeneros", serGenero.getUnicoGenero(id));
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+/*    @PostMapping("/modificar")
+    public String modificarBBDD (@ModelAttribute Cliente cliente, Model model){
+        String valorfinal="redirect:/cliente/";
+        try {
+            ge.modificar(cliente);
+            model.addAttribute("clientes",ge.listar());
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerCliente.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
-    }
-/*
-    @GetMapping("/modificar")
-    public String modificar(@RequestParam("idGenero") int id, Model model){
-        String valorfinal="./musicmatch/Genero";
-        try {
-            model.addAttribute("modificarGenero", serGenero.getUnicoGenero(id));
-        } catch (SQLException ex) {
-
-        }
-        return valorfinal;
-    }
-
-    @PostMapping("/modificar")
-    public String modificarBBDD (@ModelAttribute Genero genero, Model model){
-        String valorfinal="redirect:/musicmatch/";
-        try {
-            serGenero.modificarGenero(genero);
-            model.addAttribute("modificarGeneros",serGenero.listarTodosGeneros());
-        } catch (SQLException ex) {
-        }
-        return valorfinal;
-    }*/
+    } */
 }

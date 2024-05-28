@@ -16,7 +16,7 @@ public class ServicioGenero {
     public Genero getUnicoGenero(int id) throws SQLException {//
         Genero genero = null;
         Statement consulta = con.conectar().createStatement();
-        ResultSet result = consulta.executeQuery("SELECT * FROM genero where `idGenero` = " + id);
+        ResultSet result = consulta.executeQuery("SELECT * FROM genero where idGenero = " + id);
         while (result.next()) {
             genero = new Genero(
                     result.getInt("idGenero"),
@@ -57,16 +57,17 @@ public class ServicioGenero {
         consulta.execute(cadena);
         consulta.close();
     }
- /*   public void modificarGenero(Genero g) throws SQLException {
-        Statement consulta = con.conectar().createStatement();
-
-        String cadena = "UPDATE genero SET " + "nombreGenero = '" + g.getNombreGenero() + "' " + "WHERE idGenero = " + g.getIdGenero();
-        consulta.executeUpdate(cadena);
-        consulta.close();
-    }*/
     public void eliminar(int id) throws SQLException {
         Statement consulta = con.conectar().createStatement();
         consulta.executeUpdate("DELETE FROM genero WHERE idGenero = " + id);
+        consulta.close();
+    }
+    public void modificar(Genero g) throws SQLException {
+        Statement consulta = con.conectar().createStatement();
+        String cadena = "UPDATE cliente SET "
+                + "nombreGenero = '" + g.getNombreGenero() + "', "
+                + "WHERE idGenero = " + g.getIdGenero();
+        consulta.executeUpdate(cadena);
         consulta.close();
     }
 }
