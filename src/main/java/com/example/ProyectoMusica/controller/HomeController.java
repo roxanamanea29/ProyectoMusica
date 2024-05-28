@@ -4,20 +4,16 @@ import com.example.ProyectoMusica.service.ServicioCancion;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * @author Roxana
- * @date 18/04/2024
- */
-//ruta url http://localhost:8080/tablero
 @Controller
 @RequestMapping("/tablero")
 public class HomeController {
+
     private final ServicioCancion servicioCancion;
 
     public HomeController(ServicioCancion servicioCancion) {
@@ -40,6 +36,5 @@ public class HomeController {
             }
             return valorfinal;
         }
+   
 }
-
-
