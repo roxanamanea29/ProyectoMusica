@@ -16,10 +16,10 @@
         <table class="table table-dark table-striped table-hover">
             <thead>
             <tr class="text-left">
-                <th>Acción</th>
                 <th>ID</th>
                 <th>Lista</th>
                 <th>Canción</th>
+                <th>Opción</th>
             </tr>
             </thead>
             <tbody>
@@ -27,10 +27,17 @@
                 <td colspan="4" class="text-center">No hay registros</td>
             </tr>
             <tr th:each="accion : ${acciones}">
-                <td th:text="${accion.accion}"></td>
                 <td th:text="${accion.id}"></td>
                 <td th:text="${accion.nombreLista}"></td>
                 <td th:text="${accion.nombreCancion}"></td>
+                <td class="align-middle"> <!-- Nueva columna para las imágenes -->
+                    <a class="text-decoration-none mx-1" th:href="@{/lista/eliminar(cod_lista=${opcion.id})}">
+                        <img src="/e.jpeg" alt="Eliminar">
+                    </a>
+                    <a class="text-decoration-none mx-1" th:href="@{/lista/modificar(cod_lista=${opcion.id})}">
+                        <img src="/m.jpeg" alt="Modificar">
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>
