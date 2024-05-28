@@ -1,7 +1,7 @@
 package com.example.ProyectoMusica.controller;
 
 import com.example.ProyectoMusica.service.ServicioCancion;
-import com.example.ProyectoMusica.service.ServicioListaReproduccion;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,37 +18,28 @@ import java.util.logging.Logger;
 @Controller
 @RequestMapping("/tablero")
 public class HomeController {
-    ServicioCancion servicioCancion = new ServicioCancion();
-    ServicioListaReproduccion servicioListaReproduccion = new ServicioListaReproduccion();
-    @GetMapping("")
-    public String someMethod() {
-        return "./musicmatch/tableroU"; // This should match the file name without the .html extension
-    }
-    @GetMapping("/")
-  /* public String crud(Model model) {
-        String valorfinal = "./musicmatch/home";
-        try {
-            model.addAttribute("canciones", servicioCancion.listarAllCanciones());
-            model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
-        } catch (Exception ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-            valorfinal = "error";
-        }
-        return valorfinal;
-    }*/
+    private final ServicioCancion servicioCancion;
 
+    public HomeController(ServicioCancion servicioCancion) {
+        this.servicioCancion = servicioCancion;
+    }
+
+    @GetMapping("/li")
+    public String someMethod() {
+        return "./musicmatch/listar";
+    }
+        @GetMapping("/")
         public String home(Model model) {
-            String valorfinal = "tableroU";
+            String valorfinal = "/musicmatch/tableroU";
             try {
-                model.addAttribute("canciones", servicioCancion.listarAllCanciones());
-                model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
+                model.addAttribute("canciones", servicioCancion.listar());
+                //model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
             } catch (Exception ex) {
                 Logger.getLogger(com.example.ProyectoMusica.controller.HomeController.class.getName()).log(Level.SEVERE, null, ex);
                 valorfinal = "error";
             }
             return valorfinal;
         }
-
 }
 
 

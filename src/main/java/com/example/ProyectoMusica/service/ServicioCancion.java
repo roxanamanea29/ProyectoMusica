@@ -2,6 +2,7 @@ package com.example.ProyectoMusica.service;
 
 import com.example.ProyectoMusica.database.Conexion;
 import com.example.ProyectoMusica.entity.Cancion;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.*;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 
 // https://es.stackoverflow.com/questions/58252/operation-not-allowed-after-resultset-closed
+@Service
 public class ServicioCancion {
     Statement consulta;
     Conexion con = new Conexion();
@@ -78,40 +80,12 @@ public class ServicioCancion {
         consulta.executeUpdate(cadena);
     }
 
-   /*public void modificarCancion(Cancion can) throws SQLException {
-        Conexion con = new Conexion();
-        Statement consulta = con.conectar().createStatement();
-        String cadena = "UPDATE Cancion c " +
-                "JOIN Artista a ON c.artista_id = a.idArtista " +
-                "JOIN Genero g ON c.genero_id = g.idGenero " +
-                "SET c.titulo = '" + can.getTitulo() + "', " +
-                "a.nombreArtista = '" + can.getNombreArtista() + "', " +
-                "g.nombreGenero = '" + can.getNombreGenero() + "' " +
-                "WHERE c.idCancion = " + can.getIdCancion()+";";
-
-        consulta.executeUpdate(cadena);
-    }*/
-
     public void modificarCancion(Cancion cancion) throws SQLException {
         consulta = con.conectar().createStatement();
         String cadena = "UPDATE Cancion SET titulo='" + cancion.getTitulo() + "', artista_id=" + cancion.getIdArtista() + ", genero_id=" + cancion.getIdGenero() + " WHERE idCancion=" + cancion.getIdCancion();
         consulta.executeUpdate(cadena);
     }
 
-   /*public void modificarCancion(Cancion can) throws SQLException {
-       String cadena = "UPDATE cancion SET titulo = ?, artista_id = ?, genero_id = ? WHERE idCancion = ?";
-       try (Connection conn = con.conectar();
-            PreparedStatement pstmt = conn.prepareStatement(cadena)) {
-           pstmt.setString(1, can.getTitulo());
-           pstmt.setInt(2, can.getIdArtista());
-           pstmt.setInt(3, can.getIdGenero());
-           pstmt.setInt(4, can.getIdCancion());
-           pstmt.executeUpdate();
-       } catch (SQLException e) {
-           // Manejo de excepciones
-           throw new SQLException("Error al modificar la canción", e);
-       }
-   }*/
 
 }
 
