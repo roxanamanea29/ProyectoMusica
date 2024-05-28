@@ -4,10 +4,7 @@ import com.example.ProyectoMusica.entity.Genero;
 import com.example.ProyectoMusica.service.ServicioGenero;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -48,4 +45,35 @@ public class GeneroController {
         }
         return valorfinal;
     }
+    @GetMapping("/eliminar")
+    public String SubmitB (@RequestParam("codGenero") int id, Model model){
+        String valorfinal="redirect:/musicmatch/";
+        try {
+            serGenero.eliminar(id);
+            model.addAttribute("generos", serGenero.listarTodosGeneros());
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+    @GetMapping("/modificar")
+    public String modificar(@RequestParam ("codcliente") int id,Model model){
+        String valorfinal="/musicmatch/";
+        try {
+            model.addAttribute("modificarGeneros", serGenero.getUnicoGenero(id));
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+/*    @PostMapping("/modificar")
+    public String modificarBBDD (@ModelAttribute Cliente cliente, Model model){
+        String valorfinal="redirect:/cliente/";
+        try {
+            ge.modificar(cliente);
+            model.addAttribute("clientes",ge.listar());
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerCliente.class.getName()).log(Level.SEVERE, null, ex);
+            valorfinal="error";
+        }
+        return valorfinal;
+    } */
 }
