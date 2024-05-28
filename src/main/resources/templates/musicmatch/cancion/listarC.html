@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
-<body class="container">
+<body class="container" style="background-color: rgba(0, 0, 0);">
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <img src="/img/logo.png" alt="Logo" style="height: 80px;">
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/admin/">Inicio</a>
+                    <a class="nav-link" href="http://localhost:8080/musicmatch/lista">Inicio</a>
                 </li>
             </ul>
         </div>
@@ -31,27 +31,27 @@
 </div>
 <div class="container">
     <div class="pb-2">
-        <a href="/cancion/alta"><button class="btn btn-light col-1">Alta</button></a>
+        <a href="/lista/alta"><button class="btn btn-light col-1">Alta</button></a>
     </div>
     <table class="table table-striped">
         <thead>
         <tr class="text-left">
-            <th>Título</th>
-            <th>Artista</th>
-            <th>Género</th>
-            <th>Acciones</th>
+            <th>Accion</th>
+            <th>Id</th>
+            <th>Lista</th>
+            <th>Cancion</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="cancion : ${canciones}">
-            <td th:text="${cancion.titulo}"></td>
-            <td th:text="${cancion.nombreArtista}"></td>
-            <td th:text="${cancion.nombreGenero}"></td>
+        <tr th:each="lista : ${listas}">
+            <td th:text="${lista.id}"></td>
+            <td th:text="${lista.nombre}"></td>
+            <td th:text="${lista.Cancion}"></td>
             <td class="align-middle">
-                <a class="text-decoration-none mx-1" th:href="@{/cancion/eliminar(cod_cancion=${cancion.idCancion})}">
+                <a class="text-decoration-none mx-1" th:href="@{/lista/eliminar(cod_lista=${lista.idLista})}">
                     <img src="/img/e.jpeg" alt="Eliminar">
                 </a>
-                <a class="text-decoration-none mx-1" th:href="@{/cancion/modificar(cod_cancion=${cancion.idCancion})}">
+                <a class="text-decoration-none mx-1" th:href="@{/lista/modificar(cod_lista=${lista.idLista})}">
                     <img src="/img/m.jpeg" alt="Modificar">
                 </a>
             </td>
