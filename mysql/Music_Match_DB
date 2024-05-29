@@ -11,9 +11,10 @@ USE Music_Match;
 CREATE TABLE IF NOT EXISTS Usuario (
     idUsuario INT AUTO_INCREMENT PRIMARY KEY,
     nombreUsuario VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    contrasena VARCHAR(255) NOT NULL
-);
+    correoElectronico VARCHAR(100) UNIQUE NOT NULL,
+    clave VARCHAR(255) NOT NULL,
+    lista VARCHAR(225) NOT NULL
+) Engine='InnoDB'DEFAULT CHARSET =LATIN1;
 
 -- Crear tabla ListaReproduccion
 CREATE TABLE IF NOT EXISTS ListaReproduccion (
