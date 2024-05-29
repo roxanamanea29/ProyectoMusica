@@ -20,7 +20,6 @@ public class GeneroController {
         String valorfinal = "./musicmatch/Genero";
         try {
             model.addAttribute("generos", serGenero.listarTodosGeneros());
-            model.addAttribute("unicoGenero", serGenero.getUnicoGenero(1));
             model.addAttribute("altaGenero", new Genero());
 
         } catch (Exception ex) {
@@ -56,24 +55,23 @@ public class GeneroController {
         return valorfinal;
     }
     @GetMapping("/modificar")
-    public String modificar(@RequestParam ("codcliente") int id,Model model){
-        String valorfinal="/musicmatch/";
+    public String modificar(@RequestParam ("codGenero") int id,Model model){
+        String valorfinal="./musicmatch/ModificarGenero";
         try {
-            model.addAttribute("modificarGeneros", serGenero.getUnicoGenero(id));
+            model.addAttribute("genero", serGenero.getUnicoGenero(id));
         } catch (SQLException ex) {
         }
         return valorfinal;
     }
-/*    @PostMapping("/modificar")
-    public String modificarBBDD (@ModelAttribute Cliente cliente, Model model){
-        String valorfinal="redirect:/cliente/";
+
+    @PostMapping("/modificar")
+    public String modificarBBDD (@ModelAttribute Genero genero, Model model){
+        String valorfinal="redirect:/musicmatch/";
         try {
-            ge.modificar(cliente);
-            model.addAttribute("clientes",ge.listar());
+            serGenero.modificar(genero);
+            model.addAttribute("generos",serGenero.listarTodosGeneros());
         } catch (SQLException ex) {
-            Logger.getLogger(ControllerCliente.class.getName()).log(Level.SEVERE, null, ex);
-            valorfinal="error";
         }
         return valorfinal;
-    } */
+    }
 }

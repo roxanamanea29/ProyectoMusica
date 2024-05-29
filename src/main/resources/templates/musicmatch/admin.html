@@ -1,33 +1,33 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Administrador MusicMatch</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            width: 18rem;
+            margin: 10px;
+        }
+        .card a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
 </head>
 <body>
-<!--<nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Administrador MusicMatch</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>-->
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg bg-light text-center">
+    <div class="container-fluid px-3">
         <img src="/img/logo.png" alt="Logo" style="height: 80px;">
-        <a class="navbar-brand" href="#">Administrador MusicMatch</a>
+        <a class="navbar-brand " href="#">Administrador MusicMatch</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,36 +37,33 @@
                 <li class="nav-item">
                     <a class="nav-link" href="http://localhost:8080/admin/">Inicio</a>
                 </li>
-
             </ul>
         </div>
     </div>
 </nav>
 <div class="container text-center">
-    <h1 class="title mx-5">Bienvenido a la aplicación del administrador</h1>
-    <div class="p-2">
-        <a class="h2" th:href="@{/artista}">Lista Artistas</a>
-    </div>
-    <div class="p-2">
-        <a class="h2" th:href="@{/artista/nuevo}">Añadir Artista</a>
-    </div>
-    <div class="p-2">
-        <a class="h2" th:href="@{/genero}">Lista Generos</a>
-    </div>
-    <div class="p-2">
-        <a class="h2" th:href="@{/genero/nuevo}">Añadir Genero</a>
-    </div>
-    <div class="p-2">
-        <a class="h2" href="http://localhost:8080/cancion/lista">Lista Canciones</a>
-    </div>
-    <div class="p-2">
-        <a class="h2" href="http://localhost:8080/cancion/alta">Añadir Canciones</a>
-    </div>
-    <div class="p-2">
-        <a class="h2" th:href="@{/usuario}">Lista Usuarios</a>
-    </div>
-    <div class="p-2">
-        <a class="h2" th:href="@{/usuario/nuevo}">Añadir Usuario</a>
+    <h1 class="title mx-5 mb-5">Bienvenido a la aplicación del administrador</h1>
+    <div class="card-container">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><a href="#">Usuarios</a></h5>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><a href="#">Artistas</a></h5>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><a href="#">Géneros</a></h5>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><a href="http://localhost:8080/cancion/lista">Canciones</a></h5>
+            </div>
+        </div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

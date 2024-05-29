@@ -64,9 +64,8 @@ public class ServicioGenero {
     }
     public void modificar(Genero g) throws SQLException {
         Statement consulta = con.conectar().createStatement();
-        String cadena = "UPDATE cliente SET "
-                + "nombreGenero = '" + g.getNombreGenero() + "', "
-                + "WHERE idGenero = " + g.getIdGenero();
+
+        String cadena = "UPDATE genero SET nombreGenero = '" + g.getNombreGenero() + "' WHERE idGenero = " + g.getIdGenero();
         consulta.executeUpdate(cadena);
         consulta.close();
     }
