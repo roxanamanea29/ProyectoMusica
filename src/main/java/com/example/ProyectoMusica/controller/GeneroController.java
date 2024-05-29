@@ -56,9 +56,20 @@ public class GeneroController {
     }
     @GetMapping("/modificar")
     public String modificar(@RequestParam ("codGenero") int id,Model model){
-        String valorfinal="/musicmatch/";
+        String valorfinal="./musicmatch/ModificarGenero";
         try {
             model.addAttribute("genero", serGenero.getUnicoGenero(id));
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+
+    @PostMapping("/modificar")
+    public String modificarBBDD (@ModelAttribute Genero genero, Model model){
+        String valorfinal="redirect:/musicmatch/";
+        try {
+            serGenero.modificar(genero);
+            model.addAttribute("generos",serGenero.listarTodosGeneros());
         } catch (SQLException ex) {
         }
         return valorfinal;
