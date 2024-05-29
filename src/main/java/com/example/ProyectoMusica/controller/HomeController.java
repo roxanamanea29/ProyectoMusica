@@ -22,7 +22,7 @@ public class HomeController {
 
     @GetMapping("/li")
     public String someMethod() {
-        return "./musicmatch/listar";
+        return "./musicmatch/lista";
     }
         @GetMapping("/")
         public String home(Model model) {

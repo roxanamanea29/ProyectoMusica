@@ -1,43 +1,67 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Inicio</title>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Chat Application</title>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
-<body class="container" style="background-color: rgba(0, 0, 0);">
-<div class="mx-auto text-center">
-    <br>
-    <br>
-</div>
-<div class="d-flex justify-content-center align-items-center">
-    <div class="container">
-        <table class="table table-dark table-striped table-hover">
-            <thead>
-            <tr class="text-left">
-                <th>Acción</th>
-                <th>ID</th>
-                <th>Lista</th>
-                <th>Canción</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:if="${#lists.isEmpty(acciones)}">
-                <td colspan="4" class="text-center">No hay registros</td>
-            </tr>
-            <tr th:each="accion : ${acciones}">
-                <td th:text="${accion.accion}"></td>
-                <td th:text="${accion.id}"></td>
-                <td th:text="${accion.nombreLista}"></td>
-                <td th:text="${accion.nombreCancion}"></td>
-            </tr>
-            </tbody>
-        </table>
+<body style="background-image: url('./img/vid1.mp4');">
+<div id="chat-page" class="hidden">
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="./img/logo.png" alt="logo" style="height: 150px;">
+            <h2> Chat</h2>
+        </div>
+        <div class="connecting">
+            Connecting...
+        </div>
+        <ul id="messageArea"></ul>
+        <form id="messageForm" name="messageForm">
+            <div class="form-group">
+                <div class="input-group clearfix">
+                    <label for="message"></label><input autocomplete="off" class="form-control" id="message"
+                                                        placeholder="Escribe tu mensaje...." type="text"/>
+                    <div class="button-group">
+                        <button type="submit" class="dark">Send</button>
+                        <button id="logoutButton" class="accent">Salir</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+
+<div>
+    <a href="/tablero/">
+        <button type="submit" class="accent username-submit">Volver</button>
+    </a>
+</div>
+
+<noscript>
+    <h2>Sorry! Your browser doesn't support Javascript</h2>
+</noscript>
+
+<div id="username-page">
+    <div class="username-page-container">
+        <img src="./img/logo.png" alt="logo" style="height: 130px;">
+        <h1 class="title">Introduce tu nombre de usuario</h1>
+        <form id="usernameForm" name="usernameForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Username" aria-label="username" autocomplete="off"
+                       class="form-control">
+            </div>
+            <div class="form-group">
+
+                <span style="margin: 0 10px;"></span>
+                <button type="submit" class="accent username-submit">Entrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>

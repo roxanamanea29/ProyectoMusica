@@ -12,11 +12,18 @@
 <div class="container py-4">
     <div class="row">
         <div class="col-lg-3">
-            <img src="/img/logo.png" alt="logo" style="height: 130px;">
             <aside class="bg-dark text-white mt-5 mb-5 p-4">
                 <div class="pb-2">
-                    <a href="/musicmatch/lista"><button type="" class="btn btn-light col-1">+</button></a>
+                    <a href="/musicmatch/lista">
+                        <button type="button" class="btn btn-light col-1">+</button>
+                    </a>
                     <h5>Pulsa para modificar o eliminar listas</h5>
+                    <div class="d-grid col-lg-5">
+                        <a href="http://localhost:8080" class="enlace">
+                            <button class="btn text-center " type="button"><img src="/img/pngwing.com.png" alt="chat"
+                                                                                style="height: 120px;"></button>
+                        </a>
+                    </div>
                 </div>
             </aside>
         </div>
@@ -24,30 +31,10 @@
             <h3 class="text-center mt-5 text-white">Tu música favorita</h3>
             <h4 class="text-center py-5 text-white">¡Explora y disfruta de tus géneros musicales preferidos! Elige entre
                 una variedad de estilos para crear tu lista de reproducción perfecta. </h4>
-            <!--Listas del usuario
-            <div class="container">
-                <div class="row">
-                    Iterar sobre listas de reproducción
-                    <div th:each="listaReproduccion, iter : ${listasDeReproduccion}" class="col-md-4">
-                        <div class="card mb-4 bg-dark text-white" th:id="'card-' + ${iter.index}">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${listaReproduccion.nombre}"></h5>
-                                <button type="button" class="btn btn-secondary" th:data-bs-toggle="'modal'"
-                                        th:data-bs-target="'#modal-' + ${iter.index}">
-                                    Ver detalles
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            Lista de las canciones de la base de datos solo tiene titulo y genero se tiene que meter el ARTISTA-->
-
             <!--Listas del usuario-->
             <div class="container">
                 <div class="row">
-                    <!-- Iterar sobre listas de reproducción -->
+                    <!-- Iterar sobre listas de reproducción-->
                     <div th:each="listaReproduccion, iter : ${listasDeReproduccion}" class="col-md-4">
                         <div class="card mb-4 bg-dark text-white" th:id="'card-' + ${iter.index}">
                             <div class="card-body">
@@ -60,114 +47,134 @@
                         </div>
                     </div>
                 </div>
-                <div class="container py-4">
-                    <h2>Lista de Canciones</h2>
-                    <table class="table table-striped table-dark">
-                        <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>Artista</th>
-                            <th>Género</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="cancion : ${canciones}">
-                            <td th:text="${cancion.titulo}"></td>
-                            <td th:text="${cancion.nombreArtista}"></td>
-                            <td th:text="${cancion.nombreGenero}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
 
-            <!--Tarjetas de géneros musicales  sin enlcae al contenido de la base de datos-->
-            <div class="container py-4">
-                <div class="row row-cols-4 g-4">
-                    <div class="col">
-                        <div class="card bg-dark text-white">
-                            <img class="card-img-top"
-                                 src="https://cdn.pixabay.com/photo/2017/04/10/16/55/live-music-2219036_1280.jpg"
-                                 alt="">
-                            <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                Rock
-                            </button>
-                        </div>
-                    </div>
 
-                    <div class="col">
-                        <div class="card bg-dark text-white">
-                            <img class="card-img-top"
-                                 src="https://cdn.pixabay.com/photo/2017/08/01/11/43/black-and-white-2564630_1280.jpg"
-                                 alt="">
-                            <div class="card-body">
-                                <h6 class="font-family-sans-serif">Pop</h6>
+                <!-- Listas del usuario-->
+                <div class="container">
+                    <div class="row">
+                        <!-- Iterar sobre listas de reproducción -->
+                        <div th:each="listaReproduccion, iter : ${listasDeReproduccion}" class="col-md-4">
+                            <div class="card mb-4 bg-dark text-white" th:id="'card-' + ${iter.index}">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${listaReproduccion.nombre}"></h5>
+                                    <button type="button" class="btn btn-secondary" th:data-bs-toggle="'modal'"
+                                            th:data-bs-target="'#modal-' + ${iter.index}">
+                                        Ver detalles
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col">
-                        <div class="card bg-dark text-white">
-                            <img class="card-img-top"
-                                 src="https://cdn.pixabay.com/photo/2018/03/06/06/58/performance-3202707_1280.jpg"
-                                 alt="">
-                            <div class="card-body">
-                                <h6 class="font-family-sans-serif">Jazz</h6>
-                            </div>
-                        </div>
+                    <div class="container py-4">
+                        <h2>Lista de Canciones</h2>
+                        <table class="table table-striped table-dark">
+                            <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Artista</th>
+                                <th>Género</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="cancion : ${canciones}">
+                                <td th:text="${cancion.titulo}"></td>
+                                <td th:text="${cancion.nombreArtista}"></td>
+                                <td th:text="${cancion.nombreGenero}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div class="col">
-                        <div class="card bg-dark text-white">
-                            <img class="card-img-top"
-                                 src="https://cdn.pixabay.com/photo/2014/08/08/21/30/b-boying-413726_1280.jpg"
-                                 alt="">
-                            <div class="card-body">
-                                <h6 class="font-family-sans-serif">Hip Hop</h6>
+                    <!--Tarjetas de géneros musicales  sin enlcae al contenido de la base de datos-->
+                    <div class="container py-4">
+                        <div class="row row-cols-4 g-4">
+                            <div class="col">
+                                <div class="card bg-dark text-white">
+                                    <img class="card-img-top"
+                                         src="https://cdn.pixabay.com/photo/2017/04/10/16/55/live-music-2219036_1280.jpg"
+                                         alt="">
+                                    <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                        Rock
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col">
-                        <div class="card bg-dark text-white">
-                            <img class="card-img-top"
-                                 src="https://cdn.pixabay.com/photo/2024/04/19/19/47/ai-generated-8707111_1280.png"
-                                 alt="">
-                            <div class="card-body">
-                                <h6 class="font-family-sans-serif">Electrónica</h6>
+                            <div class="col">
+                                <div class="card bg-dark text-white">
+                                    <img class="card-img-top"
+                                         src="https://cdn.pixabay.com/photo/2017/08/01/11/43/black-and-white-2564630_1280.jpg"
+                                         alt="">
+                                    <div class="card-body">
+                                        <h6 class="font-family-sans-serif">Pop</h6>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col">
-                        <div class="card bg-dark text-white">
-                            <img class="card-img-top"
-                                 src="https://cdn.pixabay.com/photo/2014/06/21/20/09/violin-374096_1280.jpg"
-                                 alt="">
-                            <div class="card-body">
-                                <h6 class="font-family-sans-serif">Clásica</h6>
+                            <div class="col">
+                                <div class="card bg-dark text-white">
+                                    <img class="card-img-top"
+                                         src="https://cdn.pixabay.com/photo/2018/03/06/06/58/performance-3202707_1280.jpg"
+                                         alt="">
+                                    <div class="card-body">
+                                        <h6 class="font-family-sans-serif">Jazz</h6>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col">
-                        <div class="card bg-dark text-white">
-                            <img class="card-img-top"
-                                 src="https://cdn.pixabay.com/photo/2016/10/04/02/38/rap-1713404_1280.jpg"
-                                 alt="">
-                            <div class="card-body">
-                                <h6 class="font-family-sans-serif">Rap</h6>
+                            <div class="col">
+                                <div class="card bg-dark text-white">
+                                    <img class="card-img-top"
+                                         src="https://cdn.pixabay.com/photo/2014/08/08/21/30/b-boying-413726_1280.jpg"
+                                         alt="">
+                                    <div class="card-body">
+                                        <h6 class="font-family-sans-serif">Hip Hop</h6>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col">
-                        <div class="card bg-dark text-white">
-                            <img class="card-img-top"
-                                 src="https://cdn.pixabay.com/photo/2017/08/10/07/42/turntable-2619625_1280.jpg"
-                                 alt="">
-                            <div class="card-body">
-                                <h6 class="font-family-sans-serif">Reggae</h6>
+                            <div class="col">
+                                <div class="card bg-dark text-white">
+                                    <img class="card-img-top"
+                                         src="https://cdn.pixabay.com/photo/2024/04/19/19/47/ai-generated-8707111_1280.png"
+                                         alt="">
+                                    <div class="card-body">
+                                        <h6 class="font-family-sans-serif">Electrónica</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card bg-dark text-white">
+                                    <img class="card-img-top"
+                                         src="https://cdn.pixabay.com/photo/2014/06/21/20/09/violin-374096_1280.jpg"
+                                         alt="">
+                                    <div class="card-body">
+                                        <h6 class="font-family-sans-serif">Clásica</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card bg-dark text-white">
+                                    <img class="card-img-top"
+                                         src="https://cdn.pixabay.com/photo/2016/10/04/02/38/rap-1713404_1280.jpg"
+                                         alt="">
+                                    <div class="card-body">
+                                        <h6 class="font-family-sans-serif">Rap</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card bg-dark text-white">
+                                    <img class="card-img-top"
+                                         src="https://cdn.pixabay.com/photo/2017/08/10/07/42/turntable-2619625_1280.jpg"
+                                         alt="">
+                                    <div class="card-body">
+                                        <h6 class="font-family-sans-serif">Reggae</h6>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -175,14 +182,13 @@
             </div>
         </div>
     </div>
-</div>
-
-<!-- Script de Bootstrap-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</div></body>
+        <!-- Script de Bootstrap-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+ </body>
 </html>
