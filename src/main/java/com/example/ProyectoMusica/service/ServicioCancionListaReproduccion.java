@@ -28,11 +28,16 @@ public class ServicioCancionListaReproduccion {
         ResultSet result_n_m = consulta.executeQuery("SELECT * FROM `Cancion_ListaReproduccion` WHERE `lista_reproduccion_id` = " + listaReproduccionId);
 
         while (result_n_m.next()) {
+
+            Cancion cancion = (Cancion) servicioCancion.listar();
+
             Cancion cancion = servicioCancion.buscar(result_n_m.getInt("cancion_id"));
+
             canciones.add(cancion);
         }
         result_n_m.close();
         consulta.close();
         return canciones;
-    }
+   }
+
 }
