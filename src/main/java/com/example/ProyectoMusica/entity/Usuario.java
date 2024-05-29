@@ -1,9 +1,5 @@
 package com.example.ProyectoMusica.entity;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
-
 
 public class Usuario {
     private int idUsuario;
@@ -13,7 +9,7 @@ public class Usuario {
     public String lista;
 
     public Usuario(String nombreUsuario, String correoElectronico, String clave, String lista) {
-        this.nombreUsuario  =nombreUsuario;
+        this.nombreUsuario=nombreUsuario;
         this.correoElectronico=correoElectronico;
         this.clave = clave;
         this.lista=lista;
