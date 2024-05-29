@@ -5,12 +5,17 @@ import java.util.List;
 public class ListaReproduccion {
     private int idListaReproduccion;
     private String nombreListaReproduccion;
+    private int usuarioId;
     private List<Cancion> canciones;
 
-    public ListaReproduccion(int idListaReproduccion, String nombreListaReproduccion, List<Cancion> canciones) {
+    public ListaReproduccion(int idListaReproduccion, String nombreListaReproduccion, int usuarioId, List<Cancion> canciones) {
         this.idListaReproduccion = idListaReproduccion;
         this.nombreListaReproduccion = nombreListaReproduccion;
+        this.usuarioId = usuarioId;
         this.canciones = canciones;
+    }
+    public ListaReproduccion(){
+
     }
 
     public int getIdListaReproduccion() {
@@ -29,6 +34,14 @@ public class ListaReproduccion {
         this.nombreListaReproduccion = nombreListaReproduccion;
     }
 
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
     public List<Cancion> getCanciones() {
         return canciones;
     }
@@ -37,4 +50,3 @@ public class ListaReproduccion {
         this.canciones = canciones;
     }
 }
-

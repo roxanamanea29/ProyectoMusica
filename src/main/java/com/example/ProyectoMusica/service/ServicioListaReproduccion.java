@@ -1,33 +1,65 @@
 package com.example.ProyectoMusica.service;
 
+import com.example.ProyectoMusica.database.Conexion;
 import com.example.ProyectoMusica.entity.Cancion;
+import com.example.ProyectoMusica.entity.Genero;
 import com.example.ProyectoMusica.entity.ListaReproduccion;
-import org.springframework.stereotype.Service;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 public class ServicioListaReproduccion {
-    private List<ListaReproduccion> listaReproduccionList;
+    Conexion con = new Conexion();
 
-    public ServicioListaReproduccion() {
-        this.listaReproduccionList = new ArrayList<>();
-        // Aquí podrías inicializar algunas listas de reproducción de ejemplo
+    public ListaReproduccion getUnicaListaReproduccion(int id) throws SQLException {
+        ListaReproduccion listaReproduccion = null;
+        Statement consulta = con.conectar().createStatement();
+        ResultSet result = consulta.executeQuery("SELECT * FROM listareproduccion WHERE idListaReproduccion = " + id);
+        if (result.next()) {
+            listaReproduccion = new ListaReproduccion(
+                    result.getInt("idListaReproduccion"),
+                    result.getString("nombreListaReproduccion"),
+                    result.getInt("usuario_id"),
+                    new ArrayList<>()
+            );
+        }
+        result.close();
+        consulta.close();
+        return listaReproduccion;
     }
 
-    public List<ListaReproduccion> listarTodasListasReproduccion() {
-        return listaReproduccionList;
+    public List<ListaReproduccion> listarTodasListasReproduccion() throws SQLException {
+        List<ListaReproduccion> listaListaReproduccion = new ArrayList<>();
+        Statement consulta = con.conectar().createStatement();
+        ResultSet result = consulta.executeQuery("SELECT * FROM listareproduccion");
+
+        while (result.next()) {
+            ListaReproduccion listaReproduccion = new ListaReproduccion(
+                    result.getInt("idListaReproduccion"),
+                    result.getString("nombreListaReproduccion"),
+                    result.getInt("usuario_id"),
+                    new ArrayList<>() // Inicializamos la lista de canciones vacía por defecto
+            );
+            listaListaReproduccion.add(listaReproduccion);
+        }
+        result.close();
+        consulta.close();
+        return listaListaReproduccion;
     }
 
-    public ListaReproduccion obtenerListaReproduccion(int id) {
-        // Aquí podrías implementar la lógica para obtener una lista de reproducción por su ID
-        return null;
+    public void eliminar(int id) throws SQLException {
+        Statement consulta = con.conectar().createStatement();
+        consulta.executeUpdate("DELETE FROM listareproduccion WHERE idListaReproduccion = " + id);
+        consulta.close();
     }
+    public void modificar(ListaReproduccion lr) throws SQLException {
+        Statement consulta = con.conectar().createStatement();
 
-    public Object listarAllListaReproduccion() {
-        return null;
+        String cadena = "UPDATE listareproduccion SET nombreListaReproduccion = '" + lr.getNombreListaReproduccion() + "' WHERE idListaReproduccion = " + lr.getIdListaReproduccion();
+        consulta.executeUpdate(cadena);
+        consulta.close();
     }
-
-    // Otros métodos para manipular listas de reproducción como guardar, actualizar, eliminar, etc.
 }
