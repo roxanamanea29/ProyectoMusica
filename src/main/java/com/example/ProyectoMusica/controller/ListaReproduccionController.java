@@ -1,7 +1,6 @@
 package com.example.ProyectoMusica.controller;
 
 import com.example.ProyectoMusica.entity.ListaReproduccion;
-import com.example.ProyectoMusica.service.ServicioCancionListaReproduccion;
 import com.example.ProyectoMusica.service.ServicioListaReproduccion;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +34,7 @@ public class ListaReproduccionController {
         try {
             //model.addAttribute("canciones", servicioCancionListaReproduccion.listarAllCanciones());
            // model.addAttribute("listasDeReproduccion", servicioLista.listarAllListaReproduccion(listaReproduccion));
-            List<ListaReproduccion> listaDeReproducciones = (List<ListaReproduccion>) servicioLista.listarAllListaReproduccion();
+            List<ListaReproduccion> listaDeReproducciones = servicioLista.listarAllListaReproduccion();
 
 
 

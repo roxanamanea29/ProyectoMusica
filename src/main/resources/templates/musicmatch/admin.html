@@ -8,7 +8,7 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
+<!--<nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Administrador MusicMatch</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -20,6 +20,24 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                 </li>
+            </ul>
+        </div>
+    </div>
+</nav>-->
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <img src="/img/logo.png" alt="Logo" style="height: 80px;">
+        <a class="navbar-brand" href="#">Administrador MusicMatch</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/admin/">Inicio</a>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -39,10 +57,10 @@
         <a class="h2" th:href="@{/genero/nuevo}">Añadir Genero</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/cancion}">Lista Canciones</a>
+        <a class="h2" href="http://localhost:8080/cancion/lista">Lista Canciones</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/cancion/nuevo}">Añadir Canciones</a>
+        <a class="h2" href="http://localhost:8080/cancion/alta">Añadir Canciones</a>
     </div>
     <div class="p-2">
         <a class="h2" th:href="@{/usuario}">Lista Usuarios</a>
