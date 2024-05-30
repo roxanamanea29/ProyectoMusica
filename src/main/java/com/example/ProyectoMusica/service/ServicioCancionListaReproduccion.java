@@ -31,7 +31,6 @@ public class ServicioCancionListaReproduccion {
 
             Cancion cancion = (Cancion) servicioCancion.listar();
 
-            Cancion cancion = servicioCancion.buscar(result_n_m.getInt("cancion_id"));
 
             canciones.add(cancion);
         }

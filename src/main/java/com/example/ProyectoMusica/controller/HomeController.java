@@ -20,21 +20,17 @@ public class HomeController {
         this.servicioCancion = servicioCancion;
     }
 
-    @GetMapping("/li")
-    public String someMethod() {
-        return "./musicmatch/lista";
-    }
-        @GetMapping("/")
-        public String home(Model model) {
-            String valorfinal = "/musicmatch/tableroU";
-            try {
-                model.addAttribute("canciones", servicioCancion.listar());
-                //model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
-            } catch (Exception ex) {
-                Logger.getLogger(com.example.ProyectoMusica.controller.HomeController.class.getName()).log(Level.SEVERE, null, ex);
-                valorfinal = "error";
-            }
-            return valorfinal;
+    @GetMapping("/")
+    public String home(Model model) {
+        String valorfinal = "/musicmatch/tableroU";
+        try {
+            model.addAttribute("canciones", servicioCancion.listar());
+            //model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
+        } catch (Exception ex) {
+            Logger.getLogger(com.example.ProyectoMusica.controller.HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            valorfinal = "error";
         }
-   
+        return valorfinal;
+    }
+
 }
