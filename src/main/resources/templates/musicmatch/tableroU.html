@@ -84,100 +84,25 @@
                             </tbody>
                         </table>
                     </div>
-
-                    <!--Tarjetas de géneros musicales  sin enlcae al contenido de la base de datos-->
+                    
                     <div class="container py-4">
                         <div class="row row-cols-4 g-4">
-                            <div class="col">
-                                <div class="card bg-dark text-white">
-                                    <img class="card-img-top"
-                                         src="https://cdn.pixabay.com/photo/2017/04/10/16/55/live-music-2219036_1280.jpg"
-                                         alt="">
-                                    <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
-                                        Rock
-                                    </button>
-                                </div>
-                            </div>
+                            <div th:each="genero, iterStat : ${generos}">
+                                <div class="col">
+                                    <div class="card bg-dark text-white">
+                                        <img class="card-img-top" th:src="@{'https://cdn.pixabay.com/photo/' + ${iterStat.index} + '/path-to-image.jpg'}" alt="">
+                                        <div class="card-body">
+                                            <h6 class="font-family-sans-serif" th:text="${genero.getNombreGenero()}">Genero</h6>
+                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="${genero.getNombreGenero()}">Genero</button>
 
-                            <div class="col">
-                                <div class="card bg-dark text-white">
-                                    <img class="card-img-top"
-                                         src="https://cdn.pixabay.com/photo/2017/08/01/11/43/black-and-white-2564630_1280.jpg"
-                                         alt="">
-                                    <div class="card-body">
-                                        <h6 class="font-family-sans-serif">Pop</h6>
-                                    </div>
-                                </div>
-                            </div>
+                                        </div>
 
-                            <div class="col">
-                                <div class="card bg-dark text-white">
-                                    <img class="card-img-top"
-                                         src="https://cdn.pixabay.com/photo/2018/03/06/06/58/performance-3202707_1280.jpg"
-                                         alt="">
-                                    <div class="card-body">
-                                        <h6 class="font-family-sans-serif">Jazz</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card bg-dark text-white">
-                                    <img class="card-img-top"
-                                         src="https://cdn.pixabay.com/photo/2014/08/08/21/30/b-boying-413726_1280.jpg"
-                                         alt="">
-                                    <div class="card-body">
-                                        <h6 class="font-family-sans-serif">Hip Hop</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card bg-dark text-white">
-                                    <img class="card-img-top"
-                                         src="https://cdn.pixabay.com/photo/2024/04/19/19/47/ai-generated-8707111_1280.png"
-                                         alt="">
-                                    <div class="card-body">
-                                        <h6 class="font-family-sans-serif">Electrónica</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card bg-dark text-white">
-                                    <img class="card-img-top"
-                                         src="https://cdn.pixabay.com/photo/2014/06/21/20/09/violin-374096_1280.jpg"
-                                         alt="">
-                                    <div class="card-body">
-                                        <h6 class="font-family-sans-serif">Clásica</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card bg-dark text-white">
-                                    <img class="card-img-top"
-                                         src="https://cdn.pixabay.com/photo/2016/10/04/02/38/rap-1713404_1280.jpg"
-                                         alt="">
-                                    <div class="card-body">
-                                        <h6 class="font-family-sans-serif">Rap</h6>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card bg-dark text-white">
-                                    <img class="card-img-top"
-                                         src="https://cdn.pixabay.com/photo/2017/08/10/07/42/turntable-2619625_1280.jpg"
-                                         alt="">
-                                    <div class="card-body">
-                                        <h6 class="font-family-sans-serif">Reggae</h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
