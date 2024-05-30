@@ -11,13 +11,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/musicmatch")
+@RequestMapping("/admin")
 public class GeneroController {
     ServicioGenero serGenero = new ServicioGenero();
 
-    @GetMapping("/")
+    @GetMapping("/genero")
     public String vista(Model model) {
-        String valorfinal = "./musicmatch/Genero";
+        String valorfinal = "./musicmatch/genero/altaG";
         try {
             model.addAttribute("generos", serGenero.listarTodosGeneros());
             model.addAttribute("altaGenero", new Genero());
@@ -31,11 +31,11 @@ public class GeneroController {
     @GetMapping("/alta")
     public String greetingForm(Model model) {
         model.addAttribute("altaGenero", new Genero());
-        return "./musicmatch/Genero";
+        return "./musicmatch/genero/altaG";
     }
     @PostMapping("/alta")
     public String greetingSubmit(@ModelAttribute Genero genero, Model model) throws SQLException {
-        String valorfinal="redirect:/musicmatch/";
+        String valorfinal="redirect:/admin/genero";
         try {
             serGenero.altaGenero(genero);
             model.addAttribute("altaGeneros", serGenero.listarTodosGeneros());
@@ -46,7 +46,7 @@ public class GeneroController {
     }
     @GetMapping("/eliminar")
     public String SubmitB (@RequestParam("codGenero") int id, Model model){
-        String valorfinal="redirect:/musicmatch/";
+        String valorfinal="redirect:/admin/genero";
         try {
             serGenero.eliminar(id);
             model.addAttribute("generos", serGenero.listarTodosGeneros());
@@ -56,7 +56,7 @@ public class GeneroController {
     }
     @GetMapping("/modificar")
     public String modificar(@RequestParam ("codGenero") int id,Model model){
-        String valorfinal="./musicmatch/ModificarGenero";
+        String valorfinal="./musicmatch/genero/ModificarGenero";
         try {
             model.addAttribute("genero", serGenero.getUnicoGenero(id));
         } catch (SQLException ex) {
@@ -66,7 +66,7 @@ public class GeneroController {
 
     @PostMapping("/modificar")
     public String modificarBBDD (@ModelAttribute Genero genero, Model model){
-        String valorfinal="redirect:/musicmatch/";
+        String valorfinal="redirect:/admin/genero";
         try {
             serGenero.modificar(genero);
             model.addAttribute("generos",serGenero.listarTodosGeneros());

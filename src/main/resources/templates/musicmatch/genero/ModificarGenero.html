@@ -13,7 +13,9 @@
     <h1>Modificar Turno</h1>
 </div>
 <div class="container">
-    <form action="#" th:action="@{/musicmatch/modificar}" th:object="${genero}" method="post">
+
+
+    <form action="#" th:action="@{/admin/modificar}" th:object="${genero}" method="post">
         <div class="form-group">
             <p><input type="hidden" th:field="*{idGenero}" /></p>
             <label for="nombre">Nombre</label>
