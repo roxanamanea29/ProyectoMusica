@@ -15,8 +15,13 @@ import java.util.List;
 
 @Service
 public class ServicioArtista {
+    Statement consulta;
     static Conexion con = new Conexion();
-
+    public void alta(Artista artistaX) throws SQLException {
+        consulta = con.conectar().createStatement();
+        String cadena = "INSERT INTO Artista (nombreartista) VALUES (?)";
+        consulta.executeUpdate(cadena);
+    }
     public Artista getArtista(int idArtista) throws SQLException {
         Artista artista = null;
         String query = "SELECT * FROM artista WHERE idArtista = " + idArtista;
