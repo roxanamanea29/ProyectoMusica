@@ -1,8 +1,6 @@
 package com.example.ProyectoMusica.service;
 
 import com.example.ProyectoMusica.database.Conexion;
-import com.example.ProyectoMusica.entity.Cancion;
-import com.example.ProyectoMusica.entity.Genero;
 import com.example.ProyectoMusica.entity.ListaReproduccion;
 
 import java.sql.ResultSet;
@@ -49,6 +47,14 @@ public class ServicioListaReproduccion {
         consulta.close();
         return listaListaReproduccion;
     }
+    public void agregar(ListaReproduccion lr) throws SQLException {
+        Statement consulta = con.conectar().createStatement();
+        String cadena = "INSERT INTO listareproduccion (nombreListaReproduccion) VALUES ('" + lr.getNombreListaReproduccion() + "')";
+        consulta.executeUpdate(cadena);
+        consulta.close();
+    }
+
+
 
     public void eliminar(int id) throws SQLException {
         Statement consulta = con.conectar().createStatement();
