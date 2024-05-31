@@ -6,10 +6,7 @@ import com.example.ProyectoMusica.entity.Usuario;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +21,10 @@ public class ServicioUsuario {
     }
 
     // Método para registrar un nuevo usuario
-    public void registrarUsuario(String nombre, String email, String clave) throws SQLException {
+    public void registrarUsuario(String nombreUsuario, String email, String clave) throws SQLException {
         try (Connection con = conexion.conectar();
-             PreparedStatement ps = con.prepareStatement("INSERT INTO Usuario (nombreUsuario, correoElectronico, clave) VALUES (?, ?, AES_ENCRYPT(?, ?))")) {
-            ps.setString(1, nombre);
+             PreparedStatement ps = con.prepareStatement("INSERT INTO Usuario (nombreUsuarioUsuario, correoElectronico, clave) VALUES (?, ?, AES_ENCRYPT(?, ?))")) {
+            ps.setString(1, nombreUsuario);
             ps.setString(2, email);
             ps.setString(3, clave);
             ps.setString(4, clave);
@@ -46,7 +43,7 @@ public class ServicioUsuario {
                 if (rs.next()) {
                     return new Usuario(
                             rs.getInt("idUsuario"),
-                            rs.getString("nombreUsuario"),
+                            rs.getString("nombreUsuarioUsuario"),
                             rs.getString("correoElectronico"),
                             rs.getString("clave"),
                             rs.getString("lista")
@@ -77,7 +74,7 @@ public class ServicioUsuario {
             while (rs.next()) {
                  usuarios.add(                 new Usuario(
                          rs.getInt("idUsuario"),
-                         rs.getString("nombreUsuario"),
+                         rs.getString("nombreUsuarioUsuario"),
                          rs.getString("correoElectronico"),
                          rs.getString("clave"),
                          rs.getString("lista")
@@ -85,5 +82,17 @@ public class ServicioUsuario {
             }
         }
         return usuarios;
+    }
+
+    public void alta(Usuario p) throws SQLException {
+        Statement consulta = conexion.conectar().createStatement();
+        String cadena = "INSERT INTO usuario(nombreUsuario, correoElectronico, clave, lista) VALUES ('"
+                + p.getNombreUsuario() + "','"
+                + p.getCorreoElectronico() + "','"
+                + p.getClave() + "','"
+                + p.getLista() + "');";
+        //System.out.println(cadena);
+        consulta.executeUpdate(cadena);
+        consulta.close();
     }
 }

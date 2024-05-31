@@ -1,0 +1,163 @@
+!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <title>Pagina Inicio</title>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- Bootstrap CSS v5.2.1 -->
+</head>
+<body class="container">
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid text-center">
+        <img src="/img/logo.png" alt="Logo" style="height: 80px;">
+        <a class="navbar-brand" href="#">Administrador MusicMatch</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/admin/">Inicio</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="mx-auto mt-5 mb-3 text-center">
+    <h1>Formulario Generos</h1>
+</div>
+<div class="container">
+    <form action="#" th:action="@{/admin/alta}" th:object="${altaGenero}" method="post">
+        <div class="form-group">
+            <label for="nombre">AltaNombre</label>
+            <input type="text" class="form-control" id="nombre" th:field="*{nombreGenero}" required >
+        </div>
+        <div class ="py-3">
+            <button type="submit" class="btn btn-outline-dark col-12">Enviar</button>
+        </div>
+    </form>
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr class="text-left">
+        <th>Accion</th>
+        <th>Genero</th>
+        <th>Cancion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="genero : ${generos}">
+        <td >
+            <a class="text-decoration-none mx-1" th:href="@{./eliminar?codGenero={id}(id=${genero.idGenero})}">
+                <img src="/img/e.jpeg" alt="Eliminar">
+            </a>
+            <a class="text-decoration-none mx-1" th:href="@{./modificar?codGenero={id}(id=${genero.idGenero})}">
+                <img src="/img/m.jpeg" alt="Modificar">
+            </a>
+        </td>
+
+        <!--            <td th:text="${genero.idGenero}"></td> -->
+        <td th:text="${genero.nombreGenero}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Canciones</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="modalBodyContent"><div class="container py-4">
+                <h2>Lista de Canciones</h2>
+                <table class="table table-striped table-dark">
+                    <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Género</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cancion : ${canciones}">
+                        <td th:text="${cancion.titulo}"></td>
+                        <td th:text="${cancion.nombreGenero}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
+    <div class="row row-cols-4 g-4">
+        <div th:each="genero, iterStat : ${generos}">
+            <div class="col">
+                <div class="card bg-dark text-white">
+                    <img class="card-img-top" th:src="@{'https://cdn.pixabay.com/photo/' + ${iterStat.index} + '/path-to-image.jpg'}" alt="">
+                    <div class="card-body">
+                        <h6 class="font-family-sans-serif" th:text="${genero.getNombreGenero()}">Genero</h6>
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" th:attr="data-genero-id=${genero.getIdGenero()}" th:text="${genero.getNombreGenero()}">Genero</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-light text-center text-lg-start mt-5">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Administrador MusicMatch</h5>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Enlaces</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="http://localhost:8080/admin/" class="text-dark">Inicio</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Contacto</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="mailto:info@musicmatch.com" class="text-dark">info@musicmatch.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3 bg-dark text-light">
+        © 2024 MusicMatch
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+</script>
+<!-- Bootstrap JavaScript Libraries -->
+
+<!-- Seleccionar el elemento en foco por defecto -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("titulo").focus();
+    });
+</script>
+<!-- Seleccionar el elemento en foco por defecto -->
+</body>
+</html>

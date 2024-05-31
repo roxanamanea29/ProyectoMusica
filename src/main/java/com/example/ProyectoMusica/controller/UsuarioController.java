@@ -5,6 +5,7 @@ import com.example.ProyectoMusica.service.ServicioUsuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,13 +15,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/musicmatch")
+@RequestMapping("/usuario")
 public class UsuarioController {
     private final ServicioUsuario servicioUsuario = new ServicioUsuario();
 
-    @GetMapping("/usuario")
+    @GetMapping("/lista")
     public String listarUsuarios(Model model) throws SQLException {
-        String vista = "./musicmatch/usuario";
+        String vista = "./musicmatch/usuario/Usuario";
         List<Usuario> usuarios = servicioUsuario.listarTodosUsuarios();
         model.addAttribute("usuarios", usuarios);
         return vista;

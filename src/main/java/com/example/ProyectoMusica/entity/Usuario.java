@@ -8,7 +8,7 @@ public class Usuario {
     private String clave;
     public String lista;
 
-    public Usuario(String nombreUsuario, String correoElectronico, String clave, String lista) {
+    public Usuario() {
         this.nombreUsuario=nombreUsuario;
         this.correoElectronico=correoElectronico;
         this.clave = clave;

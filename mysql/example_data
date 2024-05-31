@@ -37,11 +37,6 @@ INSERT INTO Usuario (idUsuario, nombreUsuario, correoElectronico, Clave) VALUES
 ('9', 'Elena', 'elena@example.com', aes_encrypt('elena789','AES')),
 ('10', 'Pablo', 'pablo@example.com', aes_encrypt('pablo123','AES'));
 
--- Insertar Admin
-INSERT INTO Admin (nombreAdmin, correoElectronico, Clave) VALUES
-('Eclodest', 'Eclodest@gmail.com', aes_encrypt('1234567','AES')),
-('Maria', 'Mariagonn@gmail.com', aes_encrypt('7654321','AES'));
-
 -- Insertar más canciones
 INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
 ('Halo', 1, 9),
