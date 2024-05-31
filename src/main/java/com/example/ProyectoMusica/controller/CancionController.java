@@ -16,18 +16,13 @@ import java.util.logging.Logger;
 public class CancionController {
 
     ServicioCancion servicioCancion = new ServicioCancion();
-    ServicioArtista servicioArtista = new ServicioArtista();
-    ServicioGenero servicioGenero = new ServicioGenero();
+
 
     @GetMapping("/lista")
     public String listarCanciones(Model model) {
         String valorfinal = "/musicmatch/cancion/listarC";
         try {
             model.addAttribute("canciones", servicioCancion.listar());
-            model.addAttribute("cancion", new Cancion());
-            model.addAttribute("artistas", servicioArtista.listarTodosLosArtistas());
-            model.addAttribute("generos", servicioGenero.listarTodosGeneros());
-
         } catch (SQLException ex) {
             Logger.getLogger(CancionController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "/musicmatch/cancion/error";
@@ -38,11 +33,12 @@ public class CancionController {
 
     @GetMapping("/alta")
     public String mostrarFormularioAlta(Model model) {
-
-        String valorfinal = "/musicmatch/cancion/listarC";
+        ServicioArtista servicioArtista = new ServicioArtista();
+        ServicioGenero servicioGenero = new ServicioGenero();
+        String valorfinal = "/musicmatch/cancion/altaC";
         try {
             model.addAttribute("cancion", new Cancion());
-            model.addAttribute("artistas", servicioArtista.listarTodosLosArtistas());
+            model.addAttribute("artistas", servicioArtista.listarArtista());
             model.addAttribute("generos", servicioGenero.listarTodosGeneros());
         } catch (SQLException ex) {
             Logger.getLogger(CancionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,8 +55,6 @@ public class CancionController {
         try {
             servicioCancion.alta(cancion);
             try {
-                model.addAttribute("artistas", servicioArtista.listarTodosLosArtistas());
-                model.addAttribute("generos", servicioGenero.listarTodosGeneros());
                 model.addAttribute("canciones", servicioCancion.listar());
             } catch (SQLException ex) {
                 Logger.getLogger(CancionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,7 +74,7 @@ public class CancionController {
         try {
             Cancion cancion = servicioCancion.buscar(idC);
             model.addAttribute("cancion", cancion);
-            model.addAttribute("artistas", servicioArtista.listarTodosLosArtistas());
+            model.addAttribute("artistas", servicioArtista.listarArtista());
             model.addAttribute("generos", servicioGenero.listarTodosGeneros());
         } catch (SQLException ex) {
             Logger.getLogger(CancionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,7 +100,7 @@ public class CancionController {
 
     @GetMapping("/eliminar")
     public String eliminarCancion(@RequestParam("cod_cancion") int idC, Model model) {
-        String valorfinal = "redirect:/cancion/lista";
+        String valorfinal = "/musicmatch/cancion/listarC";
         try {
             servicioCancion.eliminarCancion(idC);
             model.addAttribute("canciones", servicioCancion.listar());
@@ -115,5 +109,6 @@ public class CancionController {
         }
         return valorfinal;
     }
+
 
 }
