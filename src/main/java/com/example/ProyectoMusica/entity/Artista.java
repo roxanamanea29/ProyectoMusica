@@ -1,5 +1,10 @@
 package com.example.ProyectoMusica.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class Artista {
     private int idArtista;
     private String nombreArtista;
@@ -27,5 +32,4 @@ public class Artista {
     public void setNombreArtista(String nombreArtista) {
         this.nombreArtista = nombreArtista;
     }
-
 }

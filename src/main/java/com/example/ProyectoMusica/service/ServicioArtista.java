@@ -15,54 +15,62 @@ import java.util.List;
 
 @Service
 public class ServicioArtista {
-    Statement consulta;
-    static Conexion con = new Conexion();
-    public void alta(Artista artistaX) throws SQLException {
-        consulta = con.conectar().createStatement();
-        String cadena = "INSERT INTO Artista (nombreartista) VALUES (?)";
-        consulta.executeUpdate(cadena);
-    }
-    public Artista getArtista(int idArtista) throws SQLException {
+    Conexion con = new Conexion();
+
+    public Artista getUnicoArtista(int id) throws SQLException {//
         Artista artista = null;
-        String query = "SELECT * FROM artista WHERE idArtista = " + idArtista;
-        try (Connection connection = con.conectar();
-             PreparedStatement consulta = connection.prepareStatement(query)) {
-            consulta.setInt(1, idArtista);
-            try (ResultSet result = consulta.executeQuery()) {
-                if (result.next()) {
-                    artista = new Artista(
-                            result.getInt("idArtista"),
-                            result.getString("nombreArtista")
-                    );
-                }
-            }
+        Statement consulta = con.conectar().createStatement();
+        ResultSet result = consulta.executeQuery("SELECT * FROM Artista where idArtista = " + id);
+        while (result.next()) {
+            artista = new Artista(
+                    result.getInt("idArtista"),
+                    result.getString("nombreArtista")
+
+            );
         }
+        result.close();
+        consulta.close();
         return artista;
     }
-    public List<Artista> listarArtista() throws SQLException {
+
+
+    public List<Artista> listarTodosLosArtistas() throws SQLException {
 
         List<Artista> listaArtista = new ArrayList<>();
 
-        String query = "SELECT * FROM artista";
-        try (Connection connection = con.conectar();
-             Statement consulta = connection.createStatement();
-             ResultSet result = consulta.executeQuery(query)) {
-            while (result.next()) {
-                Artista artista = new Artista(
-                        result.getInt("idArtista"),
-                        result.getString("nombreArtista")
-                );
-                listaArtista.add(artista);
-            }
-        }
-        return listaArtista;
-    }
-    public void modificarArtista(Artista a) throws SQLException {
         Statement consulta = con.conectar().createStatement();
 
-        consulta.executeUpdate("UPDATE artista SET "
-                + "nombreArtista = '" + a.getNombreArtista() + "', "
-                + "WHERE idArtista = " + a.getIdArtista());
+        ResultSet result = consulta.executeQuery("SELECT * FROM artista");
+
+        while (result.next()) {
+            Artista artista  = new Artista(
+                    result.getInt("idArtista"),
+                    result.getString("nombreArtista")
+            );
+            listaArtista.add(artista);
+        }
+        result.close();
+        consulta.close();
+        return listaArtista;
+    }
+    public void altaArtista(Artista artista)throws SQLException{
+        Statement consulta = con.conectar().createStatement();
+
+        String cadena = "INSERT into Artista (nombreArtista) Values ('" + artista.getNombreArtista()+"');";
+
+        consulta.execute(cadena);
+        consulta.close();
+    }
+    public void eliminar(int id) throws SQLException {
+        Statement consulta = con.conectar().createStatement();
+        consulta.executeUpdate("DELETE FROM Artista WHERE idArtista = " + id);
+        consulta.close();
+    }
+    public void modificar(Artista a) throws SQLException {
+        Statement consulta = con.conectar().createStatement();
+
+        String cadena = "UPDATE Artista SET nombreArtista = '" + a.getNombreArtista() + "' WHERE idArtista = " + a.getIdArtista();
+        consulta.executeUpdate(cadena);
         consulta.close();
     }
 }

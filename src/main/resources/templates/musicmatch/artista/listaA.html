@@ -27,37 +27,72 @@
     </div>
 </nav>
 <div class="d-flex justify-content-center align-items-center">
-    <h1>Lista Canciones</h1>
-</div>
-<div class="pb-2">
-    <a href="/artista/altaA"><button class="btn btn-light col-2">Añadir</button></a>
+    <h1>Lista Artista</h1>
 </div>
 <div class="container">
-    <h1 class="mt-5">Lista de Artistas</h1>
-    <table class="table table-striped mt-3">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Utiliza Thymeleaf para iterar sobre los artistas y mostrarlos en la tabla -->
-        <tr th:each="artista : ${artistas}">
-            <td th:text="${artista.nombreArtista}">Nombre</td>
-            <td class="align-middle">
-                <a class="text-decoration-none mx-1" th:href="@{/artista/eliminar(codartista=${artista.idArtista})}">
-                    <img src="/img/e.jpeg" alt="Eliminar">
-                </a>
-                <a class="text-decoration-none mx-1" th:href="@{/artista/modificar(codartista=${artista.idArtista})}">
-                    <img src="/img/m.jpeg" alt="Modificar">
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <form action="#" th:action="@{/artista/altaA}" th:object="${altaArtista}" method="post">
+        <div class="form-group">
+            <label for="nombreArtista">Añadir Artista</label>
+            <input type="text" class="form-control" id="nombreArtista" th:field="*{nombreArtista}" required/>
+        </div>
+        <div class="py-3">
+            <button type="submit" class="btn btn-outline-dark col-12">Enviar</button>
+        </div>
+    </form>
+    <div class="container">
+        <table class="table table-striped mt-3">
+            <thead>
+            <tr class="text-left">
+                <th>Nombre Artista</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="artista : ${artistas}">
+                <td th:text="${artista.nombreArtista}">Nombre</td>
+                <td class="align-middle">
+                    <a class="text-decoration-none mx-1"
+                       th:href="@{./eliminarA(codArtista=${artista.idArtista})}">
+                        <img src="/img/e.jpeg" alt="Eliminar">
+                    </a>
+                    <a class="text-decoration-none mx-1"
+                       th:href="@{./modificarA(codArtista=${artista.idArtista})}">
+                        <img src="/img/m.jpeg" alt="Modificar">
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-
+<footer class="bg-light text-center text-lg-start mt-5">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Administrador MusicMatch</h5>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Enlaces</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="http://localhost:8080/admin/" class="text-dark">Inicio</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Contacto</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="mailto:info@musicmatch.com" class="text-dark">info@musicmatch.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3 bg-dark text-light">
+        © 2024 MusicMatch
+    </div>
+</footer>
 <!-- Bootstrap JavaScript Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
@@ -66,6 +101,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
 </script>
-
 </body>
 </html>

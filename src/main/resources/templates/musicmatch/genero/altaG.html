@@ -30,7 +30,6 @@
     <h1>Formulario Generos</h1>
 </div>
 <div class="container">
-
     <form action="#" th:action="@{/admin/alta}" th:object="${altaGenero}" method="post">
         <div class="form-group">
             <label for="nombre">AltaNombre</label>
@@ -40,7 +39,6 @@
             <button type="submit" class="btn btn-outline-dark col-12">Enviar</button>
         </div>
     </form>
-
 </div>
 
 <table class="table table-striped">
@@ -68,7 +66,34 @@
     </tbody>
 </table>
 </div>
-
+<footer class="bg-light text-center text-lg-start mt-5">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Administrador MusicMatch</h5>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Enlaces</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="http://localhost:8080/admin/" class="text-dark">Inicio</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Contacto</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="mailto:info@musicmatch.com" class="text-dark">info@musicmatch.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3 bg-dark text-light">
+        © 2024 MusicMatch
+    </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
 </script>

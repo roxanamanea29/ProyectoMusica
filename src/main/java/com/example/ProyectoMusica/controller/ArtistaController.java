@@ -7,75 +7,73 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static org.apache.coyote.http11.Constants.a;
 
 @Controller
 @RequestMapping("/artista")
 public class ArtistaController {
 
-   private ServicioArtista servicioArtista = new ServicioArtista();
+    ServicioArtista servicioArtista = new ServicioArtista();
 
-    @GetMapping("/listaA")
-    public String listarArtista(Model model) {
-        String valorfinal= "/musicmatch/artista/listaA";
-        try {
-            List<Artista> artistas = servicioArtista.listarArtista();
-            model.addAttribute("artistas", artistas);
-        } catch (SQLException e) {
-            Logger.getLogger(ArtistaController.class.getName()).log(Level.SEVERE, null, e);
-            return "/musicmatch/cancion/error";
-        }
-        return valorfinal;
-    }
-    @GetMapping("/altaA")
-    public String mostrarFormularioAlta(Model model) {
-        String valorfinal = "/musicmatch/artista/altaA";
-        model.addAttribute("artista",new Artista());
-        return valorfinal;
-    }
-
-    @PostMapping("/altaA")
-    public String guardarArtista(@ModelAttribute Artista artista,Model model) {
+    @GetMapping("/li")
+    public String vista(Model model) {
         String valorfinal = "/musicmatch/artista/listaA";
-
         try {
-            servicioArtista.alta(artista);
-            try {
-                model.addAttribute("artistas", servicioArtista.listarArtista());
-            } catch (SQLException ex) {
-                Logger.getLogger(CancionController.class.getName()).log(Level.SEVERE, null, ex);
-                valorfinal = "error";
-            }
-        } catch (SQLException ex) {
+            model.addAttribute("artistas", servicioArtista.listarTodosLosArtistas());
+            model.addAttribute("altaArtista", new Artista());
+
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";
         }
         return valorfinal;
     }
-
-    @GetMapping("/modificarA")
-    public String modificar(@RequestParam("codartista") int idA, Model model) {
-       String valorfinal = "/musicmatch/artista/modificarA";
+    @GetMapping("/altaAF")
+    public String greetingForm(Model model) {
+        model.addAttribute("altaArtista", new Artista());
+        return "./musicmatch/artista/li";
+    }
+    @PostMapping("/altaA")
+    public String greetingSubmit(@ModelAttribute Artista artista, Model model) throws SQLException {
+        String valorfinal="redirect:/artista/li";
         try {
-            Artista artista = servicioArtista.getArtista(idA);
-            model.addAttribute("artista", artista);
+            servicioArtista.altaArtista(artista);
+            model.addAttribute("altaArtistas", servicioArtista.listarTodosLosArtistas());
         } catch (SQLException ex) {
-            Logger.getLogger(ArtistaController.class.getName()).log(Level.SEVERE, null, ex);
-            return "/musicmatch/cancion/error";
+            valorfinal="error";
+        }
+        return valorfinal;
+    }
+    @GetMapping("/eliminarA")
+    public String SubmitB (@RequestParam("codArtista") int id, Model model){
+        String valorfinal="redirect:/artista/li";
+        try {
+            servicioArtista.eliminar(id);
+            model.addAttribute("artistas", servicioArtista.listarTodosLosArtistas());
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+    @GetMapping("/modificarA")
+    public String modificar(@RequestParam ("codArtista") int id,Model model){
+        String valorfinal="/musicmatch/artista/modificarA";
+        try {
+            model.addAttribute("artista", servicioArtista.getUnicoArtista(id));
+        } catch (SQLException ex) {
         }
         return valorfinal;
     }
 
     @PostMapping("/modificarA")
-    public String modificarArtista(@ModelAttribute Artista artista, Model model) {
-        String valorfinal = "/musicmatch/artista/listaA";
+    public String modificarBBDD (@ModelAttribute Artista artista, Model model){
+        String valorfinal="redirect:/artista/li";
         try {
-            servicioArtista.modificarArtista(artista);
-            model.addAttribute("artistas", servicioArtista.listarArtista());
+            servicioArtista.modificar(artista);
+            model.addAttribute("artistas",servicioArtista.listarTodosLosArtistas());
         } catch (SQLException ex) {
-            Logger.getLogger(ArtistaController.class.getName()).log(Level.SEVERE, null, ex);
-            valorfinal = "error";
         }
         return valorfinal;
     }
