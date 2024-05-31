@@ -1,7 +1,9 @@
 package com.example.ProyectoMusica.controller;
 
+import com.example.ProyectoMusica.entity.Genero;
 import com.example.ProyectoMusica.service.ServicioCancion;
 
+import com.example.ProyectoMusica.service.ServicioGenero;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -15,10 +17,14 @@ import java.util.logging.Logger;
 public class HomeController {
 
     private final ServicioCancion servicioCancion;
+    ServicioGenero serGenero = new ServicioGenero();
+
+    GeneroController genero;
 
     public HomeController(ServicioCancion servicioCancion) {
         this.servicioCancion = servicioCancion;
     }
+
 
     @GetMapping("/li")
     public String someMethod() {
@@ -29,6 +35,7 @@ public class HomeController {
             String valorfinal = "/musicmatch/tableroU";
             try {
                 model.addAttribute("canciones", servicioCancion.listar());
+                model.addAttribute("generos", serGenero.listarTodosGeneros());
                 //model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
             } catch (Exception ex) {
                 Logger.getLogger(com.example.ProyectoMusica.controller.HomeController.class.getName()).log(Level.SEVERE, null, ex);
@@ -36,5 +43,17 @@ public class HomeController {
             }
             return valorfinal;
         }
-   
+/*    @GetMapping("/vista")
+    public String vista(Model model) {
+        String valorfinal = "./musicmatch/tableroU";
+        try {
+            model.addAttribute("generos", serGenero.listarTodosGeneros());
+            model.addAttribute("altaGenero", new Genero());
+
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            valorfinal = "error";
+        }
+        return valorfinal;
+    }*/
 }

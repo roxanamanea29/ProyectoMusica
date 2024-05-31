@@ -69,4 +69,21 @@ public class ServicioGenero {
         consulta.executeUpdate(cadena);
         consulta.close();
     }
+    public List<Cancion> listarCancionGenero() throws SQLException {
+        ResultSet rs = null;
+        List<Cancion> canciones;
+        canciones= new ArrayList<>();
+        Statement consulta = con.conectar().createStatement();
+        String cadena = "SELECT c.idCancion,c.titulo,c.genero_id, g.nombreGenero FROM Cancion c JOIN Genero g ON c.genero_id=g.idGenero ORDER BY g.idGenero;";
+        rs = consulta.executeQuery(cadena);
+        while (rs.next()) {
+            Cancion cancion = new Cancion();
+            cancion.setIdCancion(rs.getInt("idCancion"));
+            cancion.setTitulo(rs.getString("titulo"));
+            cancion.setIdGenero(rs.getInt("genero_id"));
+            cancion.setNombreGenero(rs.getString("nombreGenero"));
+            canciones.add(cancion);
+        }
+        return canciones;
+    }
 }

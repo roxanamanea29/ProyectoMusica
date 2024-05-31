@@ -87,6 +87,9 @@ public class ServicioCancion {
     }
 
 
+    public ServicioArtista getServicioArtista() {
+        return servicioArtista;
+    }
 }
 
 

@@ -237,7 +237,7 @@ button.accent {
 .chat-header {
     text-align: center;
     padding: 15px;
-    border-bottom: 1px solid #555; /* Ajustar el borde */
+    border-bottom: 1px solid #555;
 }
 
 .chat-header h2 {
@@ -249,7 +249,7 @@ button.accent {
 .connecting {
     padding-top: 5px;
     text-align: center;
-    color: #ccc; /* Ajustar color del texto */
+    color: #ccc;
     position: absolute;
     top: 65px;
     width: 100%;
@@ -337,6 +337,7 @@ button.accent {
 button.accent:hover {
     background-color: #444;
     border-color: #fff;
+
 }
 
 
