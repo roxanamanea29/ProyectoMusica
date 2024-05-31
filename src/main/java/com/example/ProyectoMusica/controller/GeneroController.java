@@ -1,6 +1,7 @@
 package com.example.ProyectoMusica.controller;
 
 import com.example.ProyectoMusica.entity.Genero;
+import com.example.ProyectoMusica.service.ServicioCancion;
 import com.example.ProyectoMusica.service.ServicioGenero;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,7 @@ public class GeneroController {
         try {
             model.addAttribute("generos", serGenero.listarTodosGeneros());
             model.addAttribute("altaGenero", new Genero());
-
+            model.addAttribute("canciones", serGenero.listarCancionGenero());
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";
