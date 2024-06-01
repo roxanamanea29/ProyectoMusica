@@ -30,30 +30,22 @@ public class HomeController {
     public String someMethod() {
         return "./musicmatch/lista";
     }
-        @GetMapping("/")
-        public String home(Model model) {
-            String valorfinal = "/musicmatch/tableroU";
-            try {
-                model.addAttribute("canciones", servicioCancion.listar());
-                model.addAttribute("generos", serGenero.listarTodosGeneros());
-                model.addAttribute("imageUrls",serGenero.imagenGenero());
-                //model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
-            } catch (Exception ex) {
-                Logger.getLogger(com.example.ProyectoMusica.controller.HomeController.class.getName()).log(Level.SEVERE, null, ex);
-                valorfinal = "error";
-            }
-            return valorfinal;
-        }
-    @GetMapping("/lista")
-    public String lista(@RequestParam("codGenero") int id, Model model) {
-        String valorfinal = "./musicmatch/genero/listaCancion";
+
+    @GetMapping("/")
+    public String home(Model model) {
+        String valorfinal = "/musicmatch/tableroU";
         try {
-            //tengo que cambiar el "canciones"
-            model.addAttribute("listas", serGenero.listarCancionGenero(id));
+            model.addAttribute("canciones", servicioCancion.listar());
+            model.addAttribute("generos", serGenero.listarTodosGeneros());
+            //model.addAttribute("listasDeReproduccion", servicioListaReproduccion.listarAllListaReproduccion());
         } catch (Exception ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(com.example.ProyectoMusica.controller.HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";
         }
         return valorfinal;
+    }
+
+}
+
     }
 }
