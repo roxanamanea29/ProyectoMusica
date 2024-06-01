@@ -1,32 +1,52 @@
-<!--   * @author Michelli Fernanda -->
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-    <title>Pagina Inicio</title>
+    <title>Modificar Usuario</title>
     <meta charset="UTF-8">
-    <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <!-- Bootstrap CSS v5.2.1 -->
 </head>
 <body class="container">
-<div class="mx-auto text-center">
-    <h1>Modificar Turno</h1>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid text-center">
+        <img src="/img/logo.png" alt="Logo" style="height: 80px;">
+        <a class="navbar-brand" href="#">Administrador MusicMatch</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/admin/">Inicio</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="mx-auto mt-5 mb-3 text-center">
+    <h1>Modificar Usuario</h1>
 </div>
 <div class="container">
-
-
-    <form action="#" th:action="@{/admin/modificar}" th:object="${genero}" method="post">
+    <form action="#" th:action="@{/usuario/modificar}" th:object="${usuario}" method="post">
         <div class="form-group">
-            <p><input type="hidden" th:field="*{idGenero}" /></p>
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" th:field="*{nombreGenero}"  />
+            <input type="text" class="form-control" id="nombre" th:field="*{nombreUsuario}" required>
         </div>
-        <input type="hidden" th:field="*{idGenero}"/>
+        <div class="form-group">
+            <label for="correoElectronico">Correo Electrónico</label>
+            <input type="email" class="form-control" id="correoElectronico" th:field="*{correoElectronico}" required>
+        </div>
+        <div class="form-group">
+            <label for="clave">Clave</label>
+            <input type="password" class="form-control" id="clave" th:field="*{clave}" required>
+        </div>
         <div class="py-3">
-            <button type="submit" class="btn btn-outline-dark col-12">Enviar</button>
+            <button type="submit" class="btn btn-outline-dark col-12">Guardar Cambios</button>
         </div>
     </form>
 </div>
+
 <footer class="bg-light text-center text-lg-start mt-5">
     <div class="container p-4">
         <div class="row">
@@ -55,18 +75,12 @@
         © 2024 MusicMatch
     </div>
 </footer>
-<!-- Bootstrap JavaScript Libraries -->
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("nombre").focus();
-    });
 </script>
 </body>
 </html>

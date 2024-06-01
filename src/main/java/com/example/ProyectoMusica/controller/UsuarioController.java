@@ -94,14 +94,18 @@ public class UsuarioController {
     }
 
     @GetMapping("/modificar")
-    public String modificar(@RequestParam ("codUsuario") int id,Model model){
-        String valorfinal="./musicmatch/usuario/ModificarUsuario";
+    public String modificar(@RequestParam("codUsuario") int id, Model model) {
+        String vista = "./musicmatch/usuario/ModificarUsuario";
         try {
-            model.addAttribute("usuario", servicioUsuario.getUnicoUsuario(id));
+            Usuario usuario = servicioUsuario.getUnicoUsuario(id);
+            model.addAttribute("usuario", usuario);
         } catch (SQLException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            return "error";
         }
-        return valorfinal;
+        return vista;
     }
+
 
     @PostMapping("/modificar")
     public String modificarBBDD (@ModelAttribute Usuario usuario, Model model){

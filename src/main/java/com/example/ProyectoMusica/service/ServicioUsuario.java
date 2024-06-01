@@ -48,7 +48,6 @@ public class ServicioUsuario {
                             rs.getString("correoElectronico"),
                             rs.getString("clave"),
                             rs.getString("lista")
-
                     );
                 }
             }
@@ -73,13 +72,13 @@ public class ServicioUsuario {
         PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM Usuario");
         try (ResultSet rs = preparedStatement.executeQuery()) {
             while (rs.next()) {
-                 usuarios.add(                 new Usuario(
-                         rs.getInt("idUsuario"),
-                         rs.getString("nombreUsuarioUsuario"),
-                         rs.getString("correoElectronico"),
-                         rs.getString("clave"),
-                         rs.getString("lista")
-                 ));
+                usuarios.add(new Usuario(
+                        rs.getInt("idUsuario"),
+                        rs.getString("nombreUsuarioUsuario"),
+                        rs.getString("correoElectronico"),
+                        rs.getString("clave"),
+                        rs.getString("lista")
+                ));
             }
         }
         return usuarios;
@@ -92,16 +91,13 @@ public class ServicioUsuario {
                 + p.getCorreoElectronico() + "','"
                 + p.getClave() + "','"
                 + p.getLista() + "');";
-        //System.out.println(cadena);
         consulta.executeUpdate(cadena);
         consulta.close();
     }
 
-    public void altaUsuario(Usuario g)throws SQLException{
+    public void altaUsuario(Usuario g) throws SQLException {
         Statement consulta = conexion.conectar().createStatement();
-
-        String cadena = "INSERT into usuario (nombreUsuario) Values ('" + g.getNombreUsuario()+"');";
-
+        String cadena = "INSERT into usuario (nombreUsuario) Values ('" + g.getNombreUsuario() + "');";
         consulta.execute(cadena);
         consulta.close();
     }
@@ -114,9 +110,29 @@ public class ServicioUsuario {
 
     public void modificar(Usuario g) throws SQLException {
         Statement consulta = conexion.conectar().createStatement();
-
         String cadena = "UPDATE usuario SET nombreUsuario = '" + g.getNombreUsuario() + "' WHERE idUsuario = " + g.getIdUsuario();
         consulta.executeUpdate(cadena);
         consulta.close();
+    }
+
+    // Método para obtener un único usuario por su ID
+    public Usuario getUnicoUsuario(int id) throws SQLException {
+        Usuario usuario = null;
+        try (Connection con = conexion.conectar();
+             PreparedStatement ps = con.prepareStatement("SELECT * FROM Usuario WHERE idUsuario = ?")) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    usuario = new Usuario(
+                            rs.getInt("idUsuario"),
+                            rs.getString("nombreUsuarioUsuario"),
+                            rs.getString("correoElectronico"),
+                            rs.getString("clave"),
+                            rs.getString("lista")
+                    );
+                }
+            }
+        }
+        return usuario;
     }
 }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,102 +7,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body style="background-color: rgba(0, 0, 0 );">
+<body style="background-color: rgba(0, 0, 0);">
 <div class="container-md text-center" style="margin-top: 0px;">
     <img src="/img/logo.png" alt="logo">
 </div>
 <div class="container-md mx-auto">
-                <div class="row justify-content-center">
-                    <main class="col-md-6 mt-5">
-                        <div>
-                <h1 class="text-center  mx-auto mb-5 text-white">Registrar usuario </h1>
-                <form action="#" method="post">
-                    <div class="form-group  mb-4">
+    <div class="row justify-content-center">
+        <main class="col-md-6 mt-5">
+            <div>
+                <h1 class="text-center mx-auto mb-5 text-white">Registrar usuario</h1>
+                <form th:action="@{/usuario/alta}" th:object="${altaUsuario}" method="post">
+                    <div class="form-group mb-4">
                         <label for="nombre" class="form-label text-white text-center">Nombre *</label>
-                        <input type="text" class="form-control abs-center" id="nombre" placeholder="Nombre"
-                               style="background-color: rgba(250, 250, 250 );"
-                               required>
+                        <input type="text" class="form-control abs-center" id="nombre" th:field="*{nombreUsuario}" placeholder="Nombre"
+                               style="background-color: rgba(250, 250, 250);" required>
                     </div>
                     <div class="form-group mb-4">
-                        <label for="email" class="form-label text-white text-center">Email *</label>
-                        <input type="text" class="form-control abs-center" id="email" placeholder="Email"
-                               style="background-color: rgba(250, 250, 250 );"
-                               required>
+                        <label for="correoElectronico" class="form-label text-white text-center">correoElectronico *</label>
+                        <input type="correoElectronico" class="form-control abs-center" id="correoElectronico" th:field="*{correoElectronico}" placeholder="correoElectronico"
+                               style="background-color: rgba(250, 250, 250);" required>
                     </div>
-                    <div class="form-group  mb-4">
-                        <label for="contraseña" class="form-label text-white">Contraseña *</label>
-                        <input type="text" class="form-control" id="contraseña"
-                               placeholder="Contraseña" style="background-color: rgba(250, 250, 250 );" required>
+                    <div class="form-group mb-4">
+                        <label for="clave" class="form-label text-white">Contraseña *</label>
+                        <input type="password" class="form-control" id="clave" th:field="*{clave}"
+                               placeholder="Contraseña" style="background-color: rgba(250, 250, 250);" required>
                     </div>
-                    <div class="form-group  mb-4">
-                        <label for="Confirmar contraseña" class="form-label text-white">Confirmar contraseña *</label>
-                        <input type="text" class="form-control" id="Confirmar contraseña"
-                               placeholder="Contraseña" style="background-color: rgba(250, 250, 250 );" required>
+                    <div class="form-group mb-4">
+                        <label for="confirmarClave" class="form-label text-white">Confirmar contraseña *</label>
+                        <input type="password" class="form-control" id="confirmarClave"
+                               placeholder="Contraseña" style="background-color: rgba(250, 250, 250);" required>
                     </div>
-                    <!--<div class="form-group mb-4"> Para futuras implementaciones para los gustos del usuario y xd me gusta el rock XDDDDD
-                        <label class="form-label text-white">Para personalizar tu experiencia, ¿podrías decirnos qué
-                            géneros musicales disfrutas más? *</label>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="rock" id="check-rock">
-                                    <label class="form-check-label text-white" for="check-rock">
-                                        Rock
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="pop" id="check-pop">
-                                    <label class="form-check-label text-white" for="check-pop">
-                                        Pop
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="jazz" id="check-jazz">
-                                    <label class="form-check-label text-white" for="check-jazz">
-                                        Jazz
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="hip-hop" id="check-hip-hop">
-                                    <label class="form-check-label text-white" for="check-hip-hop">
-                                        Hip Hop
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="electrónica"
-                                           id="check-electrónica">
-                                    <label class="form-check-label text-white" for="check-electrónica">
-                                        Electrónica
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="indie" id="check-indie">
-                                    <label class="form-check-label text-white" for="check-indie">
-                                        Indie
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="folk" id="check-folk">
-                                    <label class="form-check-label text-white" for="check-folk">
-                                        Folk
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="reggae" id="check-reggae">
-                                    <label class="form-check-label text-white" for="check-reggae">
-                                        Reggae
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
 
-
-                    <div class="py-3  mb-5">
-                        <button type="submit" class="btn btn-light col-12 border  shadow"
-                                style="background-color: rgba(250, 250, 250 );">Registrar
+                    <div class="py-3 mb-5">
+                        <button type="submit" class="btn btn-light col-12 border shadow"
+                                style="background-color: rgba(250, 250, 250);">Registrar
                         </button>
                     </div>
                 </form>
