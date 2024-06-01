@@ -8,8 +8,8 @@ public class Usuario {
     private String clave;
     public String lista;
 
-    public Usuario() {
-        this.nombreUsuario=nombreUsuario;
+    public Usuario(String nombreUsuario, String correoElectronico, String clave, String lista) {
+        this.nombreUsuario  =nombreUsuario;
         this.correoElectronico=correoElectronico;
         this.clave = clave;
         this.lista=lista;
@@ -24,6 +24,10 @@ public class Usuario {
     }
 
     public Usuario(int idUsuario, String nombreUsuario) {
+    }
+
+    public Usuario() {
+
     }
 
     public int getIdUsuario() {
@@ -65,6 +69,7 @@ public class Usuario {
     public void setLista(String lista) {
         this.lista = lista;
     }
+    //asdfsdfsdf
     @Override
     public String toString() {
 

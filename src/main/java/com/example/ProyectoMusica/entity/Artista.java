@@ -1,6 +1,10 @@
 package com.example.ProyectoMusica.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class Artista {
     private int idArtista;
     private String nombreArtista;

@@ -1,12 +1,11 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <title>Pagina Inicio</title>
     <meta charset="UTF-8">
-    <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <!-- Bootstrap CSS v5.2.1 -->
+
 </head>
 <body class="container">
 <nav class="navbar navbar-expand-lg bg-light">
@@ -27,13 +26,13 @@
     </div>
 </nav>
 <div class="mx-auto mt-5 mb-3 text-center">
-    <h1>Formulario Generos</h1>
+    <h1>Formulario Usuarios</h1>
 </div>
 <div class="container">
-    <form action="#" th:action="@{/admin/alta}" th:object="${altaGenero}" method="post">
+    <form action="#" th:action="@{/admin/alta}" th:object="${altaUsuario}" method="post">
         <div class="form-group">
             <label for="nombre">AltaNombre</label>
-            <input type="text" class="form-control" id="nombre" th:field="*{nombreGenero}" required >
+            <input type="text" class="form-control" id="nombre" th:field="*{nombreUsuario}" required >
         </div>
         <div class ="py-3">
             <button type="submit" class="btn btn-outline-dark col-12">Enviar</button>
@@ -45,23 +44,23 @@
     <thead>
     <tr class="text-left">
         <th>Accion</th>
-        <th>Genero</th>
+        <th>Usuario</th>
         <th>Cancion</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="genero : ${generos}">
+    <tr th:each="usuario : ${usuarios}">
         <td >
-            <a class="text-decoration-none mx-1" th:href="@{./eliminar?codGenero={id}(id=${genero.idGenero})}">
+            <a class="text-decoration-none mx-1" th:href="@{./eliminar?codUsuario={id}(id=${usuario.idUsuario})}">
                 <img src="/img/e.jpeg" alt="Eliminar">
             </a>
-            <a class="text-decoration-none mx-1" th:href="@{./modificar?codGenero={id}(id=${genero.idGenero})}">
+            <a class="text-decoration-none mx-1" th:href="@{./modificar?codUsuario={id}(id=${usuario.idUsuario})}">
                 <img src="/img/m.jpeg" alt="Modificar">
             </a>
         </td>
 
-        <!--            <td th:text="${genero.idGenero}"></td> -->
-        <td th:text="${genero.nombreGenero}"></td>
+        <!--            <td th:text="${usuario.idUsuario}"></td> -->
+        <td th:text="${usuario.nombreUsuario}"></td>
     </tr>
     </tbody>
 </table>
@@ -87,7 +86,7 @@
                     <tbody>
                     <tr th:each="cancion : ${canciones}">
                         <td th:text="${cancion.titulo}"></td>
-                        <td th:text="${cancion.nombreGenero}"></td>
+                        <td th:text="${cancion.nombreUsuario}"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -102,13 +101,13 @@
 
 <div class="container py-4">
     <div class="row row-cols-4 g-4">
-        <div th:each="genero, iterStat : ${generos}">
+        <div th:each="usuario, iterStat : ${usuarios}">
             <div class="col">
                 <div class="card bg-dark text-white">
                     <img class="card-img-top" th:src="@{'https://cdn.pixabay.com/photo/' + ${iterStat.index} + '/path-to-image.jpg'}" alt="">
                     <div class="card-body">
-                        <h6 class="font-family-sans-serif" th:text="${genero.getNombreGenero()}">Genero</h6>
-                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" th:attr="data-genero-id=${genero.getIdGenero()}" th:text="${genero.getNombreGenero()}">Genero</button>
+                        <h6 class="font-family-sans-serif" th:text="${usuario.getNombreUsuario()}">Usuario</h6>
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" th:attr="data-usuario-id=${usuario.getIdUsuario()}" th:text="${usuario.getNombreUsuario()}">Usuario</button>
                     </div>
                 </div>
             </div>
@@ -150,14 +149,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
 </script>
-<!-- Bootstrap JavaScript Libraries -->
 
-<!-- Seleccionar el elemento en foco por defecto -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("titulo").focus();
     });
 </script>
-<!-- Seleccionar el elemento en foco por defecto -->
 </body>
 </html>

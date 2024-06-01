@@ -32,7 +32,7 @@ public class GeneroController {
     @GetMapping("/alta")
     public String greetingForm(Model model) {
         model.addAttribute("altaGenero", new Genero());
-        return "./musicmatch/genero/altaG";
+        return "./musicmatch/genero/";
     }
     @PostMapping("/alta")
     public String greetingSubmit(@ModelAttribute Genero genero, Model model) throws SQLException {

@@ -4,10 +4,7 @@ import com.example.ProyectoMusica.entity.Usuario;
 import com.example.ProyectoMusica.service.ServicioUsuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -65,5 +62,55 @@ public class UsuarioController {
             model.addAttribute("error", "Error al registrar el usuario. Inténtelo de nuevo.");
             return "./musicmatch/Login/register";
         }
+    }
+
+    @GetMapping("/alta")
+    public String greetingForm(Model model) {
+        model.addAttribute("listarUsuario", new Usuario());
+        return "./musicmatch/usuario/listarU";
+    }
+
+    @PostMapping("/alta")
+    public String greetingSubmit(@ModelAttribute Usuario usuario, Model model) throws SQLException {
+        String valorfinal="redirect:/admin/usuario";
+        try {
+            servicioUsuario.altaUsuario(usuario);
+            model.addAttribute("listarUsuarios", servicioUsuario.listarTodosUsuarios());
+        } catch (SQLException ex) {
+            valorfinal="error";
+        }
+        return valorfinal;
+    }
+
+    @GetMapping("/eliminar")
+    public String SubmitB (@RequestParam("codUsuario") int id, Model model){
+        String valorfinal="redirect:/admin/usuario";
+        try {
+            servicioUsuario.eliminar(id);
+            model.addAttribute("usuarios", servicioUsuario.listarTodosUsuarios());
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+
+    @GetMapping("/modificar")
+    public String modificar(@RequestParam ("codUsuario") int id,Model model){
+        String valorfinal="./musicmatch/usuario/ModificarUsuario";
+        try {
+            model.addAttribute("usuario", servicioUsuario.getUnicoUsuario(id));
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+
+    @PostMapping("/modificar")
+    public String modificarBBDD (@ModelAttribute Usuario usuario, Model model){
+        String valorfinal="redirect:/admin/usuario";
+        try {
+            servicioUsuario.modificar(usuario);
+            model.addAttribute("usuarios",servicioUsuario.listarTodosUsuarios());
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
     }
 }

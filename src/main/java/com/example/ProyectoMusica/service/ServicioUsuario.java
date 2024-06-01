@@ -2,6 +2,7 @@ package com.example.ProyectoMusica.service;
 
 import com.example.ProyectoMusica.database.Conexion;
 import com.example.ProyectoMusica.entity.Usuario;
+import com.example.ProyectoMusica.entity.Usuario;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -92,6 +93,29 @@ public class ServicioUsuario {
                 + p.getClave() + "','"
                 + p.getLista() + "');";
         //System.out.println(cadena);
+        consulta.executeUpdate(cadena);
+        consulta.close();
+    }
+
+    public void altaUsuario(Usuario g)throws SQLException{
+        Statement consulta = conexion.conectar().createStatement();
+
+        String cadena = "INSERT into usuario (nombreUsuario) Values ('" + g.getNombreUsuario()+"');";
+
+        consulta.execute(cadena);
+        consulta.close();
+    }
+
+    public void eliminar(int id) throws SQLException {
+        Statement consulta = conexion.conectar().createStatement();
+        consulta.executeUpdate("DELETE FROM usuario WHERE idUsuario = " + id);
+        consulta.close();
+    }
+
+    public void modificar(Usuario g) throws SQLException {
+        Statement consulta = conexion.conectar().createStatement();
+
+        String cadena = "UPDATE usuario SET nombreUsuario = '" + g.getNombreUsuario() + "' WHERE idUsuario = " + g.getIdUsuario();
         consulta.executeUpdate(cadena);
         consulta.close();
     }
