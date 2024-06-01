@@ -251,33 +251,17 @@
                         </table>
                     </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Canciones</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p id="modalBodyContent"><!-- aqui meto el contenido --></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="container py-4">
-                        <div class="row row-cols-4 g-4">
+                    <div class="container py-5">
+                        <div class="row row-cols-5 g-5">
                             <div th:each="genero, iterStat : ${generos}">
                                 <div class="col">
                                     <div class="card bg-dark text-white">
-                                        <img class="card-img-top" th:src="@{'https://cdn.pixabay.com/photo/' + ${iterStat.index} + '/path-to-image.jpg'}" alt="">
+                                        <a class="text-decoration-none mx-1" th:href="@{./lista?codGenero={id}(id=${genero.idGenero})}">
+                                            <img class="card-img-top" th:src="${imageUrls[__${iterStat.index}__]}" alt="Modificar">
+                                        </a>
                                         <div class="card-body">
                                             <h6 class="font-family-sans-serif" th:text="${genero.getNombreGenero()}">Genero</h6>
-                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" th:attr="data-genero-id=${genero.getIdGenero()}" th:text="${genero.getNombreGenero()}">Genero</button>
                                         </div>
                                     </div>
                                 </div>

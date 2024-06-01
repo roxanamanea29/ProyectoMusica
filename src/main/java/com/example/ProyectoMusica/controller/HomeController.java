@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,6 @@ public class HomeController {
     private final ServicioCancion servicioCancion;
     ServicioGenero serGenero = new ServicioGenero();
 
-    GeneroController genero;
 
     public HomeController(ServicioCancion servicioCancion) {
         this.servicioCancion = servicioCancion;
@@ -30,6 +30,7 @@ public class HomeController {
     public String someMethod() {
         return "./musicmatch/lista";
     }
+
     @GetMapping("/")
     public String home(Model model) {
         String valorfinal = "/musicmatch/tableroU";
@@ -43,17 +44,8 @@ public class HomeController {
         }
         return valorfinal;
     }
-/*    @GetMapping("/vista")
-    public String vista(Model model) {
-        String valorfinal = "./musicmatch/tableroU";
-        try {
-            model.addAttribute("generos", serGenero.listarTodosGeneros());
-            model.addAttribute("altaGenero", new Genero());
 
-        } catch (Exception ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-            valorfinal = "error";
-        }
-        return valorfinal;
-    }*/
+}
+
+    }
 }
