@@ -1,6 +1,8 @@
 package com.example.ProyectoMusica.service;
 
 import com.example.ProyectoMusica.database.Conexion;
+import com.example.ProyectoMusica.entity.Cancion;
+import com.example.ProyectoMusica.entity.Genero;
 import com.example.ProyectoMusica.entity.ListaReproduccion;
 
 import java.sql.ResultSet;
@@ -11,6 +13,33 @@ import java.util.List;
 
 public class ServicioListaReproduccion {
     Conexion con = new Conexion();
+
+
+    public List<Cancion> listarCancionesListasReproduccion(int id) throws SQLException {
+
+        ResultSet rs = null;
+        List<Cancion> canciones;
+        canciones= new ArrayList<>();
+        Statement consulta = con.conectar().createStatement();
+        String cadena = "SELECT lr.idCancionListaReproduccion as idCancion,c.titulo, a.nombreArtista,g.nombreGenero " +
+                "FROM cancion c " +
+                "INNER JOIN cancion_listareproduccion lr ON c.idCancion=lr.cancion_id " +
+                "INNER JOIN genero g ON c.genero_id=g.idGenero " +
+                "INNER JOIN artista a ON c.artista_id=a.idArtista " +
+                "WHERE lr.lista_reproduccion_id = " + id;
+        rs = consulta.executeQuery(cadena);
+        while (rs.next()) {
+            Cancion cancion = new Cancion();
+            cancion.setIdCancion(rs.getInt("idCancion"));
+            cancion.setTitulo(rs.getString("titulo"));
+           // cancion.setIdArtista(rs.getInt("artista_id"));
+            cancion.setNombreArtista(rs.getString("nombreArtista"));
+            //cancion.setIdGenero(rs.getInt("genero_id"));
+            cancion.setNombreGenero(rs.getString("nombreGenero"));
+            canciones.add(cancion);
+        }
+        return canciones;
+    }
 
     public ListaReproduccion getUnicaListaReproduccion(int id) throws SQLException {
         ListaReproduccion listaReproduccion = null;

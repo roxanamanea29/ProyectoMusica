@@ -42,8 +42,8 @@ public class ListaReproduccionController {
         return valorfinal;
     }
 
-    @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable int id,@RequestParam("codCancion") int idCancionLista, Model model) {
+    @GetMapping("/eliminar")
+    public String eliminar(@RequestParam("idLista") int id,@RequestParam("codCancion") int idCancionLista, Model model) {
         String valorfinal = "redirect:/musicmatch/listareproduccion";
         try {
             serListaReproduccion.eliminar(idCancionLista);
