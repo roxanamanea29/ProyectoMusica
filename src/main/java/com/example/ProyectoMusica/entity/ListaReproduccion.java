@@ -8,6 +8,7 @@ public class ListaReproduccion {
     private int usuarioId;
     private List<Cancion> canciones;
 
+
     public ListaReproduccion(int idListaReproduccion, String nombreListaReproduccion, int usuarioId, List<Cancion> canciones) {
         this.idListaReproduccion = idListaReproduccion;
         this.nombreListaReproduccion = nombreListaReproduccion;
