@@ -1,57 +1,77 @@
--- Eliminar la base de datos si existe
-DROP DATABASE IF EXISTS Music_Match;
+-- Insertar géneros musicales
+INSERT INTO Genero (nombreGenero) VALUES
+('R&B'),
+('Reggae'),
+('Jazz'),
+('Clásica'),
+('Pop Rock'),
+('Indie'),
+('Metal'),
+('Rap'),
+('Country'),
+('Soul');
 
--- Crear la base de datos si no existe
-CREATE DATABASE IF NOT EXISTS Music_Match;
+-- Insertar artistas
+INSERT INTO Artista (nombreArtista) VALUES
+('Beyoncé'),
+('Bob Marley'),
+('Miles Davis'),
+('Led Zeppelin'),
+('Arctic Monkeys'),
+('Metallica'),
+('Kendrick Lamar'),
+('Johnny Cash'),
+('Aretha Franklin'),
+('Queen');
 
--- Usar la base de datos creada
-USE Music_Match;
+-- Insertar usuarios
+INSERT INTO Usuario (nombreUsuario, email, contrasena) VALUES
+('Luis', 'luis@example.com', 'luis123'),
+('Ana', 'ana@example.com', 'ana456'),
+('Sofía', 'sofia@example.com', 'sofia789'),
+('David', 'david@example.com', 'david123'),
+('Laura', 'laura@example.com', 'laura456'),
+('Carlos', 'carlos@example.com', 'carlos789'),
+('María', 'maria2@example.com', 'maria123'),
+('Juan', 'juan2@example.com', 'juan456'),
+('Elena', 'elena@example.com', 'elena789'),
+('Pablo', 'pablo@example.com', 'pablo123');
 
--- Crear tabla Usuario
-CREATE TABLE IF NOT EXISTS Usuario (
-    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
-    nombreUsuario VARCHAR(100) NOT NULL,
-    correoElectronico VARCHAR(100) UNIQUE NOT NULL,
-    clave VARCHAR(255) NOT NULL,
-    lista VARCHAR(225) NOT NULL
-) Engine='InnoDB'DEFAULT CHARSET =LATIN1;
+-- Insertar canciones
+INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
+('Halo', 1, 9),
+('One Love', 2, 10),
+('So What', 3, 7),
+('Stairway to Heaven', 4, 6),
+('Do I Wanna Know?', 5, 6),
+('Enter Sandman', 6, 7),
+('HUMBLE.', 7, 8),
+('Hurt', 8, 9),
+('Respect', 9, 10),
+('Bohemian Rhapsody', 10, 5);
 
+-- Insertar listas de reproducción
+INSERT INTO ListaReproduccion (nombreListaReproduccion, usuario_id) VALUES
+('Gimnasio', 1),
+('Relax', 2),
+('Estudio', 3),
+('Viaje en coche', 4),
+('Fiesta', 5),
+('Trabajo', 6),
+('Entrenamiento', 7),
+('Desconectar', 8),
+('Favoritas de María', 9),
+('Cena romántica', 10);
 
--- Crear tabla ListaReproduccion
-CREATE TABLE IF NOT EXISTS ListaReproduccion (
-    idListaReproduccion INT AUTO_INCREMENT PRIMARY KEY,
-    nombreListaReproduccion VARCHAR(255) NOT NULL,
-    usuario_id INT,
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(idUsuario)
-);
-
--- Crear tabla Genero
-CREATE TABLE IF NOT EXISTS Genero (
-    idGenero INT AUTO_INCREMENT PRIMARY KEY,
-    nombreGenero VARCHAR(100) NOT NULL
-);
-
--- Crear tabla Artista
-CREATE TABLE IF NOT EXISTS Artista (
-    idArtista INT AUTO_INCREMENT PRIMARY KEY,
-    nombreArtista VARCHAR(255) NOT NULL
-);
-
--- Crear tabla Cancion
-CREATE TABLE IF NOT EXISTS Cancion (
-    idCancion INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(255) NOT NULL,
-    artista_id INT,
-    genero_id INT,
-    FOREIGN KEY (artista_id) REFERENCES Artista(idArtista),
-    FOREIGN KEY (genero_id) REFERENCES Genero(idGenero)
-);
-
--- Crear tabla Cancion_ListaReproduccion
-CREATE TABLE IF NOT EXISTS Cancion_ListaReproduccion (
-    idCancionListaReproduccion INT AUTO_INCREMENT PRIMARY KEY,
-    cancion_id INT,
-    lista_reproduccion_id INT,
-    FOREIGN KEY (cancion_id) REFERENCES Cancion(idCancion),
-    FOREIGN KEY (lista_reproduccion_id) REFERENCES ListaReproduccion(idListaReproduccion)
-);
+-- Insertar relaciones entre canciones y listas de reproducción
+INSERT INTO Cancion_ListaReproduccion (cancion_id, lista_reproduccion_id) VALUES
+(11, 4),
+(12, 5),
+(13, 6),
+(14, 7),
+(15, 8),
+(16, 9),
+(17, 10),
+(18, 1),
+(19, 2),
+(20, 3);
