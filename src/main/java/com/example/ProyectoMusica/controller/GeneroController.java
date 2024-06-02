@@ -22,7 +22,9 @@ public class GeneroController {
         try {
             model.addAttribute("generos", serGenero.listarTodosGeneros());
             model.addAttribute("altaGenero", new Genero());
-            model.addAttribute("canciones", serGenero.listarCancionGenero());
+            //tengo que cambiar el "canciones"
+            //model.addAttribute("canciones", serGenero.listarCancionGenero());
+            model.addAttribute("imageUrls",serGenero.imagenGenero());
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";
@@ -75,4 +77,17 @@ public class GeneroController {
         }
         return valorfinal;
     }
+    @GetMapping("/lista")
+    public String lista(@RequestParam ("codGenero") int id,Model model) {
+        String valorfinal = "./musicmatch/genero/listaCancion";
+        try {
+            //tengo que cambiar el "canciones"
+            model.addAttribute("listas", serGenero.listarCancionGenero(id));
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            valorfinal = "error";
+        }
+        return valorfinal;
+    }
+
 }

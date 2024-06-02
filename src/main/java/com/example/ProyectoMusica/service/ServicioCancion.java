@@ -27,9 +27,9 @@ public class ServicioCancion {
 
     public void alta(Cancion cancion_x) throws SQLException {
 
-            consulta = con.conectar().createStatement();
-            String cadena = "INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES ('"+ cancion_x.getTitulo() + "','" + cancion_x.getIdArtista() + "','" + cancion_x.getIdGenero() + "')";
-            consulta.executeUpdate(cadena);
+        consulta = con.conectar().createStatement();
+        String cadena = "INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES ('"+ cancion_x.getTitulo() + "','" + cancion_x.getIdArtista() + "','" + cancion_x.getIdGenero() + "')";
+        consulta.executeUpdate(cadena);
 
     }
 
@@ -37,21 +37,21 @@ public class ServicioCancion {
         ResultSet rs = null;
         List<Cancion> canciones;
         canciones= new ArrayList<>();
-            consulta = con.conectar().createStatement();
-            String cadena = "SELECT c.*, a.nombreArtista, g.nombreGenero FROM Cancion c " +
-                    "JOIN Artista a ON c.artista_id=a.idArtista " +
-                    "JOIN Genero g ON c.genero_id=g.idGenero;";
-            rs = consulta.executeQuery(cadena);
-            while (rs.next()) {
-                Cancion cancion = new Cancion();
-                cancion.setIdCancion(rs.getInt("idCancion"));
-                cancion.setTitulo(rs.getString("titulo"));
-                cancion.setIdArtista(rs.getInt("artista_id"));
-                cancion.setNombreArtista(rs.getString("nombreArtista"));
-                cancion.setIdGenero(rs.getInt("genero_id"));
-                cancion.setNombreGenero(rs.getString("nombreGenero"));
-                canciones.add(cancion);
-            }
+        consulta = con.conectar().createStatement();
+        String cadena = "SELECT c.*, a.nombreArtista, g.nombreGenero FROM Cancion c " +
+                "JOIN Artista a ON c.artista_id=a.idArtista " +
+                "JOIN Genero g ON c.genero_id=g.idGenero;";
+        rs = consulta.executeQuery(cadena);
+        while (rs.next()) {
+            Cancion cancion = new Cancion();
+            cancion.setIdCancion(rs.getInt("idCancion"));
+            cancion.setTitulo(rs.getString("titulo"));
+            cancion.setIdArtista(rs.getInt("artista_id"));
+            cancion.setNombreArtista(rs.getString("nombreArtista"));
+            cancion.setIdGenero(rs.getInt("genero_id"));
+            cancion.setNombreGenero(rs.getString("nombreGenero"));
+            canciones.add(cancion);
+        }
         return canciones;
     }
 
@@ -60,16 +60,16 @@ public class ServicioCancion {
         ResultSet rs = null;
         consulta = con.conectar().createStatement();
         String query = "SELECT c.*, a.nombreArtista, g.nombreGenero FROM Cancion c JOIN Artista a ON c.artista_id=a.idArtista JOIN Genero g ON c.genero_id=g.idGenero WHERE idCancion =" +id+";";
-      rs = consulta.executeQuery(query);
-            while (rs.next()) {
-                cancion.setTitulo(rs.getString("titulo"));
-                cancion.setIdArtista(rs.getInt("artista_id"));
-                cancion.setNombreArtista(rs.getString("nombreArtista"));
-                cancion.setIdGenero(rs.getInt("genero_id"));
-                cancion.setNombreGenero(rs.getString("nombreGenero"));
-                cancion.setIdCancion(rs.getInt("idCancion"));
-                return cancion;
-            }
+        rs = consulta.executeQuery(query);
+        while (rs.next()) {
+            cancion.setTitulo(rs.getString("titulo"));
+            cancion.setIdArtista(rs.getInt("artista_id"));
+            cancion.setNombreArtista(rs.getString("nombreArtista"));
+            cancion.setIdGenero(rs.getInt("genero_id"));
+            cancion.setNombreGenero(rs.getString("nombreGenero"));
+            cancion.setIdCancion(rs.getInt("idCancion"));
+            return cancion;
+        }
         return null;
     }
 
@@ -91,10 +91,3 @@ public class ServicioCancion {
         return servicioArtista;
     }
 }
-
-
-
-
-
-
-

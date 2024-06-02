@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ServicioGenero {
@@ -21,7 +22,6 @@ public class ServicioGenero {
             genero = new Genero(
                     result.getInt("idGenero"),
                     result.getString("nombreGenero")
-
             );
         }
         result.close();
@@ -69,12 +69,12 @@ public class ServicioGenero {
         consulta.executeUpdate(cadena);
         consulta.close();
     }
-    public List<Cancion> listarCancionGenero() throws SQLException {
+    public List<Cancion> listarCancionGenero(int id) throws SQLException {
         ResultSet rs = null;
         List<Cancion> canciones;
         canciones= new ArrayList<>();
         Statement consulta = con.conectar().createStatement();
-        String cadena = "SELECT c.idCancion,c.titulo,c.genero_id, g.nombreGenero FROM Cancion c JOIN Genero g ON c.genero_id=g.idGenero ORDER BY g.idGenero;";
+        String cadena = "SELECT c.idCancion,c.titulo,c.genero_id, g.nombreGenero FROM Cancion c JOIN Genero g ON c.genero_id = g.idGenero where g.idGenero = " + id  ;
         rs = consulta.executeQuery(cadena);
         while (rs.next()) {
             Cancion cancion = new Cancion();
@@ -86,4 +86,20 @@ public class ServicioGenero {
         }
         return canciones;
     }
+    public List<String> imagenGenero() throws SQLException{
+        List<String> imageUrls = Arrays.asList(
+                "/img/R&B.jpg",
+                "/img/reggae.jpg",
+                "/img/jazz.jpg",
+                "/img/clasica.jpg",
+                "/img/pop&rock.jpg",
+                "/img/indie.png",
+                "/img/metal.jpg",
+                "/img/rap.jpg",
+                "/img/country.jpg",
+                "/img/soul.jpg"
+        );
+        return imageUrls;
+    }
+
 }
