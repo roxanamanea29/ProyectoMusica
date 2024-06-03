@@ -3,54 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Spring Boot WebSocket Chat Application</title>
+    <title>Chat Application</title>
     <link rel="stylesheet" href="./css/main.css">
 </head>
-<body>
+<body >
+
 <noscript>
     <h2>Sorry! Your browser doesn't support Javascript</h2>
 </noscript>
 
 <div id="username-page">
+    <div class="chat-header mt-lg-5">
+    <a href="http://localhost:8080/tablero/"><button type="submit" class="accent username-submit mt-5">Volver</button></a>
+    </div>
     <div class="username-page-container">
         <img src="./img/logo.png" alt="logo" style="height: 130px;">
         <h1 class="title">Introduce tu nombre de usuario</h1>
         <form id="usernameForm" name="usernameForm">
             <div class="form-group">
-                <input type="text" id="name" placeholder="Username" aria-label="username" autocomplete="off" class="form-control">
+                <input type="text" id="name" placeholder="Username" aria-label="username" autocomplete="off"
+                       class="form-control">
             </div>
             <div class="form-group">
-                <button type="submit" class="accent username-submit">Start Chatting</button>
+                <span style="margin: 0 10px;"></span>
+                <button type="submit" class="accent username-submit">Entrar</button>
             </div>
         </form>
     </div>
 </div>
 
-<!--<div id="chat-page" class="hidden">
-    <div class="chat-container">
-        <div class="chat-header">
-            <img src="/img/logo.png" alt="logo" style="height: 150px;">
-            <h2> Chat</h2>
-        </div>
-        <div class="connecting">
-            Connecting...
-        </div>
-        <ul id="messageArea">
 
-        </ul>
-        <form id="messageForm" name="messageForm">
-            <div class="form-group">
-                <div class="input-group clearfix">
-                   <input autocomplete="off" class="form-control" id="message"
-                                                placeholder="Escribe tu mensaje...."
-                                                type="text"/>
-                    <button type="submit" class="dark">Send</button>
-                    <button id="logoutButton" class="accent">Salir</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>-->
 <div id="chat-page" class="hidden">
     <div class="chat-container">
         <div class="chat-header">
@@ -64,7 +46,8 @@
         <form id="messageForm" name="messageForm">
             <div class="form-group">
                 <div class="input-group clearfix">
-                    <input autocomplete="off" class="form-control" id="message" placeholder="Escribe tu mensaje...." type="text"/>
+                    <label for="message"></label><input autocomplete="off" class="form-control" id="message"
+                                                        placeholder="Escribe tu mensaje...." type="text"/>
                     <div class="button-group">
                         <button type="submit" class="dark">Send</button>
                         <button id="logoutButton" class="accent">Salir</button>
@@ -74,6 +57,7 @@
         </form>
     </div>
 </div>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>

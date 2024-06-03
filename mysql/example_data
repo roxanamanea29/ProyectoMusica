@@ -1,4 +1,4 @@
--- Insertar géneros musicales
+-- Insertar más géneros musicales
 INSERT INTO Genero (nombreGenero) VALUES
 ('R&B'),
 ('Reggae'),
@@ -11,11 +11,11 @@ INSERT INTO Genero (nombreGenero) VALUES
 ('Country'),
 ('Soul');
 
--- Insertar artistas
+-- Insertar más artistas
 INSERT INTO Artista (nombreArtista) VALUES
 ('Beyoncé'),
 ('Bob Marley'),
-('Miles Davis'),
+('Kanye West (YE)'),
 ('Led Zeppelin'),
 ('Arctic Monkeys'),
 ('Metallica'),
@@ -24,24 +24,24 @@ INSERT INTO Artista (nombreArtista) VALUES
 ('Aretha Franklin'),
 ('Queen');
 
--- Insertar usuarios
-INSERT INTO Usuario (nombreUsuario, email, contrasena) VALUES
-('Luis', 'luis@example.com', 'luis123'),
-('Ana', 'ana@example.com', 'ana456'),
-('Sofía', 'sofia@example.com', 'sofia789'),
-('David', 'david@example.com', 'david123'),
-('Laura', 'laura@example.com', 'laura456'),
-('Carlos', 'carlos@example.com', 'carlos789'),
-('María', 'maria2@example.com', 'maria123'),
-('Juan', 'juan2@example.com', 'juan456'),
-('Elena', 'elena@example.com', 'elena789'),
-('Pablo', 'pablo@example.com', 'pablo123');
+-- Insertar más usuarios
+INSERT INTO Usuario (idUsuario, nombreUsuario, correoElectronico, Clave) VALUES
+('1', 'Luis', 'luis@example.com', aes_encrypt('luis123','AES')),
+('2', 'Ana', 'ana@example.com', aes_encrypt('ana456','AES')),
+('3', 'Sofía', 'sofia@example.com', aes_encrypt('sofia789','AES')),
+('4', 'David', 'david@example.com', aes_encrypt('david123','AES')),
+('5', 'Laura', 'laura@example.com', aes_encrypt('laura456','AES')),
+('6', 'Carlos', 'carlos@example.com', aes_encrypt('carlos789','AES')),
+('7', 'María', 'maria2@example.com', aes_encrypt('maria123','AES')),
+('8', 'Juan', 'juan2@example.com', aes_encrypt('juan456','AES')),
+('9', 'Elena', 'elena@example.com', aes_encrypt('elena789','AES')),
+('10', 'Pablo', 'pablo@example.com', aes_encrypt('pablo123','AES'));
 
--- Insertar canciones
+-- Insertar más canciones
 INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
 ('Halo', 1, 9),
 ('One Love', 2, 10),
-('So What', 3, 7),
+('Bound2', 3, 8),
 ('Stairway to Heaven', 4, 6),
 ('Do I Wanna Know?', 5, 6),
 ('Enter Sandman', 6, 7),
@@ -50,7 +50,7 @@ INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
 ('Respect', 9, 10),
 ('Bohemian Rhapsody', 10, 5);
 
--- Insertar listas de reproducción
+-- Insertar más listas de reproducción
 INSERT INTO ListaReproduccion (nombreListaReproduccion, usuario_id) VALUES
 ('Gimnasio', 1),
 ('Relax', 2),
@@ -63,7 +63,7 @@ INSERT INTO ListaReproduccion (nombreListaReproduccion, usuario_id) VALUES
 ('Favoritas de María', 9),
 ('Cena romántica', 10);
 
--- Insertar relaciones entre canciones y listas de reproducción
+-- Insertar más relaciones entre canciones y listas de reproducción
 INSERT INTO Cancion_ListaReproduccion (cancion_id, lista_reproduccion_id) VALUES
 (11, 4),
 (12, 5),

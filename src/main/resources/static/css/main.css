@@ -2,6 +2,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+
 }
 
 html, body {
@@ -17,8 +18,11 @@ body {
     font-size: 1rem;
     line-height: 1.58;
     color: #fff;
-    background-color: #0a0a0b;
+    background-color: #070707;
     height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.8;
 }
 
 .clearfix:after {
@@ -35,10 +39,10 @@ body {
     width: 100%;
     min-height: 38px;
     font-size: 15px;
-    border: 1px solid #444;
     background-color: #444;
     color: #fff;
     border: 2px solid #fff;
+
 }
 
 .form-group {
@@ -113,17 +117,14 @@ button.accent {
     width: 100%;
     max-width: 500px;
     display: inline-block;
-    margin-top: 42px;
     vertical-align: middle;
-    position: relative;
     padding: 35px 55px 35px;
     min-height: 250px;
     position: absolute;
     top: 50%;
     left: 0;
     right: 0;
-    margin: 0 auto;
-    margin-top: -160px;
+    margin: -160px auto 0;
 
 }
 
@@ -156,7 +157,7 @@ button.accent {
     margin: 0;
     overflow: auto;
     overflow-y: scroll;
-    padding: 0 20px 0px 20px;
+    padding: 0 20px 0 20px;
     height: calc(100% - 150px);
 }
 
@@ -236,7 +237,7 @@ button.accent {
 .chat-header {
     text-align: center;
     padding: 15px;
-    border-bottom: 1px solid #555; /* Ajustar el borde */
+    border-bottom: 1px solid #555;
 }
 
 .chat-header h2 {
@@ -248,7 +249,7 @@ button.accent {
 .connecting {
     padding-top: 5px;
     text-align: center;
-    color: #ccc; /* Ajustar color del texto */
+    color: #ccc;
     position: absolute;
     top: 65px;
     width: 100%;
@@ -336,5 +337,7 @@ button.accent {
 button.accent:hover {
     background-color: #444;
     border-color: #fff;
+
 }
+
 

@@ -1,49 +1,77 @@
 package com.example.ProyectoMusica.controller;
 
 import com.example.ProyectoMusica.entity.ListaReproduccion;
-import com.example.ProyectoMusica.service.ServicioCancionListaReproduccion;
 import com.example.ProyectoMusica.service.ServicioListaReproduccion;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * @author Adrian
- * @date 17/05/2024
- */
-// ❗️ruta url http://localhost:8080/lista/
 @Controller
-@RequestMapping("/musicmatch")
 
-
+@RequestMapping("/listareproduccion")
 public class ListaReproduccionController {
-    ServicioListaReproduccion servicioLista = new ServicioListaReproduccion();
-    private ListaReproduccion listaReproduccion;
+    ServicioListaReproduccion serListaReproduccion = new ServicioListaReproduccion();
 
-    ServicioCancionListaReproduccion servicio = new ServicioCancionListaReproduccion();
-
-
-    @GetMapping("/lista")
-    public String crud(Model model) {
-        String valorfinal = "./musicmatch/lista";
-
+    @GetMapping("/listaR/{id}")
+    public String vista (@PathVariable int id, Model model) {
+        String valorfinal = "/musicmatch/listareproduccion";
         try {
-            //model.addAttribute("canciones", servicioCancionListaReproduccion.listarAllCanciones());
-           // model.addAttribute("listasDeReproduccion", servicioLista.listarAllListaReproduccion(listaReproduccion));
-            List<ListaReproduccion> listaDeReproducciones = (List<ListaReproduccion>) servicioLista.listarAllListaReproduccion();
-
-
-
+            model.addAttribute("listaR", id);
+            model.addAttribute("canciones", serListaReproduccion.listarCancionesListasReproduccion(id));
+           // model.addAttribute("altaListaReproduccion", new ListaReproduccion());
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";
         }
         return valorfinal;
     }
-}
 
+    @PostMapping("/alta")
+    public String alta(@ModelAttribute("altaListaReproduccion") ListaReproduccion listaReproduccion, Model model) {
+        String valorfinal = "redirect:/musicmatch/listareproduccion/";
+        try {
+            serListaReproduccion.agregar(listaReproduccion);
+            model.addAttribute("cancionesR", serListaReproduccion.listarTodasListasReproduccion());
+        } catch (SQLException ex) {
+            valorfinal = "error";
+        }
+        return valorfinal;
+    }
+
+    @GetMapping("/eliminar")
+    public String eliminar(@RequestParam("idLista") int id,@RequestParam("codCancion") int idCancionLista, Model model) {
+        String valorfinal = "redirect:/musicmatch/listareproduccion";
+        try {
+            serListaReproduccion.eliminar(idCancionLista);
+            model.addAttribute("canciones", serListaReproduccion.listarCancionesListasReproduccion(id));
+        } catch (SQLException ex) {
+            valorfinal = "error";
+        }
+        return valorfinal;
+    }
+
+   /* @GetMapping("/modificar")
+    public String modificar(@RequestParam ("codListaReproduccion") int id,Model model){
+        String valorfinal="./musicmatch/listareproduccion/ModificarLR";
+        try {
+            model.addAttribute("listareproduccion", serListaReproduccion.getUnicaListaReproduccion(id));
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+*/
+    @PostMapping("/modificar")
+    public String modificarBBDD (@ModelAttribute ListaReproduccion listaReproduccion, Model model){
+        String valorfinal="redirect:/musicmatch/listareproduccion";
+        try {
+            serListaReproduccion.modificar(listaReproduccion);
+            model.addAttribute("listasreproduccion",serListaReproduccion.listarTodasListasReproduccion());
+        } catch (SQLException ex) {
+        }
+        return valorfinal;
+    }
+}

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 //http://localhost:8080/musicmatch/admin/
 @Controller
-@RequestMapping("/musicmatch/admin")
+@RequestMapping("/admin")
 public class AdminController {
     @GetMapping("/")
     public String verPaginaInicioAdmin() {

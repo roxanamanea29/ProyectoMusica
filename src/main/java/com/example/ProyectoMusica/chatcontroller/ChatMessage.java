@@ -13,3 +13,5 @@ public class ChatMessage {
     private MessageType type;
 
 }
+
+
