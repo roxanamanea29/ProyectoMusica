@@ -1,4 +1,4 @@
--- Insertar más géneros musicales--
+-- Insertar más géneros musicales
 INSERT INTO Genero (nombreGenero) VALUES
 ('R&B'),
 ('Reggae'),

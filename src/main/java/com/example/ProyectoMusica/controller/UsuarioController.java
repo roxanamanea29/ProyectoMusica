@@ -16,9 +16,9 @@ import java.util.logging.Logger;
 public class UsuarioController {
     private final ServicioUsuario servicioUsuario = new ServicioUsuario();
 
-    @GetMapping("/lista")
+    @GetMapping("/listarU")
     public String listarUsuarios(Model model) throws SQLException {
-        String vista = "./musicmatch/usuario/Usuario";
+        String vista = "./musicmatch/usuario/listarU";
         List<Usuario> usuarios = servicioUsuario.listarTodosUsuarios();
         model.addAttribute("usuarios", usuarios);
         return vista;
