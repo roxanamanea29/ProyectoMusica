@@ -1,4 +1,4 @@
--- Eliminar la base de datos si existe
+-- Eliminar la base de datos si existe--
 DROP DATABASE IF EXISTS Music_Match;
 
 -- Crear la base de datos si no existe
