@@ -25,17 +25,17 @@ INSERT INTO Artista (nombreArtista) VALUES
 ('Queen');
 
 -- Insertar más usuarios
-INSERT INTO Usuario (idUsuario, nombreUsuario, correoElectronico, Clave) VALUES
-('1', 'Luis', 'luis@example.com', aes_encrypt('luis123','AES')),
-('2', 'Ana', 'ana@example.com', aes_encrypt('ana456','AES')),
-('3', 'Sofía', 'sofia@example.com', aes_encrypt('sofia789','AES')),
-('4', 'David', 'david@example.com', aes_encrypt('david123','AES')),
-('5', 'Laura', 'laura@example.com', aes_encrypt('laura456','AES')),
-('6', 'Carlos', 'carlos@example.com', aes_encrypt('carlos789','AES')),
-('7', 'María', 'maria2@example.com', aes_encrypt('maria123','AES')),
-('8', 'Juan', 'juan2@example.com', aes_encrypt('juan456','AES')),
-('9', 'Elena', 'elena@example.com', aes_encrypt('elena789','AES')),
-('10', 'Pablo', 'pablo@example.com', aes_encrypt('pablo123','AES'));
+INSERT INTO Usuario (nombreUsuario, correoElectronico, clave) VALUES
+('Luis', 'luis@example.com', HEX(AES_ENCRYPT('luis123','AES_KEY'))),
+('Ana', 'ana@example.com', HEX(AES_ENCRYPT('ana456','AES_KEY'))),
+('Sofía', 'sofia@example.com', HEX(AES_ENCRYPT('sofia789','AES_KEY'))),
+('David', 'david@example.com', HEX(AES_ENCRYPT('david123','AES_KEY'))),
+('Laura', 'laura@example.com', HEX(AES_ENCRYPT('laura456','AES_KEY'))),
+('Carlos', 'carlos@example.com', HEX(AES_ENCRYPT('carlos789','AES_KEY'))),
+('María', 'maria2@example.com', HEX(AES_ENCRYPT('maria123','AES_KEY'))),
+('Juan', 'juan2@example.com', HEX(AES_ENCRYPT('juan456','AES_KEY'))),
+('Elena', 'elena@example.com', HEX(AES_ENCRYPT('elena789','AES_KEY'))),
+('Pablo', 'pablo@example.com', HEX(AES_ENCRYPT('pablo123','AES_KEY')));
 
 -- Insertar más canciones
 INSERT INTO Cancion (titulo, artista_id, genero_id) VALUES
@@ -65,13 +65,13 @@ INSERT INTO ListaReproduccion (nombreListaReproduccion, usuario_id) VALUES
 
 -- Insertar más relaciones entre canciones y listas de reproducción
 INSERT INTO Cancion_ListaReproduccion (cancion_id, lista_reproduccion_id) VALUES
-(11, 4),
-(12, 5),
-(13, 6),
-(14, 7),
-(15, 8),
-(16, 9),
-(17, 10),
-(18, 1),
-(19, 2),
-(20, 3);
+(1, 4),
+(2, 5),
+(3, 6),
+(4, 7),
+(5, 8),
+(6, 9),
+(7, 10),
+(8, 1),
+(9, 2),
+(10, 3);
