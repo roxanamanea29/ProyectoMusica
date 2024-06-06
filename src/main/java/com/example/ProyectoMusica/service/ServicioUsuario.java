@@ -93,7 +93,7 @@ public class ServicioUsuario {
 
     public void altaUsuario(Usuario g) throws SQLException {
         Statement consulta = conexion.conectar().createStatement();
-        String cadena = "INSERT into usuario (nombreUsuario) Values ('" + g.getNombreUsuario() + "');";
+        String cadena = "INSERT INTO usuario (nombreUsuario, correoElectronico, clave) values ('" + g.getNombreUsuario() + "', '" + g.getCorreoElectronico() + "', '" + g.getClave() + "');";
         consulta.execute(cadena);
         consulta.close();
     }
@@ -106,7 +106,7 @@ public class ServicioUsuario {
 
     public void modificar(Usuario g) throws SQLException {
         Statement consulta = conexion.conectar().createStatement();
-        String cadena = "UPDATE usuario SET nombreUsuario = '" + g.getNombreUsuario() + "' WHERE idUsuario = " + g.getIdUsuario();
+        String cadena = "UPDATE usuario SET nombreUsuario = '" + g.getNombreUsuario() + "', correoElectronico = '" + g.getCorreoElectronico() + "' WHERE idUsuario = " + g.getIdUsuario();
         consulta.executeUpdate(cadena);
         consulta.close();
     }
