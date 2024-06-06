@@ -24,11 +24,10 @@ public class ServicioUsuario {
     // Método para registrar un nuevo usuario
     public void registrarUsuario(String nombreUsuario, String email, String clave) throws SQLException {
         try (Connection con = conexion.conectar();
-             PreparedStatement ps = con.prepareStatement("INSERT INTO Usuario (nombreUsuarioUsuario, correoElectronico, clave) VALUES (?, ?, AES_ENCRYPT(?, ?))")) {
+             PreparedStatement ps = con.prepareStatement("INSERT INTO Usuario (nombreUsuario, correoElectronico, clave) VALUES (?, ?, AES_ENCRYPT(?, ?))")) {
             ps.setString(1, nombreUsuario);
             ps.setString(2, email);
             ps.setString(3, clave);
-            ps.setString(4, clave);
             ps.executeUpdate();
         }
     }
@@ -44,10 +43,9 @@ public class ServicioUsuario {
                 if (rs.next()) {
                     return new Usuario(
                             rs.getInt("idUsuario"),
-                            rs.getString("nombreUsuarioUsuario"),
+                            rs.getString("nombreUsuario"),
                             rs.getString("correoElectronico"),
-                            rs.getString("clave"),
-                            rs.getString("lista")
+                            rs.getString("clave")
                     );
                 }
             }
@@ -74,10 +72,9 @@ public class ServicioUsuario {
             while (rs.next()) {
                 usuarios.add(new Usuario(
                         rs.getInt("idUsuario"),
-                        rs.getString("nombreUsuarioUsuario"),
+                        rs.getString("nombreUsuario"),
                         rs.getString("correoElectronico"),
-                        rs.getString("clave"),
-                        rs.getString("lista")
+                        rs.getString("clave")
                 ));
             }
         }
@@ -86,11 +83,10 @@ public class ServicioUsuario {
 
     public void alta(Usuario p) throws SQLException {
         Statement consulta = conexion.conectar().createStatement();
-        String cadena = "INSERT INTO usuario(nombreUsuario, correoElectronico, clave, lista) VALUES ('"
+        String cadena = "INSERT INTO usuario(nombreUsuario, correoElectronico, clave) VALUES ('"
                 + p.getNombreUsuario() + "','"
                 + p.getCorreoElectronico() + "','"
-                + p.getClave() + "','"
-                + p.getLista() + "');";
+                + p.getClave() + "');";
         consulta.executeUpdate(cadena);
         consulta.close();
     }
@@ -125,10 +121,9 @@ public class ServicioUsuario {
                 if (rs.next()) {
                     usuario = new Usuario(
                             rs.getInt("idUsuario"),
-                            rs.getString("nombreUsuarioUsuario"),
+                            rs.getString("nombreUsuario"),
                             rs.getString("correoElectronico"),
-                            rs.getString("clave"),
-                            rs.getString("lista")
+                            rs.getString("clave")
                     );
                 }
             }

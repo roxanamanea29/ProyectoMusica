@@ -1,4 +1,4 @@
--- Eliminar la base de datos si existe
+-- Eliminar la base de datos si existe--
 DROP DATABASE IF EXISTS Music_Match;
 
 -- Crear la base de datos si no existe
@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS Usuario (
     correoElectronico VARCHAR(100) UNIQUE NOT NULL,
     clave VARCHAR(255) NOT NULL
 )ENGINE='InnoDB'DEFAULT CHARSET =LATIN1;
+
 
 -- Crear tabla ListaReproduccion
 CREATE TABLE IF NOT EXISTS ListaReproduccion (
