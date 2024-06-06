@@ -1,6 +1,5 @@
 package com.example.ProyectoMusica.controller;
 
-import com.example.ProyectoMusica.entity.Genero;
 import com.example.ProyectoMusica.entity.ListaReproduccion;
 import com.example.ProyectoMusica.service.ServicioListaReproduccion;
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,6 @@ public class ListaReproduccionController {
             idListR=id;
             model.addAttribute("listaR",id);
             model.addAttribute("canciones", serListaReproduccion.listarCancionesListasReproduccion(id));
-           // model.addAttribute("altaListaReproduccion", new ListaReproduccion());
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";
@@ -36,15 +34,12 @@ public class ListaReproduccionController {
         String valorfinal = "./musicmatch/altaCLR";
         try {
             model.addAttribute("canciones", serListaReproduccion.listarCancionesTodasListasReproduccion());
-            // model.addAttribute("altaListaReproduccion", new ListaReproduccion());
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";
         }
         return valorfinal;
     }
-
-    /* Listar todas las listas de reproduccion */
 
     @GetMapping("/listaLR")
     public String vista2 (Model model) {
@@ -53,9 +48,6 @@ public class ListaReproduccionController {
             model.addAttribute("listasR", serListaReproduccion.listarTodasListasReproduccion());
             model.addAttribute("agregarListaR", new ListaReproduccion());
             model.addAttribute("imageUrls",serListaReproduccion.imagenListaR());
-            //tengo que cambiar el "canciones"
-            //model.addAttribute("canciones", serGenero.listarCancionGenero());
-           // model.addAttribute("imageUrls",serGenero.imagenGenero());
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";

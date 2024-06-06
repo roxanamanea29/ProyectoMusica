@@ -32,9 +32,7 @@ public class ServicioListaReproduccion {
             Cancion cancion = new Cancion();
             cancion.setIdCancion(rs.getInt("idCancion"));
             cancion.setTitulo(rs.getString("titulo"));
-           // cancion.setIdArtista(rs.getInt("artista_id"));
             cancion.setNombreArtista(rs.getString("nombreArtista"));
-            //cancion.setIdGenero(rs.getInt("genero_id"));
             cancion.setNombreGenero(rs.getString("nombreGenero"));
             canciones.add(cancion);
         }
