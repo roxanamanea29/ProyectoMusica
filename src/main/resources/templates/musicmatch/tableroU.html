@@ -10,7 +10,7 @@
 </head>
 <style>
     .modal-title {
-    color: #000; /* Color negro para el título del modal */
+    color: #000;
     }
 </style>
 
@@ -67,6 +67,7 @@
                                             th:data-bs-target="'#modal-' + ${iter.index}">
                                         Ver detalles
                                     </button>
+
                                 </div>
                             </div>
                         </div>
@@ -109,7 +110,7 @@
                                          src="https://cdn.pixabay.com/photo/2020/07/02/21/15/gym-5364401_1280.jpg"
                                          alt="Gimnasio">
                                     <div class="card-footer">
-                                        <a href="http://localhost:8080/listareproduccion/listaR/1" class="btn btn-dark">
+                                        <a href="http://localhost:8080/listareproduccion/1" class="btn btn-dark">
                                             Gimnasio
                                         </a>
                                     </div>
@@ -121,7 +122,7 @@
                                          src="https://cdn.pixabay.com/photo/2015/12/25/09/39/balance-1107484_1280.jpg"
                                          alt="Relax">
                                     <div class="card-footer">
-                                        <a href="http://localhost:8080/listareproduccion/listaR/2" class="btn btn-dark">
+                                        <a href="http://localhost:8080/listareproduccion/2" class="btn btn-dark">
                                             Relax
                                         </a>
                                     </div>
@@ -133,7 +134,7 @@
                                          src="https://cdn.pixabay.com/photo/2016/06/01/06/26/open-book-1428428_1280.jpg"
                                          alt="Estudio">
                                     <div class="card-footer">
-                                        <a href="http://localhost:8080/listareproduccion/listaR/3" class="btn btn-dark">
+                                        <a href="http://localhost:8080/listareproduccion/3" class="btn btn-dark">
                                             Estudio
                                         </a>
                                     </div>
@@ -145,7 +146,7 @@
                                          src="https://cdn.pixabay.com/photo/2021/09/07/11/53/car-6603726_1280.jpg"
                                          alt="Viaje en coche">
                                     <div class="card-footer">
-                                        <a href="http://localhost:8080/listareproduccion/listaR/4" class="btn btn-dark">
+                                        <a href="http://localhost:8080/listareproduccion/4" class="btn btn-dark">
                                             Viaje en coche
                                         </a>
                                     </div>
@@ -157,7 +158,7 @@
                                          src="https://cdn.pixabay.com/photo/2017/04/11/22/55/lightshow-2223127_1280.jpg"
                                          alt="Fiesta">
                                     <div class="card-footer">
-                                        <a href="http://localhost:8080/listareproduccion/listaR/5" class="btn btn-dark">
+                                        <a href="http://localhost:8080/listareproduccion/5" class="btn btn-dark">
                                             Fiesta
                                         </a>
                                     </div>
@@ -169,7 +170,7 @@
                                          src="https://cdn.pixabay.com/photo/2018/03/03/20/02/laptop-3196481_1280.jpg"
                                          alt="Trabajo">
                                     <div class="card-footer">
-                                        <a href="http://localhost:8080/listareproduccion/listaR/6" class="btn btn-dark">
+                                        <a href="http://localhost:8080/listareproduccion/6" class="btn btn-dark">
                                             Trabajo
                                         </a>
                                     </div>
@@ -181,7 +182,7 @@
                                          src="https://cdn.pixabay.com/photo/2022/04/11/06/59/fitness-7124954_1280.jpg"
                                          alt="Entrenamiento">
                                     <div class="card-footer">
-                                        <a href="http://localhost:8080/listareproduccion/listaR/7" class="btn btn-dark">
+                                        <a href="http://localhost:8080/listareproduccion/7" class="btn btn-dark">
                                             Entrenamiento
                                         </a>
                                     </div>
@@ -193,20 +194,8 @@
                                          src="https://cdn.pixabay.com/photo/2017/06/25/12/51/relax-2440709_1280.jpg"
                                          alt="Desconectar">
                                     <div class="card-footer">
-                                        <a href="http://localhost:8080/listareproduccion/listaR/8" class="btn btn-dark">
+                                        <a href="http://localhost:8080/listareproduccion/8" class="btn btn-dark">
                                             Desconectar
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card bg-dark text-white">
-                                    <img class="card-img-top"
-                                         src="https://cdn.pixabay.com/photo/2016/06/17/16/42/roses-1463562_1280.jpg"
-                                         alt="Favoritas de María">
-                                    <div class="card-footer">
-                                        <a href="http://localhost:8080/listareproduccion/listaR/9" class="btn btn-dark">
-                                            Favoritas del usuario
                                         </a>
                                     </div>
                                 </div>
@@ -217,14 +206,28 @@
                                          src="https://cdn.pixabay.com/photo/2015/04/29/03/46/romantic-744760_1280.jpg"
                                          alt="Cena Romántica">
                                     <div class="card-footer">
-                                        <a href="http://localhost:8080/listareproduccion/listaR/10" class="btn btn-dark">
+                                        <a href="http://localhost:8080/listareproduccion/10" class="btn btn-dark">
                                             Cena Romántica
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card bg-dark text-white">
+                                    <img class="card-img-top"
+                                         src="https://cdn.pixabay.com/photo/2016/06/17/16/42/roses-1463562_1280.jpg"
+                                         alt="Favoritas de María">
+                                    <div class="card-footer">
+                                        <a href="http://localhost:8080/listareproduccion/listaLR" class="btn btn-dark">
+                                            Listas de Reproducción del Usuario
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                             integrity="sha384-Ho1q25Y6nyIEdUjU9FQH7IpXYPl1R0C5U1B+6TqexXAVH+1ewCoD2B+8a6k0y00F"
                             crossorigin="anonymous"></script>
@@ -275,13 +278,13 @@
             </div>
         </div>
     </div>
-        <!-- Script de Bootstrap-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-                crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </div>
- </body>
+    <!-- Script de Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+</body>
 </html>

@@ -13,16 +13,49 @@
         .lbl-agregar {
             color: white;
         }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        body {
+            background-color: rgba(0, 0, 0);
+            color: white;
+        }
+        .table {
+            background-color: white;
+        }
+        .table th, .table td {
+            color: white !important;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #343a40;
+        }
     </style>
 </head>
-<body class="container" style="background-color: rgba(0, 0, 0);">
+<body class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <img src="/img/logo.png" alt="Logo" style="height: 80px;">
+        <a class="navbar-brand" href="#">Añadir Canción a Lista de Reproducción</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/tablero/">Inicio</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="mx-auto text-center">
-    <br>
-    <br>
+    <div class="col-lg-9 text-white justify-content-center align-items-center">
+        <h1>Contenido de la lista de reproducción</h1>
+    </div>
 </div>
-<div class="d-flex justify-content-center align-items-center rgba(1,1,0)">
-    <h1>Contenido de la lista de reproducción </h1>
-</div>
+
 <div class="d-flex justify-content-center align-items-center">
     <div class="container">
         <table class="table table-dark table-striped table-hover">
@@ -34,42 +67,35 @@
                 <th>Género</th>
                 <th>ID Lista</th>
                 <th>Acción</th>
+                <a href="http://localhost:8080/listareproduccion/listaCR" class="btn btn-dark">
+                    Añadir
+                </a>
 
             </tr>
             </thead>
             <tbody>
-           <tr th:if="${#lists.isEmpty(canciones)}">
+            <tr th:if="${#lists.isEmpty(canciones)}">
                 <td colspan="3" class="text-center">No hay registros</td>
-           </tr>
-           <tr th:each="cancion : ${canciones}">
-                 <td th:text="${cancion.idCancion}"></td>
+            </tr>
+            <tr th:each="cancion : ${canciones}">
+                <td th:text="${cancion.idCancion}"></td>
                 <td th:text="${cancion.titulo}"></td>
                 <td th:text="${cancion.nombreArtista}"></td>
                 <td th:text="${cancion.nombreGenero}"></td>
                 <td th:text="${listaR}"></td>
                 <td class="align-middle">
-                   <a class="text-decoration-none mx-1" th:href="@{./eliminar(idLista=${listaR}codCancion=${cancion.idCancion})}">
-                       <img src="/img/e.jpeg" alt="Eliminar">
-                   </a>
+                    <a class="text-decoration-none mx-1" th:href="@{./eliminar(codCancion=${cancion.idCancion})}">
+                        <img src="/img/e.jpeg" alt="Eliminar">
+                    </a>
                 </td>
-           </tr>
-             </tbody>
-         </table>
-     </div>
- </div>
-<!--
- <form action="#" th:action="@{/musicmatch/listareproduccion/alta}" th:object="${altaListaReproduccion}" method="post">
-     <div class="form-group">
-         <label for="nombre" class="lbl-agregar">Agregar Lista de Reproducción</label>
-         <input type="text" class="form-control" id="nombre" th:field="*{nombreListaReproduccion}" required >
-     </div>
-     <div class="py-3">
-         <button type="submit" class="btn btn-outline-dark col-12 btn-enviar">Enviar</button>
-     </div>
- </form>
--->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-         crossorigin="anonymous"></script>
- </body>
- </html>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

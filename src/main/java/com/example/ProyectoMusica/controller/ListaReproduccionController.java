@@ -1,5 +1,6 @@
 package com.example.ProyectoMusica.controller;
 
+import com.example.ProyectoMusica.entity.Genero;
 import com.example.ProyectoMusica.entity.ListaReproduccion;
 import com.example.ProyectoMusica.service.ServicioListaReproduccion;
 import org.springframework.stereotype.Controller;
@@ -15,12 +16,13 @@ import java.util.logging.Logger;
 @RequestMapping("/listareproduccion")
 public class ListaReproduccionController {
     ServicioListaReproduccion serListaReproduccion = new ServicioListaReproduccion();
-
-    @GetMapping("/listaR/{id}")
+    public int idListR;
+    @GetMapping("/{id}")
     public String vista (@PathVariable int id, Model model) {
         String valorfinal = "/musicmatch/listareproduccion";
         try {
-            model.addAttribute("listaR", id);
+            idListR=id;
+            model.addAttribute("listaR",id);
             model.addAttribute("canciones", serListaReproduccion.listarCancionesListasReproduccion(id));
            // model.addAttribute("altaListaReproduccion", new ListaReproduccion());
         } catch (Exception ex) {
@@ -29,47 +31,105 @@ public class ListaReproduccionController {
         }
         return valorfinal;
     }
-
-    @PostMapping("/alta")
-    public String alta(@ModelAttribute("altaListaReproduccion") ListaReproduccion listaReproduccion, Model model) {
-        String valorfinal = "redirect:/musicmatch/listareproduccion/";
+    @GetMapping("/listaCR")
+    public String vista (Model model) {
+        String valorfinal = "./musicmatch/altaCLR";
         try {
-            serListaReproduccion.agregar(listaReproduccion);
-            model.addAttribute("cancionesR", serListaReproduccion.listarTodasListasReproduccion());
-        } catch (SQLException ex) {
+            model.addAttribute("canciones", serListaReproduccion.listarCancionesTodasListasReproduccion());
+            // model.addAttribute("altaListaReproduccion", new ListaReproduccion());
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal = "error";
         }
         return valorfinal;
     }
 
+    /* Listar todas las listas de reproduccion */
+
+    @GetMapping("/listaLR")
+    public String vista2 (Model model) {
+        String valorfinal = "./musicmatch/altaLR";
+        try {
+            model.addAttribute("listasR", serListaReproduccion.listarTodasListasReproduccion());
+            model.addAttribute("agregarListaR", new ListaReproduccion());
+            model.addAttribute("imageUrls",serListaReproduccion.imagenListaR());
+            //tengo que cambiar el "canciones"
+            //model.addAttribute("canciones", serGenero.listarCancionGenero());
+           // model.addAttribute("imageUrls",serGenero.imagenGenero());
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            valorfinal = "error";
+        }
+        return valorfinal;
+    }
+
+@GetMapping("/altaCR")
+public String agregarCancionLR(@RequestParam("codCancion") int idCancion, Model model) {
+    String valorfinal = "redirect:/listareproduccion/"+idListR;
+    try {
+        serListaReproduccion.agregarCancionLR(idCancion,idListR);
+        model.addAttribute("canciones", serListaReproduccion.listarCancionesListasReproduccion(idListR));
+    } catch (SQLException ex) {
+        valorfinal = "error";
+    }
+    return valorfinal;
+}
     @GetMapping("/eliminar")
-    public String eliminar(@RequestParam("idLista") int id,@RequestParam("codCancion") int idCancionLista, Model model) {
-        String valorfinal = "redirect:/musicmatch/listareproduccion";
+    public String eliminar(@RequestParam("codCancion") int idCancion, Model model) {
+        String valorfinal = "redirect:/listareproduccion/"+idListR;
         try {
-            serListaReproduccion.eliminar(idCancionLista);
-            model.addAttribute("canciones", serListaReproduccion.listarCancionesListasReproduccion(id));
+            serListaReproduccion.eliminarLR(idCancion);
+            model.addAttribute("canciones", serListaReproduccion.listarCancionesListasReproduccion(idListR));
         } catch (SQLException ex) {
             valorfinal = "error";
         }
         return valorfinal;
     }
 
-   /* @GetMapping("/modificar")
-    public String modificar(@RequestParam ("codListaReproduccion") int id,Model model){
-        String valorfinal="./musicmatch/listareproduccion/ModificarLR";
+    @GetMapping("/altaLR")
+    public String greetingForm(Model model) {
+        String valorfinal = "./musicmatch/altaLR";
+        model.addAttribute("agregarListaR", new ListaReproduccion());
+        return valorfinal;
+    }
+    @PostMapping("/altaLR")
+    public String altaListaR(@ModelAttribute ListaReproduccion listaReproduccion, Model model) {
+        String valorfinal = "redirect:/listareproduccion/listaLR";
         try {
-            model.addAttribute("listareproduccion", serListaReproduccion.getUnicaListaReproduccion(id));
+            serListaReproduccion.agregarListaR(listaReproduccion);
+            model.addAttribute("agregarListasR", serListaReproduccion.listarTodasListasReproduccion());
+        } catch (SQLException ex) {
+            valorfinal = "error";
+        }
+        return valorfinal;
+    }
+
+    @GetMapping("/eliminarLR")
+    public String eliminarLR(@RequestParam("codListaR") int idListR, Model model) {
+        String valorfinal = "redirect:/listareproduccion/listaLR";
+        try {
+            serListaReproduccion.eliminarLR(idListR);
+            model.addAttribute("agregarListasR", serListaReproduccion.listarTodasListasReproduccion());
+        } catch (SQLException ex) {
+            valorfinal = "error";
+        }
+        return valorfinal;
+    }
+    @GetMapping("/modificarLR")
+    public String modificarLR(@RequestParam ("codListaR") int id, Model model) {
+        String valorfinal = "./musicmatch/modificarLR";
+        try {
+            model.addAttribute("modificarListaR", serListaReproduccion.getUnicaListaReproduccion(id));
         } catch (SQLException ex) {
         }
         return valorfinal;
     }
-*/
-    @PostMapping("/modificar")
+    @PostMapping("/modificarLR")
     public String modificarBBDD (@ModelAttribute ListaReproduccion listaReproduccion, Model model){
-        String valorfinal="redirect:/musicmatch/listareproduccion";
+        String valorfinal = "redirect:/listareproduccion/listaLR";
         try {
-            serListaReproduccion.modificar(listaReproduccion);
-            model.addAttribute("listasreproduccion",serListaReproduccion.listarTodasListasReproduccion());
+            serListaReproduccion.modificarLR(listaReproduccion);
+            model.addAttribute("modificarListasR",serListaReproduccion.listarTodasListasReproduccion());
         } catch (SQLException ex) {
         }
         return valorfinal;
