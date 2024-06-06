@@ -130,4 +130,25 @@ public class ServicioUsuario {
         }
         return usuario;
     }
+
+    public Usuario getUnicoUsuario(String email) throws SQLException {
+        Usuario usuario = null;
+        try (Connection con = conexion.conectar();
+             PreparedStatement ps = con.prepareStatement("SELECT idUsuario, nombreUsuario, correoElectronico, AES_DECRYPT(UNHEX(clave), ?) AS clave FROM Usuario WHERE correoElectronico = ?"))
+            {
+                ps.setString(1, "AES_KEY");
+                ps.setString(2, email);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        usuario = new Usuario(
+                                rs.getInt("idUsuario"),
+                                rs.getString("nombreUsuario"),
+                                rs.getString("correoElectronico"),
+                                rs.getString("clave")
+                        );
+                    }
+                }
+            }
+        return usuario;
+    }
 }

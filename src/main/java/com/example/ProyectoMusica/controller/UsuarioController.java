@@ -32,7 +32,9 @@ public class UsuarioController {
     @GetMapping("/registro")
     public String verPaginaRegistro(Model model) {
         model.addAttribute("usuario", new Usuario());
-        return "musicmatch/usuario/registro";
+        model.addAttribute("altaUsuario", new Usuario());
+
+        return "musicmatch/Login/register";
     }
 
     @PostMapping("/registro")
@@ -97,5 +99,23 @@ public class UsuarioController {
             return "error";
         }
     }
+
+    @GetMapping("/perfil")
+    public String verPerfilUsuario(Model model) {
+        model.addAttribute("usuario", new Usuario());
+
+        return "musicmatch/Login/login";
+    }
+
+    @PostMapping("/login")
+    public String logeo(@ModelAttribute Usuario usuario, Model model) throws SQLException {
+        if (servicioUsuario.getUnicoUsuario(usuario.getCorreoElectronico()).getClave().equals(usuario.getClave())) {
+            return "musicmatch/Usuario";
+        } else {
+            model.addAttribute("error", "Contraseña o correo electronico incorrecto");
+            return "musicmatch/error";
+        }
+    }
+
 }
 

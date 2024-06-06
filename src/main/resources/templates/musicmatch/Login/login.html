@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,23 +18,23 @@
                 <h1 class="text-center mt-8 mx-5 text-white">Iniciar sesión </h1>
                 <h4 class="text-center text-white"> ¿Es tu primera vez?
                     <div class="">
-                        <a href="/templates/musicmatch/Login/register.html"
+                        <a href="/usuario/registro"
                            class="btn btn-link text-white text-decoration-underline">
                             Regístrate
                         </a>
                     </div>
                 </h4>
-                <form action="#" method="post">
+                <form action="#" th:action="@{/usuario/login}" th:object="${usuario}" method="post">
                     <div class="form-group mb-4">
                         <label for="email" class="form-label text-white text-center">Email </label>
                         <input type="text" class="form-control abs-center" id="email" placeholder="Email"
                                style="background-color: rgba(250, 250, 250 );"
-                               required>
+                               th:field="*{correoElectronico}" required>
                     </div>
                     <div class="form-group mb-4">
                         <label for="contraseña" class="form-label text-white">Contraseña </label>
                         <input type="text" class="form-control" id="contraseña"
-                               placeholder="Contraseña" style="background-color: rgba(250, 250, 250 );" required>
+                               placeholder="Contraseña" th:field="*{clave}" style="background-color: rgba(250, 250, 250 );" required>
                     </div>
                     <div class="py-3">
                         <button type="submit" class="btn btn-light col-12 border  shadow"
