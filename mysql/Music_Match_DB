@@ -19,8 +19,7 @@ CREATE TABLE IF NOT EXISTS Usuario (
 CREATE TABLE IF NOT EXISTS ListaReproduccion (
     idListaReproduccion INT AUTO_INCREMENT PRIMARY KEY,
     nombreListaReproduccion VARCHAR(255) NOT NULL,
-    usuario_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(idUsuario)
+    usuario_id INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Crear tabla Genero
