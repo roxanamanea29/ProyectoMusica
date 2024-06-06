@@ -81,7 +81,6 @@ public class GeneroController {
     public String lista(@RequestParam ("codGenero") int id,Model model) {
         String valorfinal = "./musicmatch/genero/listaCancion";
         try {
-            //tengo que cambiar el "canciones"
             model.addAttribute("listas", serGenero.listarCancionGenero(id));
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);

@@ -89,6 +89,8 @@
                 <div class="card bg-dark text-white">
                     <a class="text-decoration-none mx-1" th:href="@{./lista?codGenero={id}(id=${genero.idGenero})}">
                         <img class="card-img-top" th:src="${imageUrls[__${iterStat.index}__]}" alt="lista">
+                        <!-- en el caso de no querer tener el lio de las imagenes usar el de abajo -->
+                    <!--        <button type="button" class="btn btn-light">Lista</button> -->
                     </a>
                     <div class="card-body">
                         <h6 class="font-family-sans-serif" th:text="${genero.getNombreGenero()}">Genero</h6>
@@ -104,7 +106,7 @@
     <div class="container p-4">
         <div class="row">
             <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Administrador MusicMatch</h5>
+                <h5 class="text-uppercase">Administrador MusicMatch.</h5>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                 <h5 class="text-uppercase">Enlaces</h5>

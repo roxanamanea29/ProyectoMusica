@@ -97,9 +97,13 @@ public class ServicioGenero {
                 "/img/metal.jpg",
                 "/img/rap.jpg",
                 "/img/country.jpg",
-                "/img/soul.jpg"
+                "/img/soul.jpg",
+                "/img/proximamente.png",
+                "/img/proximamente.png",
+                "/img/proximamente.png",
+                "/img/proximamente.png",
+                "/img/proximamente.png"
         );
         return imageUrls;
     }
-
 }

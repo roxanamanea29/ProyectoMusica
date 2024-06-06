@@ -6,21 +6,18 @@ public class Usuario {
     public String nombreUsuario;
     private String correoElectronico;
     private String clave;
-    public String lista;
 
-    public Usuario(String nombreUsuario, String correoElectronico, String clave, String lista) {
+    public Usuario(String nombreUsuario, String correoElectronico, String clave) {
         this.nombreUsuario  =nombreUsuario;
         this.correoElectronico=correoElectronico;
         this.clave = clave;
-        this.lista=lista;
     }
 
-    public Usuario(int idUsuario, String nombreUsuario, String correoElectronico, String clave, String lista) {
+    public Usuario(int idUsuario, String nombreUsuario, String correoElectronico, String clave) {
         this.idUsuario=idUsuario;
         this.nombreUsuario=nombreUsuario;
         this.correoElectronico=correoElectronico;
         this.clave=clave;
-        this.lista=lista;
     }
 
     public Usuario(int idUsuario, String nombreUsuario) {
@@ -62,22 +59,13 @@ public class Usuario {
         this.clave = clave;
     }
 
-    public String getLista() {
-        return lista;
-    }
-
-    public void setLista(String lista) {
-        this.lista = lista;
-    }
-    //asdfsdfsdf
     @Override
     public String toString() {
 
-        return String.format("%-4d %-20s %-20s %-15s %-25s",
+        return String.format("%-4d %-20s %-20s %-15s",
                 idUsuario,
                 nombreUsuario,
                 correoElectronico,
-                clave,
-                lista);
+                clave);
     }
 }
