@@ -97,7 +97,7 @@ public class ServicioListaReproduccion {
     }
     public void agregarListaR(ListaReproduccion lr) throws SQLException {
         Statement consulta = con.conectar().createStatement();
-        String cadena = "INSERT INTO listareproduccion (nombreListaReproduccion) VALUES ('" + lr.getNombreListaReproduccion() + "');";
+        String cadena = "INSERT INTO listareproduccion (nombreListaReproduccion,usuario_id) VALUES ('" + lr.getNombreListaReproduccion() + "', '" + 1 + "');";
         consulta.executeUpdate(cadena);
         consulta.close();
     }
