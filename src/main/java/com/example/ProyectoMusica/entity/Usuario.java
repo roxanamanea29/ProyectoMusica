@@ -23,6 +23,9 @@ public class Usuario {
     public Usuario(int idUsuario, String nombreUsuario) {
     }
 
+    public Usuario(String nombreUsuario, String clave) {
+    }
+
     public Usuario() {
 
     }

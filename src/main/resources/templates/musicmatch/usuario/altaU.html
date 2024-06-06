@@ -30,7 +30,7 @@
 </div>
 <div class="container">
 
-    <form th:action="@{/usuario/registro}" th:object="${altaUsuario}" method="post">
+    <form th:action="@{/usuario/login}" th:object="${altaUsuario}" method="post">
         <div class="form-group mb-3">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre" th:field="*{nombreUsuario}" required />
