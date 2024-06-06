@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS Usuario (
     nombreUsuario VARCHAR(100) NOT NULL,
     correoElectronico VARCHAR(100) UNIQUE NOT NULL,
     clave VARCHAR(255) NOT NULL
-);
+)ENGINE='InnoDB'DEFAULT CHARSET =LATIN1;
+
 
 -- Crear tabla ListaReproduccion
 CREATE TABLE IF NOT EXISTS ListaReproduccion (
