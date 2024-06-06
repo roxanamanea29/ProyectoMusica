@@ -70,7 +70,7 @@ public String agregarCancionLR(@RequestParam("codCancion") int idCancion, Model 
     public String eliminar(@RequestParam("codCancion") int idCancion, Model model) {
         String valorfinal = "redirect:/listareproduccion/"+idListR;
         try {
-            serListaReproduccion.eliminarLR(idCancion);
+            serListaReproduccion.eliminar(idCancion);
             model.addAttribute("canciones", serListaReproduccion.listarCancionesListasReproduccion(idListR));
         } catch (SQLException ex) {
             valorfinal = "error";
